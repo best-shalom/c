@@ -9,3 +9,15 @@
                   cout<<"面积="<<s;
                   return 0; 
                  } 
+                 
+2.                #include<iostream>
+                  using namespace std;
+                  int main()
+                  {
+                    int a;
+                    float b;
+                    cout<<"请输入变量a and b\n";
+                    cin>>a>>b;
+                    cout<<a<<'\t'<<b<<endl;
+                    return 0;
+                  }
