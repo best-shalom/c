@@ -1,0 +1,11 @@
+1.              #include <iostream>
+                using namespace std;
+                #define PI 3.1415926535 
+                int main()
+                {	double s;
+                  double r;
+                  cin>>r;
+                  s=PI*r*r;
+                  cout<<"面积="<<s;
+                  return 0; 
+                 } 
