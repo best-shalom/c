@@ -1,0 +1,169 @@
+ 1.               #include <iostream>
+                  using namespace std;
+                  int main()
+                  {
+                    int a,b,c;
+                    a=10;
+                    b=0110;
+                    c=0x111;
+                    cout<<"a="<<a<<endl;
+                    cout<<"b="<<b<<endl;
+                    cout<<"c="<<c<<endl;
+                    return 0;
+                  }
+                  
+                  
+                  
+                  
+                  
+                  
+2.                #include <iostream>
+                  using namespace std;
+                  int main()
+                  {
+                    short int a=-1;
+                    unsigned short b;
+                    b=a;
+                    cout<<"b="<<b<<endl;
+                    return 0;
+                  }
+                  
+                  
+                  
+                  
+                  
+                  
+3.                #include <iostream>
+                  using namespace std;
+                  int main()
+                  {
+                    float a,b;
+                    double c,d;
+                    a=0.00001000000000000000000000001;
+                    b=13.111111111111111111111111;
+                    c=19.1111111111111111111111111111;
+                    d=31111;
+                    cout<<"a="<<a<<'\t'<<"b="<<b<<endl;
+                    cout<<"c="<<c<<'\t'<<"d="<<d<<endl;
+                    return 0;
+                  }  
+                  
+                  
+                  
+                  
+                  
+4.                #include <iostream>
+                  using namespace std;
+                  int main()
+                  {
+                    cout<<"c:\tc\tc"<<'\n';
+                    cout<<"c:\\tc\\tc"<<'\n';
+                    return 0; 
+                  }  
+                  
+                  
+                  
+5.                #include <iostream>
+                  using namespace std;
+                  int main()
+                  {
+                    char a,b;
+                    a='A';
+                    b='\x61';
+                    cout<<a<<'\t'<<b<<endl;
+                    return 0;
+                  }   
+                  
+                  
+                  
+                  
+6.                 #include <iostream>
+                    using namespace std;
+                    int main()
+                    {
+                      char a,b;
+                      a='R';
+                      b=a+32;
+                      cout<<a<<'\n'<<b<<endl;
+                      return 0;
+                    }
+                    
+                    
+                    
+7.                  #include <iostream>
+                    using namespace std;
+                    int main()
+                    {
+                      char a;
+                      a='a';
+                      cout<<a<<endl;
+                      cout<<a+1<<endl;
+                      return 0;
+                    }                    
+                  
+                  
+8.                   #include <iostream>
+                      using namespace std;
+                      int main()
+                      {
+                        int a;
+                        double b=0.16374;
+                        a=b;
+                        cout<<"a="<<a<<endl;
+                        return 0;
+                      }
+                      
+                      
+                      
+                      
+                      
+9.                    #include <iostream>
+                      using namespace std;
+                      int main ()
+                      {
+                        char a=256;
+                        unsigned int b=a+0;
+                        cout<<"b="<<b<<endl;
+                        return 0;
+                      }   
+                      
+                      
+                      
+10.                   #include <iostream>;
+                      using namespace std;
+                      int main()
+                      {
+                        unsigned char a=255;
+                        int b;
+                        b=a;
+                        cout<<"b="<<b<<endl;
+                        return 0;
+                      }              
+                      
+                      
+                      
+                      
+11.                   #include <iostream>
+                      using namespace std;
+                      int main()
+                      {
+                        char a=254;
+                        int b;
+                        b=a;
+                        cout<<"b="<<b<<endl;
+                        return 0;
+                      }      
+                      
+                      
+                      
+                      
+12.                   #include <iostream>
+                      using namespace std;
+                      int main()
+                      {
+                        float y=5.5;
+                        int x;
+                        x=int(y);
+                        cout<<"x="<<x<<'\n'<<"y="<<y<<endl;
+                        return 0;
+                      }                      
