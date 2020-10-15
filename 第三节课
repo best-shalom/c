@@ -1,0 +1,150 @@
+1.            #include <iostream>
+              using namespace std;
+              int main()
+              {
+                int grade;
+                cout<<"输入成绩："<<endl;
+                cin>>grade;
+                cout<<"等级；"<<endl;
+                switch(grade/10)
+                {
+                case 10:
+                case 9:cout<<"优秀";break;
+                case 8:cout<<"良好";break;
+                case 7:cout<<"中等";break;
+                case 6:cout<<"及格";break;
+                defalt:cout<<"不及格";
+                }
+                return 0;
+              }
+              
+              
+              
+2.              #include <iostream>
+                using namespace std;
+                int main()
+                {
+                  char a;
+                  cout<<"请输入；"<<endl;
+                  cin>>a;
+                  a=(a>='A'&&a<='Z')?(a+32):a;
+                  cout<<a<<endl;
+                  return 0;
+                }
+                
+                
+                
+                
+3.              #include <iostream>
+                #include <cmath>
+                using namespace std;
+                int main()
+                {
+                  float a,b,c,delta;
+                  cout<<"请输入三个系数："<<endl;
+                  cin>>a>>b>>c;
+                  cout<<"a="<<a<<'\t'<<"b="<<b<<'\t'<<"c="<<c<<endl;
+                  delta=b*b-4*a*c;
+                  if (delta<0)
+                  cout<<"方程无实根"<<endl;
+                  else 
+                  {
+                  delta=sqrt(delta);
+                    if (delta)
+                    {	cout<<"方程有两个不同实根"<<endl;
+                      cout<<"x1="<<(-b+delta/2/a)<<endl;
+                      cout<<"x2="<<(-b-delta/2/a)<<endl;
+                    }
+                    else
+                    {
+                    cout<<"方程有两个相等实根"<<endl;
+                    cout<<"x1=x2="<<(-b/2/a)<<endl;
+                    }
+                    return 0;
+                  }
+                 }        
+                 
+                 
+                 
+                 
+4.                #include <iostream>
+                  using namespace std;
+                  int main()
+                  {
+                    char c;
+                    cout<<"请输入："<<endl;
+                    cin.get(c);
+                    if(c<32)
+                    cout<<"控制字符"<<endl;
+                    else if(c>='0'&&c<='9')
+                    cout<<"数字字符"<<endl;
+                    else if(c>='A'&&c<='Z')
+                    cout<<"大写字母"<<endl;
+                    else if(c>='a'&&c<='z')
+                    cout<<"小写字母"<<endl;
+                    else
+                    cout<<"其他字符"<<endl;
+                    return 0;
+                  }   
+                  
+                  
+                  
+5.                  #include <iostream>
+                    using namespace std;
+                    int main()
+                    {
+                      int a,b,c,t;
+                      cout<<"请输入："<<endl;
+                      cin>>a>>b>>c;
+                      cout<<"a="<<a<<'\n'<<"b="<<b<<'\n'<<"c="<<c<<endl;
+                      if(a>b)t=b;
+                      else t=a;
+                      cout<<"最小的数是；"<<endl;
+                      if(c>t)
+                      cout<<t<<endl;
+                      else
+                      cout<<c<<endl;
+                      return 0; 
+                    }     
+                    
+                    
+                    
+                    
+6.                    #include <iostream>
+                      using namespace std;
+                      int main()
+                      {
+                        float a,b,c;
+                        cout<<"请输入；"<<endl;
+                        cin>>a>>b;
+                        if(a>b)
+                        {
+                          c=a,a=b,b=c;
+                        }
+                        cout<<a<<'\n'<<b<<endl;
+                        return 0;
+                      }        
+                      
+                      
+                      
+7.                      #include <iostream>
+                        using namespace std;
+                        int main()
+                        {
+                          float a,b;
+                          char op;
+                          cout<<"请输入算式：（数1 运算符 数2）"<<endl;
+                          cin>>a>>op>>b;
+                          switch (op)
+                          {
+                            case '+':cout<<a<<op<<b<<"="<<a+b<<endl;break;
+                            case '-':cout<<a<<op<<b<<"="<<a-b<<endl;break;
+                            case '*':cout<<a<<op<<b<<"="<<a*b<<endl;break;
+                            case '/':if (b)
+                                 {cout<<a<<op<<b<<"="<<a/b<<endl;break;}
+                                 else
+                                 {cout<<"错误，除数为0"<<endl;break;}
+                            defalt:cout<<"符号无效"<<endl;
+                          }
+                          return 0;
+                        }                      
