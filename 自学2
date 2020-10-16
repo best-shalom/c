@@ -56,4 +56,25 @@
                         }
                         cout<<"s="<<s;
                         return 0;
-                      }                      
+                      }      
+                      
+                      
+                      
+                      
+4.                    #include <iostream>
+                      #include <cmath>
+                      using namespace std;
+                      int main()
+                      {
+                        int i=1,b=1;
+                        float s=0,t=1;
+                        while (fabs(t)>1e-6)
+                        {
+                          t=b*1.0/i;
+                          s=s+t;
+                          i=i+2;
+                          b=-b;
+                        }
+                        cout<<s*4;
+                        return 0;
+                       }                       
