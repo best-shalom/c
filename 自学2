@@ -77,4 +77,23 @@
                         }
                         cout<<s*4;
                         return 0;
-                       }                       
+                       }   
+                       
+                       
+                       
+                       
+                       
+                       
+5.                    #include <iostream>
+                      using namespace std;
+                      int main()
+                      {
+                        int i=1,s=0;
+                        do
+                        {
+                          s=s+i;
+                          i=i+1;
+                        }while (i<=100);
+                        cout<<s;
+                        return 0;
+                      }                       
