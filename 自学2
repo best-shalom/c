@@ -1,0 +1,42 @@
+1.                  #include <iostream>
+                    using namespace std;
+                    int main()
+                    {
+                      float a,b;
+                      char op;
+                      cout<<"请输入算式：（数1 运算符 数2）"<<'\n';
+                      cin>>a>>op>>b;
+                      if (op=='+')
+                      cout<<a<<op<<b<<"="<<a+b;
+                      else if(op=='-')
+                      cout<<a<<op<<b<<"="<<a-b;
+                      else if(op=='*')
+                      cout<<a<<op<<b<<"="<<a*b;
+                      else if(op=='/')
+                      {if (b)
+                      cout<<a<<op<<b<<"=" <<a/b;
+                      else 
+                      cout<<"错误，除数为0";
+                      }
+                      else
+                      cout<<op<<"无效字符"; 
+                      return 0;
+                     } 
+                     
+                     
+                     
+                     
+                     
+2.                    #include <iostream>
+                      using namespace std;
+                      int main()
+                      {
+                        int s=0,i=1;
+                        while (i<=100)
+                        {
+                          s=s+i;
+                          i=i+1;
+                        }
+                        cout<<"s="<<s;
+                        return 0;
+                      }           
