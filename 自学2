@@ -196,3 +196,18 @@
                             cout<<"非素数";
                             return 0;	
                           }                          
+
+
+
+
+10.                         #include <iostream>
+                            using namespace std;
+                            int main()
+                            {	int a;
+                              for (a=1;a<=100;a++){
+                              if (a%3==0)
+                              continue;
+                              cout<<a<<'\t';
+                              }
+                              return 0;
+                             } 
