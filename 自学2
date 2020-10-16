@@ -155,7 +155,7 @@
                    
 
 
-8.                        #include <iostream>
+8.(不能求最小公倍数）       #include <iostream>
                           using namespace std;
                           int main()
                           {
