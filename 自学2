@@ -151,3 +151,48 @@
 
                             return 0;
                           }
+                          
+                   
+
+
+8.                        #include <iostream>
+                          using namespace std;
+                          int main()
+                          {
+                            float a,b,c,s;
+                            int a1,b1,c1;
+                            cout<<"请输入三个数：";
+                            cin>>a>>b>>c;
+                            for (s=a;s<a*b*c;s=s+1)
+                            {
+                            a1=s/a;
+                            b1=s/b;
+                            c1=s/c;	
+                            if ((s-a*a1==0)&&(s-b*b1==0)&&(s-c*c1==0))
+                            break;
+                            }
+                            cout<<a<<','<<b<<','<<c<<"的最小公倍数为"<<s;
+                            return 0;
+                          }
+                          
+                          
+                          
+                          
+                          
+                          
+9.                        #include <iostream>
+                          using namespace std;
+                          int main()
+                          {
+                            int a,i;
+                            cout<<"请输入：";
+                            cin>>a;
+                            for (i=2;i<a;i++)
+                              if(a%i==0)
+                              break;
+                            if (i>=a)
+                            cout<<"为素数";
+                            else 
+                            cout<<"非素数";
+                            return 0;	
+                          }                          
