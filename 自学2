@@ -121,4 +121,33 @@
                             cout<<"该数的平方根为；"<<x1;
                           }
                           return 0;
-                         }                       
+                         }        
+                         
+                         
+                         
+                         
+             
+7.                        #include <iostream>
+                          using namespace std;
+                          int main()
+                          {
+                            int a,b,c;
+                            for (a=1;a<=4;a=a+1)
+                            {
+                              for (b=1;b<=4-a;b=b+1)
+                              cout<<' ';
+                              for (c=1;c<=2*a-1;c=c+1)
+                              cout<<'*';
+                              cout<<'\n';
+                            }
+                            for (a=1;a<=3;a++)
+                            {
+                              for (b=1;b<=a;b++)
+                              cout<<' ';
+                              for (c=1;c<=2*(3-a)+1;c++)
+                              cout<<'*';
+                              cout<<'\n';
+                            }
+
+                            return 0;
+                          }
