@@ -53,6 +53,7 @@
 
 
 4.                      #include <iostream>
+                        #include <cstdlib>
                         #include <ctime>
                         using namespace std;
                         int main()
@@ -76,11 +77,11 @@
                           }
                           cin>>d;
                           if (d==c){
-                          cout<<d<<'\n'<<"正确！";
+                          cout<<"\n正确！\n";
                           sum=sum+10;}
                           else
-                          cout<<d<<'\n'<<"错误！";
+                          cout<<"\n错误！\n";
                           }
-                          cout<<"答对："<<sum/10<<"题";
+                          cout<<"答对："<<sum/10<<"题"<<'\n'<<"得分："<<sum;
                           return 0;
                         }
