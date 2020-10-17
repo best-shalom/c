@@ -48,3 +48,39 @@
                           cout<<e;
                           return 0;
                         }
+
+
+
+
+4.                      #include <iostream>
+                        #include <ctime>
+                        using namespace std;
+                        int main()
+                        {
+                          int a,b,op,sum=0;
+                          int i,c,d;
+                          srand(time(NULL));
+                          for (i=1;i<=10;i++)
+                          {
+                            a=rand()%10;
+                            b=rand()%10;
+                            op=rand()%3;
+                          switch (op)
+                          {
+                            case 0:cout<<a<<"+"<<b<<"=";
+                            c=a+b;break;
+                            case 1:cout<<a<<"-"<<b<<"=";
+                            c=a-b;break;
+                            case 2:cout<<a<<"*"<<b<<"=";
+                            c=a*b;break;
+                          }
+                          cin>>d;
+                          if (d==c){
+                          cout<<d<<'\n'<<"正确！";
+                          sum=sum+10;}
+                          else
+                          cout<<d<<'\n'<<"错误！";
+                          }
+                          cout<<"答对："<<sum/10<<"题";
+                          return 0;
+                        }
