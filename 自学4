@@ -32,13 +32,13 @@
                                   }
                                   int main()
                                   {
-                                    char ch;
+                                    int ch;              //这里用int定义的就是数字，如果用char，定义的就是字符
                                     message ();
                                     cin>>ch;
                                     cout<<"您输入的是："<<ch<<'\n'<<"即将为您执行：";
                                     switch (ch)
                                     {
-                                      case 1:cout<<"注册";break;
+                                      case 1:cout<<"注册";break;          //如果上面写的是char,这里就应该写case '1',即字符
                                       case 2:cout<<"登录";break;
                                       case 3:cout<<"取消";break; 
                                       default :cout<<"输入错误";break;
