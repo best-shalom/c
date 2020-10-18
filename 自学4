@@ -51,26 +51,28 @@
                                   
                                   
                                   
-3.                                 float fact(int m)
-{
-	int x=1;
-	cin>>m;
-	if(m<0)
-	cout<<"输入无效！";
-	else if(m>=0){
-	while (m>=1){
-	x=x*m;
-	m--; }
-	return x;			}
-}
-int main()
-{
-	int n,s=0,i=1;
-	cout<<"请输入：";
-	cin>>n;
-	while (i<=n){
-	s=s+fact(i);
-	i++;}
-	cout<<s;
-	return 0;
-}                                 
+3.                              #include <iostream>
+				using namespace std;
+				float fact(int m)
+				{
+					int x=1;
+					cin>>m;
+					if(m<0)
+					cout<<"输入无效！";
+					else if(m>=0){
+					while (m>=1){
+					x=x*m;
+					m--; }
+					return x;			}
+				}
+				int main()
+				{
+					int n,s=0,i=1;
+					cout<<"请输入：";
+					cin>>n;
+					while (i<=n){
+					s=s+fact(i);
+					i++;}
+					cout<<s;
+					return 0;
+				}
