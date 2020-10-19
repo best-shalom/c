@@ -83,7 +83,7 @@
 				
 				
 				
-4.（正确）                       #include <iostream>
+4.（半对）                       #include <iostream>
 				using namespace std;
 				float fact(int m)
 				{
@@ -109,8 +109,41 @@
 
 
 
+5. （正确）                      #include <iostream>
+				using namespace std;
+				float fact(int m)
+				{
+					int x=1;
+					if(m>=0){
+					while (m>=1){
+					x=x*m;
+					m--; }
+					return x;			}
+				}
+				int main()
+				{
+					int n,s=0,i=1;
+					cout<<"请输入：";
+					cin>>n;
+					if (n>=0){
+					while (i<=n){
+					s=s+fact(i);
+					i++;}
+					cout<<s;}
+					else
+					cout<<"输入无效！";
+					return 0;
+				}
 
-5. （错误）                      #include <iostream>
+
+
+
+
+
+
+
+
+6. （错误）                      #include <iostream>
 				using namespace std;
 				int l(int a,int b,int c)
 				{
@@ -134,7 +167,7 @@
 
 
 
-6. （正确）                      #include <iostream>
+7. （正确）                      #include <iostream>
 				using namespace std;
 				int l(int a,int b,int c)
 				{
@@ -161,7 +194,7 @@
 
 
 
-7.                                      #include <iostream>
+8.                                      #include <iostream>
 					using namespace std;
 					int swap(float& x,float& y)
 					{
@@ -185,7 +218,7 @@
 
 
 
-8.                                      #include <iostream>
+9.                                      #include <iostream>
 					using namespace std;
 					int X(int m,int k)
 					{
