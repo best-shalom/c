@@ -51,12 +51,12 @@
                                   
                                   
                                   
-3.                              #include <iostream>
+3.  (错误）                      #include <iostream>                                             
 				using namespace std;
 				float fact(int m)
 				{
 					int x=1;
-					cin>>m;
+					cin>>m;           //错误所在，不能在fact函数里面输入，不然后面的循环会一直执行要求输入数字的操作，无法得到正确结果
 					if(m<0)
 					cout<<"输入无效！";
 					else if(m>=0){
@@ -76,3 +76,37 @@
 					cout<<s;
 					return 0;
 				}
+				
+				
+				
+				
+				
+				
+				
+4.                              #include <iostream>
+				using namespace std;
+				float fact(int m)
+				{
+					int x=1;
+					if(m<0)
+					cout<<"输入无效！";
+					else if(m>=0){
+					while (m>=1){
+					x=x*m;
+					m--; }
+					return x;			}
+				}
+				int main()
+				{
+					int n,s=0,i=1;
+					cout<<"请输入：";
+					cin>>n;
+					for (i=1;i<=n;i++)
+					s=s+fact(i);
+					cout<<s;
+					return 0;
+				}				
+
+
+
+
