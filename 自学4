@@ -179,3 +179,34 @@
 						cout<<"交换后：a="<<a<<'\t'<<"b="<<b;
 						return 0;
 					}
+
+
+
+
+
+
+8.                                      #include <iostream>
+					using namespace std;
+					int X(int m,int k)
+					{
+						int i,p=1;
+						for(i=1;i<=k;i++)
+						p=p*m;
+						return p;
+					}
+					int Y(int n,int k)
+					{
+						int s=0;
+						for(int i=1;i<=n;i++)
+						s=s+X(i,k);
+						return s;
+					}
+					int main()
+					{
+						int n,k,s;
+						cout<<"请输入n,k的值；";
+						cin>>n>>k;
+						s=Y(n,k);
+						cout<<"1^k+2^k+...+"<<n<<"^k="<<s;
+						return 0; 
+					}
