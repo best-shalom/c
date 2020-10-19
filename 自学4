@@ -131,3 +131,26 @@
 					cout<<x<<','<<y<<','<<z<<"的最大公倍数为："<<t;
 					return 0;
 				}
+
+
+
+6. （正确）                      #include <iostream>
+				using namespace std;
+				int l(int a,int b,int c)
+				{
+					int i;
+					for (i=a;i>=1;i--)
+					{
+						if (a%i==0&&b%i==0&&c%i==0)
+						break;}                //这里大括号位置应该在return前面，不然return就会进入for循环，直接在后面输出
+						return i;
+				}
+				int main()
+				{
+					int x,y,z,t;
+					cout<<"请输入：";
+					cin>>x>>y>>z;
+					t=l(x,y,z);
+					cout<<x<<','<<y<<','<<z<<"的最大公倍数为："<<t;
+					return 0;
+				}        
