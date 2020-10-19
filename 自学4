@@ -154,3 +154,28 @@
 					cout<<x<<','<<y<<','<<z<<"的最大公倍数为："<<t;
 					return 0;
 				}        
+
+
+
+
+
+
+
+7.                                      #include <iostream>
+					using namespace std;
+					int swap(float& x,float& y)
+					{
+						float t;
+						t=x;
+						x=y;
+						y=t;
+					}
+					int main()
+					{
+						float a,b;
+						cout<<"交换前：a="<<'\t'<<"b="<<'\n';
+						cin>>a>>b;
+						swap(a,b);
+						cout<<"交换后：a="<<a<<'\t'<<"b="<<b;
+						return 0;
+					}
