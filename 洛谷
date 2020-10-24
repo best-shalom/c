@@ -20,4 +20,35 @@
 
 
 
-2.                           
+2.                          #include <iostream>
+                            #include <cmath>
+                            #include <string>
+                            #include <algorithm>
+                            using namespace std;
+                            int a[100+5][100+5];
+                            int main()
+                            {
+                                int n,m,k,x,y,s=0;
+                                cin>>n>>m>>k;
+                                for(int i=1;i<=m;i++)
+                                {
+                                    cin>>x>>y;
+                                    for (int k=x-1;k<=x+1;k++)
+                                        for (int j=y-1;j<=y+1;j++)
+                                    a[k][j]=1;
+                                    a[x-2][y]=1,a[x+2][y]=1,a[x][y-2]=1,a[x][y+2]=1;
+                                }
+                                for(int i=1;i<=k;i++)
+                                {
+                                    cin>>x>>y;
+                                    for (int k=x-2;k<=x+2;k++)
+                                        for (int j=y-2;j<=y+2;j++)
+                                    a[j][k]=1;
+                                }
+                                for(int c=1;c<=n;c++)
+                                    for(int b=1;b<=n;b++)
+                                if (a[c][b]==0)
+                                s++;
+                                cout<<s;
+                                return 0;
+                            } 
