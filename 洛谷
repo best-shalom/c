@@ -101,7 +101,7 @@
                             b=s/10%10;
                             c=s/100%10;
                             d=s/1000%10;
-                            A=a;B=(float)b/10;C=(float)c/100;D=(float)d/1000;
+                            A=a;B=(float)b/10;C=(float)c/100;D=(float)d/1000;         //前期错误：直接用B=b/10,此时，由于int b=整数，计算b/10时，强制整型，B=0，应该用（float）b来解除强制
                             t=A+B+C+D;
                             cout<<t;
                             return 0;
