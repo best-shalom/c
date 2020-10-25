@@ -123,3 +123,33 @@
                             cout<<x<<" "<<y;        
                             return 0;
                             } 
+
+
+
+
+6.                          #include <iostream>
+                            #include<cmath>
+                            using namespace std;
+                            int main()
+                            {
+                            int T;
+                            cin>>T;
+                            switch(T)
+                            { 
+                            case 1:{cout<<"I love Luogu!";break;}
+                            case 2:{cout<<"6 4";break;}
+                            case 3:{cout<<"3"<<'\n'<<"12"<<'\n'<<"2";break;}
+                            case 4:{cout<<"166.667";break;}
+                            case 5:{cout<<"15";break;}
+                            case 6:{cout<<sqrt(6*6+9*9);break;}
+                            case 7:{cout<<"110\n90\n0";break;}
+                            case 8:{ cout<<31.41593<<endl<<78.539825<<endl<<523.59883333333333333333333333333<<endl;break;}
+                            case 9:{cout<<"22";break;}
+                            case 10:{cout<<"9";break;}
+                            case 11:{cout<<100.0/3;break;}
+                            case 12:{cout<<"13\nR";break;}
+                            case 13:{cout<<"16";break;}
+                            case 14:{cout<<"50";break;}
+                            } 
+                            return 0;
+                            }
