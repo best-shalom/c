@@ -153,3 +153,27 @@
                             } 
                             return 0;
                             }
+
+
+
+7.                          #include <iostream>
+                            using namespace std;
+                            int main()
+                            {
+                                int m,t,s,n;
+                                cin>>m>>t>>s;
+                                if (t==0)
+                                {
+                                cout<<0;
+                                return 0;
+                                }
+                                if (s%t==0)
+                                n=m-s/t;
+                                else
+                                n=m-s/t-1;
+                                if (n<=0)
+                                cout<<0;
+                                else
+                                cout<<n;
+                                return 0;
+                            }
