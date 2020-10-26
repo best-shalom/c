@@ -210,3 +210,17 @@
                                         cout<<s;
                                         return 0;
                                     }
+
+
+
+
+10.（计算多边形对角线的交点数）         #include <iostream>
+                                      using namespace std;
+                                      int main()
+                                      {
+                                          unsigned long long s,n;
+                                          cin>>n;
+                                          s=n * (n-1) / 2 * (n-2) / 3 * (n-3) / 4;
+                                          cout<<s;
+                                          return 0;
+                                      }
