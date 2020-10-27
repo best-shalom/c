@@ -224,3 +224,32 @@
                                           cout<<s;
                                           return 0;
                                       }
+
+
+
+
+
+
+
+11.                                     #include <iostream>
+                                        using namespace std;
+                                        int main()
+                                        {
+                                            int n,i;
+                                            int a=0,b=0,c=0,d=0;
+                                            cin>>n;
+                                            if (n%2==0)
+                                            i++;
+                                            if (4<n&&n<=12)
+                                            i++;
+                                            if (i==2)
+                                            a=1;
+                                            if (i>0)
+                                            b=1;
+                                            if (i==1)
+                                            c=1;
+                                            if (i==0)
+                                            d=1;
+                                            cout<<a<<' '<<b<<' '<<c<<' '<<d;
+                                            return 0;
+                                        }
