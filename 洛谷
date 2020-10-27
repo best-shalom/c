@@ -311,3 +311,22 @@
                                                 cout<<"Luogu";
                                                 return 0;
                                             }
+
+
+
+
+15.                                     #include <iostream>
+                                        using namespace std;
+                                        int main()
+                                        {
+                                            float m,h,BIM;
+                                            cin>>m>>h;
+                                            BIM=m/h/h;
+                                            if (BIM<18.5)
+                                            cout<<"Underweight";
+                                            else if (BIM>=24)
+                                            cout<<BIM<<'\n'<<"Overweight";
+                                            else
+                                            cout<<"Normal";
+                                            return 0;
+                                        }
