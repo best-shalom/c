@@ -425,3 +425,26 @@
                                                   s=int((s*10)+0.5)/10.0;                 //重点：四舍五入！！！！！
                                                   cout<<s;
                                               }
+
+
+
+
+21.                                           #include <iostream>
+                                              using namespace std;
+                                              int main()
+                                              {
+                                                  int n,k,i;
+                                                  unsigned long long s=0;
+                                                  cin>>n>>k;
+                                                  for (i=1;i<=k;i++)
+                                                  {
+                                                      if ((n!=6)&&(n!=7))
+                                                      s=s+250;
+                                                      if (n==7)
+                                                      n=1;
+                                                      else
+                                                      n++;
+                                                  }
+                                                  cout<<s;
+                                                  return 0;
+                                              }
