@@ -347,3 +347,18 @@
                                                 cout<<a<<' '<<b<<' '<<c;
                                                 return 0;
                                             }
+
+
+
+17.                                         #include <iostream>
+                                            using namespace std;
+                                            int n,m;
+                                            int a[13]={0,31,28,31,30,31,30,31,31,30,31,30,31}; 
+                                            int main()
+                                            {
+                                                cin>>n>>m;
+                                                if ((n%4==0&&n%100!=0)||n%400==0)
+                                                a[2]=29;
+                                                cout<<a[m];
+                                                return 0;
+                                            }
