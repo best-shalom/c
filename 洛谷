@@ -503,3 +503,29 @@
                                         cout<<"Equilateral triangle\n";
                                         return 0;
                                     }
+
+
+
+
+
+24.                         #include <iostream>
+                            #include <algorithm>
+                            using namespace std;
+                            int main()
+                            {
+                                int a[3];
+                                cin>>a[0]>>a[1]>>a[2];
+                                sort(a,a+3);
+                                char ch;
+                                for (int i=1;i<=3;i++)
+                                {
+                                    cin>>ch;
+                                    if (ch=='A')
+                                    cout<<a[0]<<" ";
+                                    if (ch=='B')
+                                    cout<<a[1]<<" ";
+                                    if (ch=='C')
+                                    cout<<a[2]<<" ";
+                                }
+                                return 0;
+                            }
