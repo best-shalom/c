@@ -448,3 +448,27 @@
                                                   cout<<s;
                                                   return 0;
                                               }
+
+
+
+
+22.                                               #include <iostream>
+                                                  using namespace std;
+                                                  int main()
+                                                  {
+                                                      int a[10];
+                                                      int h,H,n=0;
+                                                      for (int i=0;i<10;i++)                //重点：数组必须从0开始，即a【0】！！！！！
+                                                      {
+                                                      cin>>a[i];
+                                                      }
+                                                      cin>>h;
+                                                      H=h+30;
+                                                      for (int i=0;i<10;i++)
+                                                      {
+                                                      if (H>=a[i])
+                                                      n++;
+                                                      }
+                                                      cout<<n;
+                                                      return 0;
+                                                  }
