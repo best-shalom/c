@@ -547,3 +547,34 @@
                                 cout<<a[0];
                                 return 0;
                             }
+
+
+
+
+26.                           #include <iostream>
+                              #include<cstdio>
+                              using namespace std;
+                              int main()
+                              {
+                                  int n,k,S1=0,S2=0;
+                                  double a,b,s1=0,s2=0;
+                                  cin>>n;
+                                  cin>>k;
+                                  for (int i=1;i<=n;i++)
+                                  {
+                                      if (i%k==0)
+                                      {
+                                          s1=s1+i;
+                                          S1++;
+                                      }
+                                      else
+                                      {
+                                          s2=s2+i;
+                                          S2++;
+                                      }
+                                  }
+                                  a=s1/S1;
+                                  b=s2/S2;
+                                  printf("%.1lf %.1lf",a,b);
+                                  return 0;
+                              }
