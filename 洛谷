@@ -472,3 +472,34 @@
                                                       cout<<n;
                                                       return 0;
                                                   }
+
+
+
+
+23.                                 #include <iostream>
+                                    #include <cstdio>
+                                    #include <algorithm>
+                                    using namespace std;
+                                    int a,b,c;
+                                    int main()
+                                    {
+                                        cin>>a>>b>>c;
+                                        int n[4]={0,a,b,c};
+                                        sort(n+1,n+4);
+                                        if (n[1]+n[2]<=n[3])
+                                        {
+                                        cout<<"Not triangle";
+                                        return 0;
+                                        }
+                                        if (n[1]*n[1]+n[2]*n[2]==n[3]*n[3])
+                                        cout<<"Right triangle\n";
+                                        else if (n[1]*n[1]+n[2]*n[2]>n[3]*n[3])
+                                        cout<<"Acute triangle\n";
+                                        else if (n[1]*n[1]+n[2]*n[2]<n[3]*n[3])
+                                        cout<<"Obtuse triangle\n";
+                                        if (a==b||b==c||a==c)
+                                        cout<<"Isosceles triangle\n";
+                                        if (a==b&&b==c)
+                                        cout<<"Equilateral triangle\n";
+                                        return 0;
+                                    }
