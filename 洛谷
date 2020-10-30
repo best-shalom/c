@@ -622,3 +622,26 @@
                                 cout<<k;
                                 return 0;
                             }
+
+
+
+
+
+29.（取值太大，输入n=22，结果错误）            #include <iostream>
+                                            using namespace std;
+                                            int N(int n)
+                                            {
+                                              long long s=1;
+                                              for (int i=1;i<=n;i++)
+                                              s=s*i;
+                                              return s;
+                                            }
+                                            int main()
+                                            {
+                                              long long s=0,n;
+                                              cin>>n;
+                                              for (int i=1;i<=n;i++)
+                                              s=s+N(i);
+                                              cout<<s;
+                                              return 0;
+                                            }
