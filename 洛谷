@@ -669,3 +669,20 @@
                             cout<<m;
                             return 0;
                           }
+
+
+
+31。                      #include <iostream>
+                          using namespace std;
+                          int main()
+                          {
+                            double n=0,k,s=0;
+                            cin>>k;
+                            for (double i=1;s<=k;i++)
+                            {
+                              s=s+1/i;
+                              n++;
+                            }
+                            cout<<n;
+                            return 0;
+                          }
