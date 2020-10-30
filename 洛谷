@@ -645,3 +645,27 @@
                                               cout<<s;
                                               return 0;
                                             }
+
+
+ 
+30.                       #include <iostream>
+                          using namespace std;
+                          int main()
+                          {
+                            int n,a,m=0;
+                            cin>>n>>a;
+                            for (int i=1;i<=n;i++)
+                            {
+                              int b=i;
+                              while (b>0)
+                              {
+                                int c;
+                                c=b%10;
+                                b=b/10;
+                                if (c==a)
+                                m++;
+                              }
+                            }
+                            cout<<m;
+                            return 0;
+                          }
