@@ -578,3 +578,30 @@
                                   printf("%.1lf %.1lf",a,b);
                                   return 0;
                               }
+
+
+
+
+27.                         #include <iostream>
+                            using namespace std;
+                            int main()
+                            {
+                              int a,s,m=1;
+                              cin>>a;
+                              s=a*(a+1)/2;
+                              for (int i=1;i<=s;i++)
+                              {
+                                if (i<10)
+                                cout<<0<<i;
+                                else
+                                cout<<i;
+                                m++;
+                                if (m>a)
+                                {
+                                  a--;
+                                  m=1;
+                                  cout<<'\n';
+                                }
+                              }
+                              return 0;
+                            }
