@@ -837,3 +837,33 @@
                         cout<<s;
                         return 0;
                       }
+
+
+
+
+
+38.                   #include <iostream>
+                      #include<bits/stdc++.h>
+                      #include <cmath>
+                      using namespace std;
+                      double M(int n)
+                      {
+                        double s=1;
+                        for (int i=1;i<=n;i++)
+                        s=s*(1+sqrt(5))/2;
+                        return s;
+                       } 
+                      double N(int n)
+                      {
+                        double s=1;
+                        for (int i=1;i<=n;i++)
+                        s=s*(1-sqrt(5))/2;
+                        return s;
+                       } 
+                      int main()
+                      {
+                        int n;
+                        cin>>n;
+                          printf("%.2lf",(M(n)-N(n))/sqrt(5));
+                        return 0;
+                      }
