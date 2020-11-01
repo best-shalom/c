@@ -820,3 +820,20 @@
                       cout<<n;
                       return 0;
                     }
+
+
+
+37.                   #include <iostream>
+                      using namespace std;
+                      int main()
+                      {
+                        int m,s=0;
+                        cin>>m;
+                        while (m!=0)
+                        {
+                          s=s*10+m%10;
+                          m=m/10;
+                        }
+                        cout<<s;
+                        return 0;
+                      }
