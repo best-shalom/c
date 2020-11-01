@@ -800,3 +800,23 @@
                         }
                         return 0;
                       }
+
+
+
+
+
+
+36.                 #include <iostream>
+                    using namespace std;
+                    int main()
+                    {
+                      float l,s=0,n=0;
+                      cin>>l;
+                      for (float i=2;s<=l;i=i*0.98)
+                      {
+                        s=s+i;
+                        n++;
+                      }
+                      cout<<n;
+                      return 0;
+                    }
