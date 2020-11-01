@@ -726,3 +726,36 @@
                         cout<<s;
                         return 0;
                        } 
+
+
+
+34.                   #include <iostream>
+                      #include<cmath>
+                      using namespace std;
+                      int z(int n)
+                      {
+                        if (n<2)
+                        return 0;
+                        if (n==2)
+                        return 1;
+                        for (int i=2;i<=sqrt(n);i++)
+                          if(n%i==0)
+                          return 0;
+                        return 1;
+                      }
+                      int main()
+                      {
+                        int L,s=0,n=0;
+                        cin>>L;
+                        for (int i=2;(s+i)<=L;i++)
+                        {
+                          if (z(i)==1)
+                          {
+                            s=s+i;
+                            cout<<i<<'\n';
+                            n++;
+                          }
+                        }
+                        cout<<n;
+                        return 0;
+                      }
