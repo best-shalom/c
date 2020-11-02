@@ -991,3 +991,26 @@
                                       }
                                       return 0;
                                   }
+
+
+
+
+44.                         #include <iostream>
+                            #include <bits/stdc++.h>
+                            using namespace std;
+                            int main()
+                            {
+                              int maxi=0,mini=10,a[1000],n,s=0;
+                              cin>>n;
+                              for (int i=1;i<=n;i++)
+                              {
+                                cin>>a[i];
+                                maxi=max(a[i],maxi);
+                                mini=min(a[i],mini);
+                                s=s+a[i];
+                              }
+                              s=s-maxi-mini;
+                              double d=(double)s/(n-2);
+                              printf ("%.2lf",d);
+                              return 0;
+                            }
