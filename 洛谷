@@ -948,3 +948,46 @@
                             }
                             return 0;
                           }
+
+
+
+43.                               #include <iostream>
+                                  using namespace std;
+                                  int main()
+                                  {
+                                    int n,k=1,t=1;
+                                    cin>>n;
+                                    for (int i=1;i<=n*n;i++)
+                                    {
+                                      if(k<10)
+                                      cout<<0<<k;
+                                      else
+                                      cout<<k;
+                                      k++;
+                                      t++;
+                                      if(t>n) 
+                                      {
+                                        cout<<'\n';
+                                        t=1;
+                                      }
+                                    }
+                                    cout<<'\n';
+                                    k=1;
+                                    for (int i=1;i<=n;i++)
+                                    {
+                                      for (int j=1;j<=n-i;j++)
+                                      {
+                                        cout<<"  ";
+                                      }
+                                      while(k<=i*(i+1)/2)
+                                      {
+                                        if(k<10)
+                                        cout<<0<<k;
+                                        else
+                                        cout<<k;
+                                        k++;	
+                                        }
+                                      cout<<'\n';
+                                      }
+                                      return 0;
+                                  }
