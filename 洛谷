@@ -904,3 +904,26 @@
                       cout<<maxi-mini;
                       return 0;
                     }
+
+
+
+41.                           #include <bits/stdc++.h>
+                              using namespace std;
+                              int main()
+                              {
+                                int n,t,k,maxx=1,s=1;
+                                cin>>n>>t;
+                                for (int i=2;i<=n;i++)
+                                {
+                                  cin>>k;
+                                  if (k-t==1)
+                                  s++;
+                                  else
+                                  s=1;
+                                  t=k;
+                                  if (maxx<s)
+                                  maxx=s;
+                                }
+                                cout<<maxx;
+                                return 0;
+                              }
