@@ -1100,6 +1100,32 @@
                               using namespace std;
                               int main()
                               {
+                                int n,i=0,a[1000];
+                                cin>>n;
+                                int m=n;
+                                while (n!=1)
+                                {	
+                                  if (n%2==0)
+                                  n=n/2;
+                                  else
+                                  n=3*n+1;
+                                  i++;
+                                  a[i]=n;
+                                }
+                                for (int j=i;j>0;j--)
+                                {
+                                  cout<<a[j]<<" ";
+                                }
+                                cout<<m;
+                                return 0;
+                              }
+
+
+
+49.                           #include <bits/stdc++.h>
+                              using namespace std;
+                              int main()
+                              {
                                 int a[100],k=0;
                                 for (int i=1;;i++)
                                 {
