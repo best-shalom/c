@@ -1014,3 +1014,25 @@
                               printf ("%.2lf",d);
                               return 0;
                             }
+
+
+
+
+45.                         #include <bits/stdc++.h>
+                            using namespace std;
+                            int main()
+                            {
+                              int n,x,k=1;
+                              cin>>n;
+                              while(1)
+                              {
+                                for (x=100;x>0;x--)
+                                if ((x*7+k*21)*52==n)
+                                {
+                                  cout<<x<<'\n'<<k;
+                                  return 0;
+                                }
+                              k++;
+                              }
+                              return 0;
+                             } 
