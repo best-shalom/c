@@ -215,81 +215,81 @@
 
 
 
-1. #include <iostream>
-                使用命名空间std;
+11.              #include <iostream>
+                using namespace std;
                 #define PI 3.1415926535 
-                int main（）
-                {double s;
-                  双r;
-                  cin >> r;
-                  s = PI * r * r;
-                  cout <<“面积=” << s;
-                  返回0; 
+                int main()
+                {	double s;
+                  double r;
+                  cin>>r;
+                  s=PI*r*r;
+                  cout<<"面积="<<s;
+                  return 0; 
                  } 
-                 
-2. #include <iostream>
-                  使用命名空间std;
-                  int main（）
+
+12.                #include<iostream>
+                  using namespace std;
+                  int main()
                   {
-                    诠释
-                    浮动b;
-                    cout <<“请输入变量a和b \ n”;
-                    cin >> a >> b;
-                    cout << a <<'\ t'<< b << endl;
-                    返回0;
+                    int a;
+                    float b;
+                    cout<<"请输入变量a and b\n";
+                    cin>>a>>b;
+                    cout<<a<<'\t'<<b<<endl;
+                    return 0;
                   }
-3.对着课本硬抄下来的计算器             
-                  #include <iostream>
-                  使用命名空间std;
-                  double cal（int a，char ch，int b）
+13.对着课本硬抄下来的计算器             
+                  #include<iostream>
+                  using namespace std;
+                  double cal(int a,char ch,int b)
                   {
-                    双重结果
-                    如果（a == 0）
-                      扔'x';
-                    开关（ch）
+                    double result;
+                    if(a==0)
+                      throw'x';
+                    switch(ch)
                     {
-                    大小写“ +”：
-                      结果= a + b;
-                      打破;
-                    案件'-'：
-                      结果= ab;
-                      打破;
-                    案件'*'：
-                      结果= a * b;
-                      打破;
-                    案件'/'：
-                      如果（b == 0）
-                        丢0;
-                      结果=（双）a / b;
-                      打破;
-                    默认：
-                      抛出“输入错误，请重新输入！\ n”;
+                    case'+':
+                      result=a+b;
+                      break;
+                    case'-':
+                      result=a-b;
+                      break;
+                    case'*':
+                      result=a*b;
+                      break;
+                    case'/':
+                      if(b==0)
+                        throw 0;
+                      result=(double)a/b;
+                      break;
+                    default:
+                      throw "输入错误，请重新输入！\n";
                     }
-                    返回结果；
+                    return result;
                   }
-                  int main（）
+                  int main()
                   {
-                    int a，b;
+                    int a,b;
                     char ch;
-                    而（1）
+                    while(1)
                     {
-                      尝试
+                      try
                       {
-                        cout <<“请输入算式：”;
-                        cin >> a >> ch >> b;
-                        cout << a << ch << b <<“ =” << cal（a，ch，b）<< endl;
+                        cout<<"请输入算式：";
+                        cin>>a>>ch>>b;
+                        cout<<a<<ch<<b<<"="<<cal(a,ch,b)<<endl;
                       }
-                      抓住（int）
+                      catch(int)
                       {
-                        cout <<“除数为0！\ n”;
+                        cout<<"除数为0！\n";
                       }
-                      捕获（字符* s）
-                      {cout << s;
+                      catch(char*s)
+                      {   cout<<s;
                       }
-                      抓住（...）
-                      {cout <<“谢谢使用！\ n”;
-                        退出（0）;
+                      catch(...)
+                      {   cout<<"谢谢使用！\n";
+                        exit(0);
                       }
                     }
-                    返回0;
+                    return 0;
                   }
