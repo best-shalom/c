@@ -293,3 +293,93 @@
                     }
                     return 0;
                   }
+
+
+
+14.                  #include <iostream>
+                    using namespace std;
+                    int main()
+                    {
+                      int i=1,s=0;
+                      loop:if(i<=100){
+                        s=s+i;
+                        i++;
+                        goto loop;}
+                        cout<<"s="<<s; 
+                        return 0;
+                     } 
+
+
+
+
+15.                    #include <iostream>
+                      using namespace std;
+                      int main()
+                      {
+                        double e=1.0,i=1.0;
+                        int n=1;
+                        while (i>=1e-7)
+                        {
+                          i=i/n;
+                          e=e+i;
+                          n++;
+                        }
+                        cout<<e;
+                        return 0;
+                      }
+
+
+
+
+16.                      #include <iostream>
+                        using namespace std;
+                        int main()
+                        {
+                          double e=1,i=1;
+                          int n=1;
+                          do
+                          {
+                            i=i/n;
+                            e=e+i;
+                            n++;
+                          }while (i>=1e-7);
+                          cout<<e;
+                          return 0;
+                        }
+
+
+
+
+17.                      #include <iostream>
+                        #include <cstdlib>
+                        #include <ctime>
+                        using namespace std;
+                        int main()
+                        {
+                          int a,b,op,sum=0;
+                          int i,c,d;
+                          srand(time(NULL));
+                          for (i=1;i<=10;i++)
+                          {
+                            a=rand()%10;
+                            b=rand()%10;
+                            op=rand()%3;
+                          switch (op)
+                          {
+                            case 0:cout<<a<<"+"<<b<<"=";
+                            c=a+b;break;
+                            case 1:cout<<a<<"-"<<b<<"=";
+                            c=a-b;break;
+                            case 2:cout<<a<<"*"<<b<<"=";
+                            c=a*b;break;
+                          }
+                          cin>>d;
+                          if (d==c){
+                          cout<<"\n正确！\n";
+                          sum=sum+10;}
+                          else
+                          cout<<"\n错误！\n";
+                          }
+                          cout<<"答对："<<sum/10<<"题"<<'\n'<<"得分："<<sum;
+                          return 0;
+                        }
