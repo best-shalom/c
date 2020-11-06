@@ -1253,3 +1253,29 @@
                         }
                         return 0;
                       }
+
+
+
+54.                     #include <bits/stdc++.h>
+                        using namespace std;
+                        int main()
+                        {
+                          int n,a[10000],maxi=1,m=1;
+                          cin>>n;
+                          for (int i=0;i<n;i++)
+                          {
+                            cin>>a[i];
+                          }
+                          for (int i=0;i<n;i++)
+                          {
+                            if(a[i+1]==a[i]+1)
+                            {
+                              m++;
+                              maxi=max(m,maxi);             //得到一个阶段中的连号，并比较得到最大连号 
+                            }
+                            else 
+                            m=1;
+                          }
+                          cout<<maxi;
+                          return 0;
+                        }
