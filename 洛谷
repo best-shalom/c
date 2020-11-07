@@ -1302,3 +1302,27 @@
 			printf("%.2lf",m);
 			return 0;
 		}
+
+
+
+
+56.                     #include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int n,x,k=1;
+				cin>>n;
+				while(1)
+				{
+					for (x=100;x>0;x--)                    //列举K=1时，X从100到1是否能够成立，如果不存在，再考虑K=2时，以此类推，可得到K最小的解 
+					{                                      //此处大括号可省，for运行唯一的if条件，无需大括号 
+					if ((x*7+k*21)*52==n)
+					{
+						cout<<x<<'\n'<<k;
+						return 0;
+					}
+					}
+				k++;
+				}
+				return 0;
+			 } 
