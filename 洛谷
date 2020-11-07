@@ -1326,3 +1326,27 @@
 				}
 				return 0;
 			 } 
+
+
+
+57.                     #include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int l,m,p,q,a[10000],s=0;     //注意在0上也有树！ 
+				cin>>l>>m;
+				for (int i=0;i<=l;i++)        //对于L棵树，如果移除则为1，否则为0 
+					a[i]=0;
+				for (int i=1;i<=m;i++) 
+				{
+					cin>>p>>q;
+					for (int i=p;i<=q;i++)  //在PQ范围内的数即为1 
+						if (a[i]==0)
+						a[i]=1;
+				}
+				for (int i=0;i<=l;i++)         //统计所有没有移除的树 
+					if (a[i]==0)
+					s++;
+				cout<<s;
+				return 0;
+			}
