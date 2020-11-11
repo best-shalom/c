@@ -1422,42 +1422,42 @@
 
 
 60                              #include <bits/stdc++.h>
-				using namespace std;
-				int main()
-				{
-					int n,t[7],l[7],m=7,a=0,b=0,c=0,d=0,e=0,f=0,g=0;
-					cin>>n;
-					for (int i=0;i<7;i++)
-					{
-						cin>>t[i];
-					}
-					while(n--)
-					{
-						m=7;
-						for (int i=0;i<7;i++)
-						{
-							cin>>l[i];
-							for(int j=0;j<7;j++)
-							{
-								if(t[j]==l[i])
-								m--;
-							}
-						}
-					if(m==0)
-					a++;
-					if(m==1)
-					b++;
-					if(m==2)
-					c++;
-					if(m==3)
-					d++;
-					if(m==4)
-					e++;
-					if(m==5)
-					f++;
-					if(m==6)
-					g++;
-					}
-					cout<<a<<" "<<b<<" "<<c<<" "<<d<<" "<<e<<" "<<f<<" "<<g;
-					return 0;
-				} 
+using namespace std;
+int main()
+{
+	int n,t[7],l[7],m=7,a=0,b=0,c=0,d=0,e=0,f=0,g=0;
+	cin>>n;
+	for (int i=0;i<7;i++)
+	{
+		cin>>t[i];                             //输入中奖彩票 
+	}
+	while(n--)                                 //对N张彩票进行分析 
+	{
+		m=7;
+		for (int i=0;i<7;i++)
+		{
+			cin>>l[i];                           //输入买到的彩票号码 
+			for(int j=0;j<7;j++)
+			{
+				if(t[j]==l[i])                    //将每一个号码与中奖号进行比较 
+				m--;                                
+			}
+		}                                         //最终得到的m即为中奖等级 
+	if(m==0)                                      //统计奖项 
+	a++;
+	if(m==1)
+	b++;
+	if(m==2)
+	c++;
+	if(m==3)
+	d++;
+	if(m==4)
+	e++;
+	if(m==5)
+	f++;
+	if(m==6)
+	g++;
+	}
+	cout<<a<<" "<<b<<" "<<c<<" "<<d<<" "<<e<<" "<<f<<" "<<g;         //输出奖项 
+	return 0;
+} 
