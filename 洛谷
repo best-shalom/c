@@ -1483,3 +1483,27 @@ int main()
 			}
 			return 0;
 		 } 
+
+
+
+62.                     #include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int n;
+				cin>>n;
+				string m;
+				cin>>m;
+				int t=m.length();
+				for (int i=0;i<t;i++)
+				{
+					for(int k=1;k<=n;k++)
+					{
+					m[i]++;
+					if(m[i]>'z')
+					m[i]='a';
+					}
+					cout<<m[i];
+				}
+				return 0;
+			}
