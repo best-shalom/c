@@ -1507,3 +1507,38 @@ int main()
 				}
 				return 0;
 			}
+
+
+
+
+63.                     #include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int k[26]={0},n,maxi=0,mini=110,t;        
+				string m;
+				cin>>m;
+				n=m.length();
+				for (int i=0;i<n;i++)
+				{
+					k[m[i]-'a']++;                    //用数组k[]表示二十六字母的出现个数（k[0]=a,k[1]=b...) 
+				}
+				for (int i=0;i<26;i++)                //对26字母出现的次数进行比较，得到maxi,mini 
+				{
+					maxi=max(k[i],maxi);
+					if(k[i]!=0)
+					mini=min(k[i],mini);              //最小值不应该为0，必须是出现次数最少的字母数 
+				}
+				t=maxi-mini;
+				int l[25]={2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97};   //题目要求单词不超过100字母
+				for(int i=0;i<25;i++)
+				{
+					if (l[i]==t)
+					{
+					cout<<"Lucky Word"<<'\n'<<t;
+					return 0;
+					}
+				 } 
+				cout<<"No Answer"<<'\n'<<0;
+				return 0;
+			}
