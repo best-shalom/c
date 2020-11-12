@@ -1461,3 +1461,25 @@ int main()
 	cout<<a<<" "<<b<<" "<<c<<" "<<d<<" "<<e<<" "<<f<<" "<<g;         //输出奖项 
 	return 0;
 } 
+
+
+
+
+
+
+61.             #include <bits/stdc++.h>
+		using namespace std;
+		int main()
+		{
+			string m;
+			int n;
+			cin>>m;
+			n=m.length();
+			for (int i=0;i<n;i++)
+			{
+				if(m[i]>='a'&&m[i]<='z')
+				m[i]-=32;
+				cout<<m[i];
+			}
+			return 0;
+		 } 
