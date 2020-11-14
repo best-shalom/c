@@ -644,3 +644,32 @@
                    cout<<b[i]<<'\t';
                    return 0;
                   }
+
+
+
+33.          #include <iostream>
+             using namespace std;
+             int del(int a[],int n)
+             {
+              for (int i=0;i<n-1;i++)
+              {
+               if (a[i]==a[i+1])                          //只用比较相邻数据，因为输入数组已经按从小到大顺序排列好 
+               {
+                for (int k=i;k<n;k++)
+                a[k]=a[k+1];                         //删除相邻相同数据，即所有前移一位
+                n--;
+                i--;                                 
+               }
+              }
+              return n;
+             }
+             int main()
+             {
+              int b[]={1,22,22,33,33,44,44,55,55,66};
+              int n;
+              n=sizeof(b)/sizeof(b[0]);
+              n=del(b,n);
+              for (int i=0;i<n;i++)
+              cout<<b[i]<<'\t';
+              return 0;
+             }
