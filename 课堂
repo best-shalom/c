@@ -697,3 +697,17 @@
               cout<<maxi(b);
               return 0;
              }
+
+
+
+
+
+35.                #include <iostream>
+                   using namespace std;
+                   int main()
+                   {
+                    char ch[50];
+                    cin>>ch;                    //字符串用cin输入时，遇到空格，回车，输出时都会自动结束 
+                    cout<<ch;
+                    return 0;
+                   }
