@@ -711,3 +711,16 @@
                     cout<<ch;
                     return 0;
                    }
+
+
+
+
+36.                 #include <iostream>
+                    using namespace std;
+                    int main()
+                    {
+                     char ch[10];
+                     cin.getline(ch,10);                    //字符串用cin.getline输入时，遇到空格可以正常输出，但长度为数组数-1(是get函数中的数字），因为包含'\0' 
+                     cout<<ch;
+                     return 0;
+                    }
