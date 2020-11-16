@@ -724,3 +724,14 @@
                      cout<<ch;
                      return 0;
                     }
+
+
+
+37.            #include <iostream>
+               using namespace std;
+               int main()
+               {
+                char a[]={'c','h','i','n','a'};
+                cout<<a;
+                return 0;
+                } 
