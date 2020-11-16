@@ -752,3 +752,28 @@
               cout<<str; 
               return 0;
              }
+
+
+
+39.          #include <bits/stdc++.h>
+             using namespace std;
+             int swap(char a[],char b[])
+             {
+              char t[80];
+              strcpy(t,a),strcpy(a,b),strcpy(b,t);
+             }
+             int main()
+             {
+              char a[80],b[80],c[80];
+              cin.getline(a,80);
+              cin.getline(b,80);
+              cin.getline(c,80);
+              if (strcmp(a,b)>0)                        //strcmp通过比较字符串ASCII值差值判断大小 
+              swap(a,b);
+              if (strcmp(a,c)>0)
+              swap(a,c);
+              if (strcmp(b,c)>0)
+              swap(b,c);
+              cout<<a<<'\n'<<b<<'\n'<<c;
+              return 0;
+             }
