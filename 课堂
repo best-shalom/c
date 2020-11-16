@@ -735,3 +735,20 @@
                 cout<<a;
                 return 0;
                 } 
+
+
+
+38.          #include <bits/stdc++.h>
+             using namespace std;
+             int main()
+             {
+              char a[50]={"I like "};                     //定义字符串的形式：{“”}or“”or{‘’，‘’，‘’} !!这里定义的字符串长度必须足够!! 
+              char b[]={"sleeping"};
+              cout<<strcat(a,b)<<'\n';                    //连接字符串 
+              cout<<strcpy(a,b)<<'\n';                    //复制b到a中去
+              char str[10]="12345",str1[10]="ABCDE",str2[]="abcde";
+              strcpy(str1+4,str2+3);                      //把str2字符串第三位以后的内容复制粘贴到str1第四位以后的位置，从此str1字符串，发生改变
+              strcat(str,str1+2);                         //把str1字符串第二位以后的内容连接到str后
+              cout<<str; 
+              return 0;
+             }
