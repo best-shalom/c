@@ -845,3 +845,34 @@
                 cout<<"不存在可删除部分！";
                 return 0;
                 } 
+
+
+
+42.         #include <bits/stdc++.h>
+            using namespace std;
+            int main()
+            {
+             int flag=0;
+             char a[80],b[80];
+             cin.getline(a,80);                                  //其中b数组用来储存结果 
+             for (int i=0,j=0;a[i]!='\0';i++)
+             {
+              if (!(a[i]>='0'&&a[i]<='9'))                   
+              {
+               b[j++]=a[i];                                  //如果是字母，就直接复制到b数组去 
+               flag=1;                                     //flag=1来表示字母的结束，数字的开始 
+              }
+              else
+              {
+               if(flag==1)
+               {
+                b[j++]='-';
+                flag=0;
+               }
+               b[j++]=a[i];                                    //后续数字直接复制到b中 
+              }
+              b[j]='\0';
+             }
+             cout<<b;
+             return 0;
+            }
