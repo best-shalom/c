@@ -800,3 +800,48 @@
                      cout<<a;
                      return 0;
                     }
+
+
+
+
+
+41.            #include <bits/stdc++.h>
+               using namespace std;
+               int del(char a[],char b[])
+               {
+                int i=0,flag;
+                while (a[i])                   
+                {
+                 int j=i,k=0;
+                 while (a[j]==b[k]&&b[k]!='\0')                //比较母串和子串的相同部分
+                 {
+                  j++;k++;
+                  } 
+                 if (b[k]=='\0')                               //如果出现 b[k]=='\0'，证明在前面的循环中有相同部分，对其进行删除
+                 {
+                  flag=1;
+                  strcpy(a+i,a+j);
+                  i--;
+                  } 
+                  i++;
+                }
+                if (flag)
+                return 1;                                          //用1和0代表是否可以找到相同部分 
+                else
+                return 0;
+               }
+               int main()
+               {
+                int n; 
+                char a[80],b[80];
+                cout<<"输入母串：";
+                cin.getline(a,80);
+                cout<<"输入想删除的部分：";
+                cin.getline(b,80);
+                n=del(a,b);                                     //用n判断结果 
+                if (n==1)
+                cout<<"删除后的结果是："<<a;
+                else
+                cout<<"不存在可删除部分！";
+                return 0;
+                } 
