@@ -777,3 +777,26 @@
               cout<<a<<'\n'<<b<<'\n'<<c;
               return 0;
              }
+
+
+
+
+40.                 #include <bits/stdc++.h>
+                    using namespace std;
+                    int main()
+                    {
+                     char a[80];
+                     cin.getline(a,80);
+                     int i=0;
+                     while (a[i])                                     //由于字符串最后为0，因此可以用while来循环 
+                     {
+                      if (a[i]>='0'&&a[i]<='9')                    //判断是否为数字
+                      {
+                       strcpy(a+i,a+i+1);                       //用后面的字符串覆盖前面的 
+                       i--;                                     //覆盖后保持字符的数字不变 
+                      }
+                      i++; 
+                     }
+                     cout<<a;
+                     return 0;
+                    }
