@@ -1629,3 +1629,26 @@ int main()
 				cout<<s[0];
 				return 0;
 			 } 
+
+
+
+66.                             #include <bits/stdc++.h>                                   //不知道为啥错了。。。。
+				using namespace std;
+				int main()
+				{
+					int s[100]; 
+					for (int h=0;h<18;h++)
+					{
+						for (int i=1;i<=3;i++)
+							{
+								for (int j=1;j<=2;j++)
+								{
+									for (int k=1;k<=3;k++)
+									{
+									s[h]=i+j+k;
+									cout<<s[h]<<'\n';
+									}
+								}
+							}
+					}	
+				}
