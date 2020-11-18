@@ -1605,3 +1605,27 @@ int main()
 				cout<<s;
 				return 0;
 			 } 
+
+
+
+66.                     #include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				long long n,m,a[1000],s[1000];
+				cin>>n>>m;
+				for (int i=0;i<n;i++)
+				{
+					cin>>a[i];
+				}
+				for (int i=0;i<n-m+1;i++)
+				{
+					for (int k=i;k<m+i;k++)
+					{
+						s[i]+=a[k];                       //设置一个数组，存放每m个数字和，再比较大小
+					}
+				}
+				sort(s,s+n-m+1);
+				cout<<s[0];
+				return 0;
+			 } 
