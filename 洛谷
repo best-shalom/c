@@ -1550,12 +1550,12 @@ int main()
 			using namespace std;
 			int main()
 			{
-				long long M,N,s0=0,s1=0,s2=0,s3=0,s4=0,s5=0,s6=0,s7=0,s8=0,s9=0;
+				long long M,N,s0=0,s1=0,s2=0,s3=0,s4=0,s5=0,s6=0,s7=0,s8=0,s9=0;           
 				cin>>M>>N;
 				for (int k=M;k<=N;k++)
 				{
 					int i=k;
-					while (i)
+					while (i)                                                //记住这种循环方式，用来求一个数字所含的数码！！ 
 					{
 						if (i%10==0) s0++;
 						if (i%10==1) s1++;
