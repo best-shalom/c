@@ -1632,7 +1632,7 @@ int main()
 
 
 
-66.                             #include <bits/stdc++.h>                                   //不知道为啥错了。。。。
+67.                             #include <bits/stdc++.h>                                   //不知道为啥错了。。。。
 				using namespace std;
 				int main()
 				{
@@ -1652,3 +1652,25 @@ int main()
 							}
 					}	
 				}
+
+
+
+
+68.             #include <bits/stdc++.h>                       //去掉h循环
+		using namespace std;
+		int main()
+		{
+			int s[100],h=0; 
+				for (int i=1;i<=3;i++)
+					{
+						for (int j=1;j<=2;j++)
+						{
+							for (int k=1;k<=3;k++)
+							{
+							s[h]=i+j+k;
+							cout<<s[h]<<'\n';
+							h++;
+							}
+						}
+					}
+		}
