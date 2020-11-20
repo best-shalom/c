@@ -1771,3 +1771,30 @@ int main()
 				 cout<<h;
 				 return 0;
 			}
+
+
+
+
+
+72.                     #include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int n,s=0,a;
+				cin>>n;
+				for (int i=0;s<n*n;i++)
+				{
+					cin>>a;                                      //不用数组储存，每输入一个数就直接打印对应的序列 
+					for(int k=a;k>=1;k--)
+					{
+						if(i%2==1)
+						cout<<1;                                 //直接把奇数的情况输出，其他的都是输出0 
+						else
+						cout<<0;
+						s++;                                    //判断s是否为n的倍数，以确定是否换行
+						if(s%n==0)
+						cout<<'\n'; 
+					 } 
+				} 
+				return 0;
+			}
