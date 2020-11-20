@@ -1735,3 +1735,39 @@ int main()
 				cout<<t;
 				return 0;
 			}
+
+
+
+
+
+
+71.（错的）              #include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int n,h=1,t[2000000],m[2000000000],l[2000000000000];
+				cin>>n;
+				double a[5000];
+				for (int i=0;;i++)
+				l[i]=0;                                   //最开始所有的灯都是关的，用0表示关，1表示开 
+				for (int i=0;i<n;i++)
+				{
+					cin>>a[i]>>t[i];
+					m[i]=a[i]*t[i];                      //将a*t代表的灯用m数组储存 
+					for (int k=0;;k++)                   //遍历数组
+					{
+						if (l[m[i]]==0)                  //对第m[i]个路灯进行开关操作 
+						l[m[i]]=1;
+						if (l[m[i]]==1)
+						l[m[i]]=0;
+					 } 
+				}
+				for (int i=0;;i++)                        //遍历数组，如果出现开着的灯即跳出，输出结果（数据保证唯一灯亮）
+				{
+					if (l[i]==1)
+					break;
+					h++;
+				 } 
+				 cout<<h;
+				 return 0;
+			}
