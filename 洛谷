@@ -1698,3 +1698,40 @@ int main()
 			cout<<s;
 			return 0;
 		 } 
+
+
+
+
+70.                     #include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int s1,s2,s3,t,n=1,s[20000],maxi=0,h=0;
+				cin>>s1>>s2>>s3;
+					for (int i=1;i<=s1;i++)
+					{
+						for (int j=1;j<=s2;j++)
+						{
+							for (int k=1;k<=s3;k++)
+							{
+								s[h]=i+j+k;
+								h++;
+							}
+						}
+				}
+				sort(s,s+s1*s2*s3);
+				for (int i=0;i<s1*s2*s3;i++)
+				{
+					if (s[i]==s[i+1])
+					{
+						n++;
+						if(n>maxi)
+						t=s[i];
+						maxi=max(n,maxi);
+					}
+					else
+					n=1;
+				}
+				cout<<t;
+				return 0;
+			}
