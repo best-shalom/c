@@ -1824,3 +1824,38 @@ int main()
 				cout<<s;
 				return 0;
 			}
+
+
+
+
+74.                     //分析题目可知：输入时的情况一共有四种：VV,KK,VK,KV.
+			//其中，VK符合条件，VV和KK可以通过改一个字母，KV无效. 
+			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				string a;
+				int n,s=0;
+				cin>>n;                               //计算输入字符串的长度的方法：函数名.size()  or  strlen(函数名)
+				cin>>a;
+				for (int i=0;i<n-1;i++)               //只用循环到n-1，因为在比较i和i+1 
+				{
+					if(a[i]=='V'&&a[i+1]=='K')        //即判断输入VK的情况 
+					{
+						s++;
+						a[i]='v';
+						a[i+1]='k';                  //将已经使用过的字符变成v,k,防止对后面的判断造成影响 
+					}
+				}
+				for (int i=0;i<n-1;i++)                 //再次循环判断 
+				{
+					if(a[i]==a[i+1])                  // 判断字符相同的情况，即KK和VV
+					{
+						s++;
+						cout<<s;
+						return 0;                        //出现第一个相等时就退出，因为只有一次修改字符的机会 
+					} 
+				}
+				cout<<s;
+				return 0;
+			}
