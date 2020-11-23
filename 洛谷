@@ -1859,3 +1859,25 @@ int main()
 				cout<<s;
 				return 0;
 			}
+
+
+
+
+75.                     #include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int boy=0,girl=0,n;
+				string a;
+				cin>>a;
+				n=a.length();
+				for (int i=0;i<n-2;i++)
+				{
+					if(a[i]=='b'||a[i+1]=='o'||a[i+2]=='y')
+					boy++;                                            //即判断是否为连续的b,o,y或者是被覆盖的单独字母
+					if(a[i]=='g'||a[i+1]=='i'||a[i+2]=='r'||a[i+3]=='l')
+					girl++;                                           //girl同理 
+				}
+				cout<<boy<<'\n'<<girl;
+				return 0;
+			}
