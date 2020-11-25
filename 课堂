@@ -876,3 +876,28 @@
              cout<<b;
              return 0;
             }
+
+
+
+
+43。   #include <iostream>
+       #include <fstream>
+       using namespace std;
+       int main()
+       {
+        ofstream outfile;
+        outfile.open("out.txt");
+        int flag=0;
+        for (int i=2;i<=100;i++)
+        {
+         for (int k=2;k<i;k++)
+         {
+         if(i%k==0)
+         flag=1;
+         }
+         if (flag==0)
+         outfile<<i<<endl;
+         flag=0;
+        }
+        return 0;
+       }
