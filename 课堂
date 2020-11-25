@@ -953,3 +953,50 @@
                outfile.close();
                return 0;
               }
+
+
+
+
+46.           #include <bits/stdc++.h>
+              #include <fstream>
+              using namespace std;
+              void fun(char str[])
+              {
+                /*********Begin**********/
+                int i=0;
+                while(str[i])
+                {
+               if(str[i]>='0'&&str[i]<='9')
+               {
+                strcpy(str+i,str+i+1);
+                i--;
+               }
+                 i++;
+                }
+                /**********  End  **********/
+              }
+
+              int main()
+              {
+                void xxx();
+                char str[40];
+                cout<<"请输入字符串"<<endl;
+                cin.getline(str,40);
+                fun(str);
+                cout<<endl<<"删除数字字符之后是"<<str;
+                xxx();
+                return 0;
+              } 
+
+              void xxx()
+              {
+                ifstream IN("in.txt",ios::in);
+                ofstream OUT;
+                OUT.open("out.txt",ios::out);
+                char k[100];
+                IN>>k;
+                fun(k);
+                OUT<<k<<'\n';
+                IN.close();
+                OUT.close(); 
+              }
