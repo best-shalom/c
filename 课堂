@@ -901,3 +901,22 @@
         }
         return 0;
        }
+
+
+
+
+44.           #include <iostream>
+              #include <fstream>
+              using namespace std;
+              int main()
+              {
+               ofstream out("out.txt");
+               int a,b;
+               for(int i=1;i<=26;i++)
+               {
+                 if (2*i+6*(26-i)==120)
+                 out<<i<<" "<<26-i;
+               }
+               out.close();
+               return 0;
+              }
