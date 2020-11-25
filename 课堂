@@ -1000,3 +1000,23 @@
                 IN.close();
                 OUT.close(); 
               }
+
+
+
+47.            #include <fstream>
+               using namespace std;
+               int main()
+               {
+                ifstream inf("in.txt",ios::in);
+                ofstream outf("out.txt",ios::out);
+                int n,s=0;
+                inf>>n;
+                for (int i=1;i<=n;i++)
+                {
+                 s+=i;
+                }
+                outf<<s;
+                inf.close();
+                outf.close();
+                return 0;
+               }
