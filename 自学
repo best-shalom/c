@@ -668,3 +668,23 @@
 				cout<<"从小到大输出"<<'\n'<<*p1<<'\t'<<*p2<<endl;
 				cout<<"a="<<a<<'\t'<<"b="<<b;
 			}
+
+
+
+29.                     #include <iostream>
+			using namespace std;
+			int main()
+			{
+				int a,b;
+				cin>>a>>b;
+				cout<<"a="<<a<<'\t'<<"b="<<b<<endl;
+				int *p1=&a,*p2=&b,t;
+				if(a>b)
+				{
+					t=*p1;
+					*p1=*p2;
+					*p2=t;
+				}
+				cout<<"从小到大输出"<<'\n'<<*p1<<'\t'<<*p2<<endl;
+				cout<<"a="<<a<<'\t'<<"b="<<b;
+			}
