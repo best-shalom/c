@@ -920,3 +920,36 @@
                out.close();
                return 0;
               }
+
+
+
+
+45.           #include <iostream>
+              #include <fstream>
+              using namespace std;
+              int main()
+              {
+               ifstream infile("in.txt");
+               ofstream outfile("out.txt");
+               int n;
+               infile>>n;
+               for (int i=1;i<=n;i++)
+               {
+                for(int j=1;j<=n-i;j++)
+                outfile<<" ";
+                for(int k=1;k<=2*i-1;k++)
+                outfile<<"*";
+                outfile<<endl;
+               }
+               for (int i=1;i<=n-1;i++)
+               {
+                for (int j=1;j<=i;j++)
+                outfile<<" ";
+                for (int k=1;k<=2*(n-i-1)+1;k++)
+                outfile<<"*";
+                outfile<<endl;
+               }
+               infile.close();
+               outfile.close();
+               return 0;
+              }
