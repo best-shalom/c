@@ -1157,3 +1157,27 @@
 			  IN.close();
 			  OUT.close();
 			}
+
+
+
+51.                     #include <iostream>
+			#include <fstream>
+			using namespace std;
+			int main()
+			{
+				int n,a=1,b=1,c,s=2;
+				ifstream infile("in.txt");
+				ofstream outfile;
+				infile>>n;
+				for (int i=3;i<=n;i++)
+				{
+					c=a+b;
+					a=b;
+					b=c;
+					s+=c;
+				}
+				outfile<<s;
+				infile.close();
+				outfile.close();
+				return 0;
+			}
