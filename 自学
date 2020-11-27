@@ -755,3 +755,31 @@
 				cout<<p2+2;
 				return 0; 
 			 } 
+
+
+
+33.             #include <iostream>
+		using namespace std;
+		int main()
+		{
+			int a[10]={1,2,3},b=1,*p1,*p2,*p3;
+			p1=&a[0];
+			p2=&b;
+			p3=a;
+			cout<<p1<<endl;
+			cout<<*p1<<endl;
+			cout<<p2<<endl;
+			cout<<*p2<<endl;
+			cout<<p3<<endl;
+			cout<<*p3<<endl;                          //根据输出结果可以得知，以指针可以输出整个数组的方法只对字符数组有效 
+			char c[10]={"123"},d='4',*p4,*p5,*p6;
+			p4=&c[0];
+			p5=&d;
+			p6=c;
+			cout<<p4<<endl;
+			cout<<*p4<<endl;
+			cout<<p5<<endl;
+			cout<<*p5<<endl;
+			cout<<p6<<endl;
+			cout<<*p6<<endl;   
+		}
