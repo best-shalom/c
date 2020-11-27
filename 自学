@@ -907,3 +907,36 @@
 			cout<<"其他字符："<<f<<endl;
 			return 0; 
 		}
+
+
+
+39.             #include <bits/stdc++.h>
+		using namespace std;
+		int main()
+		{
+			char a[100],*p;
+			p=&a[0];
+			int b=0,c=0,d=0,e=0,f=0;                          
+			cout<<"请输入一串字符：";                    
+			cin.getline(a,100);                        
+			while(*p)
+			{
+				if(*p>='A'&&*p<='Z')
+				b++;
+				else if(*p>='a'&&*p<='z')
+				c++;
+				else if(*p==' ')
+				d++;
+				else if(*p>='0'&&*p<='9')
+				e++;
+				else
+				f++;
+				p++;
+			}
+			cout<<"大写字母："<<b<<endl;
+			cout<<"小写字母："<<c<<endl;
+			cout<<"空格："<<d<<endl;
+			cout<<"数字："<<e<<endl;
+			cout<<"其他字符："<<f<<endl;
+			return 0; 
+		}
