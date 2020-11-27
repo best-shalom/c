@@ -816,3 +816,24 @@
 			const int *p=&a;             //即p是可以改变的，p=&b是正确的，但无法对p进行重新赋值，*p=2不合理 
 			const int *const p=a;        //综合上述 
 		}
+
+
+
+36.             #include <bits/stdc++.h>
+		using namespace std;
+		int main()
+		{
+			int n,*p;
+			double s=0;
+			cout<<"输入学生人数：";
+			cin>>n;
+			p=new int[n];
+			for (int i=0;i<n;i++)
+			{
+				cout<<"请输入第"<<i+1<<"名学生的成绩：";
+				cin>>p[i];
+				s+=p[i]; 
+			}
+			cout<<"平均成绩："<<s/n;
+			return 0;
+		 } 
