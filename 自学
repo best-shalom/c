@@ -883,6 +883,7 @@
 			int b=0,c=0,d=0,e=0,f=0;
 			cout<<"输入字符个数：";
 			cin>>n;
+			cin.get();                                //用该式来接受上面输入的回车键，以免下面的getline误解
 			cout<<"请输入一串字符：";                    
 			cin.getline(a,n);                        //这里不知道为什么不能输入数据
 			cout<<a;
