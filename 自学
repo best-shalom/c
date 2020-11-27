@@ -803,3 +803,16 @@
 			cout<<*(p2-1);
 			return 0;
 		}
+
+
+
+
+35.             #include <bits/stdc++.h>
+		using namespace std;
+		int main()
+		{
+			int a=1; 
+			int *const p=&a;             //常指针--无法再改变P指向的位置，即p=&b这样的形式是无法实现的
+			const int *p=&a;             //即p是可以改变的，p=&b是正确的，但无法对p进行重新赋值，*p=2不合理 
+			const int *const p=a;        //综合上述 
+		}
