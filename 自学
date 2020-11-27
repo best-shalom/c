@@ -871,3 +871,38 @@
 			cout<<a[i]<<'\t';
 			return 0;
 		}
+
+
+
+38.             #include <bits/stdc++.h>
+		using namespace std;
+		int main()
+		{
+			char a[100];
+			int n;
+			int b=0,c=0,d=0,e=0,f=0;
+			cout<<"输入字符个数：";
+			cin>>n;
+			cout<<"请输入一串字符：";                    
+			cin.getline(a,n);                        //这里不知道为什么不能输入数据
+			cout<<a;
+			for (int i=0;i<n;i++)
+			{
+				if(a[i]>='A'&&a[i]<='Z')
+				b++;
+				else if(a[i]>='a'&&a[i]<='z')
+				c++;
+				else if(a[i]==' ')
+				d++;
+				else if(a[i]>='0'&&a[i]<='9')
+				e++;
+				else
+				f++;
+			}
+			cout<<"大写字母："<<b<<endl;
+			cout<<"小写字母："<<c<<endl;
+			cout<<"空格："<<d<<endl;
+			cout<<"数字："<<e<<endl;
+			cout<<"其他字符："<<f<<endl;
+			return 0; 
+		}
