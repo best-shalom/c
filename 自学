@@ -733,3 +733,25 @@
 				cout<<a[i]<<'\t'; 
 				return 0;
 			}
+
+
+
+32.                     #include <iostream>
+			using namespace std;
+			int main()
+			{
+				char a[100]={"I like sleeping !"},*p2,*p1;
+				p1=&a[0];                                //即将a[0]的位置传到p1，也可以写为：p1=a 
+				p2="I like studying !";
+				cout<<p1<<endl;
+				cout<<p1+2<<endl;                          //从指针位置开始输出字符串 
+				cout<<*p1<<endl;                          //表示只输出p1位置对应的字符(单个字符)
+				cout<<*(p1+2)<<endl; 
+				*p1='W';
+				*(p1+1)='e';
+				cout<<p1<<endl;
+				cout<<*p2<<endl;                                //注意：p2为字符串常量，不可重新赋值
+				cout<<*(p2+2)<<endl;
+				cout<<p2+2;
+				return 0; 
+			 } 
