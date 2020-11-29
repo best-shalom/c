@@ -297,7 +297,7 @@
 
 
 14.                  #include <iostream>
-                    using namespace std;
+                    using namespace std；
                     int main()
                     {
                       int i=1,s=0;
