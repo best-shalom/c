@@ -1018,3 +1018,38 @@
 
 			/**********   End  ***********/
 
+
+
+42.             /* 
+		给3个正整数a、b、c，判断是否是三角形的三条边。是的话，输出为Y,否的话，输出为N 
+		三角形三条边满足条件：任意两边之和大于第三边，并且任意两边之差小于第三边。
+		a,b,c从in.txt读取，结果输出到out.txt中 
+		如:
+		in.txt
+		3 4 5
+		则out.txt
+		Y
+
+		注意：请勿删除注释语句。 
+		---------------------------------------------------------------------------------------------------*/
+			/**********  Begin  **********/
+		#include <bits/stdc++.h> 
+		using namespace std;
+		int main()
+		{
+			ifstream in("in.txt");
+			ofstream out;
+			out.open("out.txt");
+			int a[3];
+			for (int i=0;i<3;i++)
+			in>>a[i];
+			sort(a,a+3);
+			if(a[0]+a[1]>a[2])
+			out<<"Y";
+			else
+			out<<"N";
+			in.close();
+			out.close();
+			return 0; 
+		}
+			/**********   End  ***********/
