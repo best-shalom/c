@@ -981,3 +981,40 @@
 
 
 		/**********  End  **********/
+
+
+
+
+41.             /* 求满足条件n!<m的最大数n。
+		m为正整数，由in.txt读入, 
+		将结果n输出到out.txt文件中。
+		如:in.txt
+		30
+		则:out.txt
+		4 
+		注意：请勿删除注释语句。 
+		---------------------------------------------------------------------------------------------------*/
+
+			/**********  Begin  **********/
+		#include <bits/stdc++.h>
+		using namespace std;
+		int main()
+		{
+			ifstream in("in.txt");
+			ofstream out;
+			out.open("out.txt");
+			int m,k=1,j=0;
+			in>>m;
+			for (int i=1;k*i<m;i++)
+			{
+				k=k*i;
+				j++;
+			}
+			out<<j;
+			in.close();
+			out.close();
+			return 0;
+		 } 
+
+			/**********   End  ***********/
+
