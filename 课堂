@@ -1221,3 +1221,66 @@
 				return 0;
 			 } 
 			/*******End*******/
+
+
+
+53.                     /* 从in.txt读取整数n,根据n来输出一个图案到out.txt。(n为大于2的整数)(注意：每行*之间没有空格，中间一行第一个*顶头开始）
+			如:in.txt
+			3 
+			则out.txt
+			  *
+			 ***
+			*****
+			 ***
+			  *
+			如:in.txt
+			5
+			则:out.txt
+			    *
+			   ***
+			  *****
+			 *******
+			********* 
+			 *******
+			  *****
+			   ***
+			    * 
+
+			注意：
+			1、请勿删除注释语句。 
+			2、必须在begin-end之间编程
+			3、程序必须调试正确，保证功能正常实现。
+			---------------------------------------------------------------------------------------------------*/
+
+				/**********  Begin  **********/
+			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				ifstream in;
+				ofstream out;
+				in.open("in.txt");
+				out.open("out.txt");
+				int n;
+				in>>n;
+				for(int i=1;i<=n;i++)                      //前n排 
+				{
+					for(int k=0;k<n-i;k++)
+					out<<" ";
+					for(int k=0;k<i;k++)
+					out<<"*";
+					out<<'\n';
+				}
+				for(int i=n-1;i>0;i--)
+				{
+					for(int k=n-i;k>0;k--)
+					out<<" ";
+					for(int k=i;k>0;k--)
+					out<<"*";
+					out<<'\n';
+				}
+				in.close();
+				out.close();
+				return 0;
+			 } 
+				/**********   End  ***********/
