@@ -1181,3 +1181,43 @@
 				outfile.close();
 				return 0;
 			}
+
+
+
+52.                     /*
+			找出2到100之间的所有素数，并保存到out.txt中，每个素数占一行。
+			例如：out.txt
+			2
+			3
+			5
+			7
+
+			注意：
+			1、请勿删除注释语句。 
+			2、必须在begin-end之间编程
+			3、程序必须调试正确，保证功能正常实现。
+			---------------------------------------------------------------------------------------------------*/
+
+			/*******Begin*******/
+			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				ofstream out;
+				out.open("out.txt");
+				int flag=1;
+				for(int i=2;i<=100;i++)
+				{
+					for(int k=2;k<i;k++)
+					{
+						if(i%k==0)
+						flag=0;
+					}
+					if(flag==1)
+					out<<i<<endl;
+					flag=1;
+				}
+				out.close();
+				return 0;
+			 } 
+			/*******End*******/
