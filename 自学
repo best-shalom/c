@@ -1473,3 +1473,37 @@
 			cout<<"平均分："<<stu.aver;
 			return 0;
 		 } 
+
+
+
+52.                     #include <bits/stdc++.h>
+			using namespace std;
+			struct a
+			{
+				char name[20]; 
+				int sorce;
+				char sex;
+			};
+			a num[]={{"xiaohuang",110,'boy'},{"xiaoliu",120,'girl'},{"xiaowang",130,'girl'}};
+			int main()
+			{
+				int n;
+				a t;
+				n=sizeof(num)/sizeof(num[0]);
+				for (int i=0;i<n;i++)
+				{
+					if(num[i].name>num[i+1].name)
+					{
+						t=num[i];
+						num[i]=num[i+1];
+						num[i+1]=t;
+					}
+				}
+				for(int i=0;i<n;i++)
+				{
+					cout<<"姓名：" <<num[i].name<<endl;
+					cout<<"成绩：" <<num[i].sorce<<endl;
+					cout<<"性别：" <<num[i].sex<<endl;
+				}
+				return 0;
+			 } 
