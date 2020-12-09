@@ -1538,3 +1538,27 @@
 				cout<<"平均成绩："<<s/4;
 				return 0;
 			}
+
+
+
+
+
+54.                     #include <iostream>
+			using namespace std;
+			struct code
+			{
+				int m;
+				char n;
+			};
+			int main()
+			{
+				code a[]={{100,'A'},{200,'B'},{300,'C'}},*p;
+				p=a;
+				cout<<++p->m<<endl;                //100
+				cout<<++(p++)->n<<endl;            //B
+				cout<<++p->m<<endl;                //201
+				cout<<(++p)->n++<<endl;            //C
+				cout<<p->n<<endl;                  //D 
+				cout<<p->m++;                      //300
+				return 0;
+			}
