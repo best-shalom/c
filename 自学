@@ -1723,3 +1723,40 @@
 			cout<<"周长2="<<b.C()<<'\t'<<"面积2="<<b.S()<<endl;
 			return 0;
 		 } 
+
+
+
+59.		#include <bits/stdc++.h>
+		using namespace std;
+		class what
+		{
+			private:
+				double a,b,c;
+			public:
+				void abc(double x=5);
+				double C(void);
+				double S(void);
+		};
+		void what::abc(double x)
+		{
+			a=b=c=x;
+		}
+		double what::C(void)
+		{
+			return a+b+c;
+		}
+		double what::S(void)
+		{
+			double t=(a+b+c)/2;
+			double s=sqrt(t*(t-a)*(t-b)*(t-c));
+			return s;
+		 } 
+		int main()
+		{
+			what a,b;
+			a.abc();
+			b.abc(6);
+			cout<<"周长1="<<a.C()<<'\t'<<"面积1="<<a.S()<<endl;
+			cout<<"周长2="<<b.C()<<'\t'<<"面积2="<<b.S()<<endl;
+			return 0;
+		}
