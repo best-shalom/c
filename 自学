@@ -1641,3 +1641,41 @@
 				cout<<p->C()<<'\t'<<p->S();
 				return 0;
 			}
+
+
+
+57.		#include <bits/stdc++.h>
+		using namespace std;
+		class what
+		{
+			private:
+				double a,b,c;
+			public:
+				void abc(double,double,double);
+				double C(void);
+				double S(void);
+		};
+		void what::abc(double x,double y,double z)
+		{
+			a=x;
+			b=y;
+			c=z;
+		}
+		double what::C(void)
+		{
+			return a+b+c;
+		}
+		double what::S(void)
+		{
+			double t=(a+b+c)/2;
+			double s=sqrt(t*(t-a)*(t-b)*(t-c));
+			return s;
+		}
+		int main()
+		{
+			what k;
+			what &p=k;
+			p.abc(6,6,6);
+			cout<<p.C()<<'\t'<<p.S();
+			return 0;
+		}
