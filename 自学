@@ -1810,3 +1810,49 @@
 			cout<<"最小公倍数："<<N.B();
 			return 0; 
 		}
+
+
+
+61.            #include <bits/stdc++.h>
+		using namespace std;
+		class N
+		{
+			private:
+			double a,b,c;
+			public:
+			void abc(double x,double y,double z);
+			void fun();                        //使用fun函数直接输出结果 
+		};
+		void N::abc(double x,double y,double z)
+		{
+			a=x;b=y;c=z;
+		}
+		void N::fun()
+		{
+			double delta;
+			delta=b*b-4*a*c;
+			if(delta<0)
+			cout<<"方程无实根！";
+			else
+			{
+				delta=sqrt(delta);                             //delta开方 
+				if(delta)                                     //delta不为0时，方程有不同实根
+				{
+					cout<<"方程有不同实根："<<(-b+delta)/2/a<<'\t'<<(-b-delta)/2/a;
+				 }
+				else
+				{
+					cout<<"方程有相同实根："<<-b/2/a;
+				}
+			}
+		}
+		int main()
+		{
+			N num;
+			double a,b,c;
+			cout<<"请输入三个系数：";
+			cin>>a>>b>>c;
+			num.abc(a,b,c);
+			num.fun();
+			return 0;
+		}
