@@ -1760,3 +1760,53 @@
 			cout<<"周长2="<<b.C()<<'\t'<<"面积2="<<b.S()<<endl;
 			return 0;
 		}
+
+
+
+60.             #include <bits/stdc++.h>
+		using namespace std;
+		class num
+		{
+			private:
+				int a,b;
+			public:
+				void xy(int x,int y);
+				int A();                 //最大公约数 
+				int B();                 //最小公倍数 
+		};
+		void num::xy(int x,int y)
+		{
+			a=x;
+			b=y;
+		}
+		int num::A()
+		{
+			int m,n,t;
+			m=a;
+			n=b;
+			if(m>n)
+			{
+				t=m;m=n;n=t;
+			}
+			while(t=n%m)
+			{
+				n=m;m=t;                  //欧几里得算法 
+			}
+			return m; 
+		}
+		int num::B()
+		{
+			int m=A();
+			return a*b/m;                 //最小公倍数=两数相乘/最大公约数 
+		}
+		int main()
+		{
+			num N;
+			int a,b;
+			cout<<"请输入两个整数：";
+			cin>>a>>b;
+			N.xy(a,b);
+			cout<<"最大公约数："<<N.A()<<endl;
+			cout<<"最小公倍数："<<N.B();
+			return 0; 
+		}
