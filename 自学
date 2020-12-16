@@ -1927,3 +1927,55 @@
 			cout<<my1.num;
 			return 0;
 		}
+
+
+
+
+
+
+
+64.              #include <bits/stdc++.h>
+		using namespace std;
+		class arr
+		{
+			int a[10],len;
+			public:
+				void setarr(int *p,int n=10)
+				{
+					len=n;
+					for (int i=0;i<len;i++)
+					a[i]=p[i];
+				}
+				int maxarr()
+				{
+					int max=a[0];
+					for (int i=0;i<len;i++)
+					if(max<a[i])
+					max=a[i];
+					return max;
+				}
+				int maxarr(int n)
+				{
+					int max=a[0];
+					for (int i=0;i<n;i++)
+					if(max<a[i])
+					max=a[i];
+					return max;
+				}
+				int maxarr(unsigned n)
+				{
+					return a[n];
+				}
+		};
+		int main()
+		{
+			int a1[10]={1,2,3,4,5,6,7,8,9,10};
+			int a2[5]={1,2,3,4,5};
+			arr arr1,arr2;
+			arr1.setarr(a1);
+			arr2.setarr(a2,sizeof(a2)/sizeof(int));
+			cout<<arr1.maxarr()<<endl;
+			cout<<arr2.maxarr(3)<<endl;
+			cout<<arr2.maxarr(3u)<<endl;
+			return 0;
+		}
