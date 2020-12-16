@@ -1899,3 +1899,31 @@
 			cout<<"s="<<num.sum();
 			return 0;
 		}
+
+
+
+63.             #include <bits/stdc++.h>
+		using namespace std;
+		class myclass
+		{
+			public:
+				int num;
+				void set(int i);
+		};
+		int num=3;
+		void myclass::set(int i)
+		{
+			num=i;
+		}
+		int main()
+		{
+			myclass my1;
+			int num=10;
+			my1.set(5);
+			cout<<my1.num<<endl;
+			my1.set(num);
+			cout<<my1.num<<endl;
+			my1.set(::num);
+			cout<<my1.num;
+			return 0;
+		}
