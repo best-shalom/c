@@ -1856,3 +1856,46 @@
 			num.fun();
 			return 0;
 		}
+
+
+
+
+62.             #include <bits/stdc++.h>
+		using namespace std;
+		class N
+		{
+			private:
+				int n;
+			public:
+				void nn(int m);
+				int NN(int x);
+				int sum();
+		};
+		void N::nn(int m)
+		{
+			n=m;
+		}
+		int N::NN(int x)             //设置一个求阶乘的函数，其中X由sum函数输入 
+		{
+			int t=1;
+			for(int i=1;i<=x;i++)
+			t*=i;
+			return t;
+		}
+		int N::sum()
+		{
+			int s=0;
+			for(int i=1;i<=n;i++)
+			s+=NN(i);
+			return s;
+		}
+		int main()
+		{
+			N num;
+			int n;
+			cout<<"输入：";
+			cin>>n;
+			num.nn(n);
+			cout<<"s="<<num.sum();
+			return 0;
+		}
