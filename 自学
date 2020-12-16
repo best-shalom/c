@@ -2011,3 +2011,39 @@
 			N m(6,6,6);
 			return 0;
 		}
+
+
+
+
+66.            #include <bits/stdc++.h>
+		using namespace std;
+		class N
+		{
+			private:
+				double a,b,c;
+			public:
+				N(double x,double y,double z)
+				{
+					a=x;b=y;c=z;
+				}
+				N(double x)
+				{
+					a=b=c=x;
+				}
+				double C(void)
+				{
+					return a+b+c;
+				}
+				double S(void)
+				{
+					double t=(a+b+c)/2;
+					double s=sqrt(t*(t-a)*(t-b)*(t-c));
+					return s;
+				}
+		};
+		int main()
+		{
+			N n(3,4,5);
+			N m(6);                                    //使用构造函数可以让创建对象时不用函数名，更加简便 
+			return 0;
+		}
