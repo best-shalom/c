@@ -1441,3 +1441,67 @@
 			outfile.close();
 			return 0;
 		}
+
+
+
+
+
+57.             /*
+		定义函数fun：在n个学生记录中，根据学生的学号，查找该学生对应的成绩，若没有该学号，则返回-1。
+		学生的记录由学号和成绩组成，N名学生的数据已在主函数中放入结构体数组s中，要查找的学生学号从文件读入，依次将学生的学号和查找结果存放在输出文件中。
+		（用于字符串比较的函数是strcmp）。
+		例如in.txt中显示：
+		GA09
+		GA010
+		GA011
+		则out.txt中输出：
+		GA09 -1
+		GA010 -1
+		GA011 91
+		注意：请勿改动主函数main和其它函数中的任何内容，只能在begin与end之间写代码。
+		------------------------------------------------------------------------------------------*/
+		#include<iostream>
+		#include<cstring>
+		#include<fstream>
+		using namespace std;
+		#define N 16
+		struct student
+		{   char num[10];
+		    int score;
+		} ;
+		int fun (student stu[],int n, char num[])
+		{
+		 /**********  Begin  **********/
+		  int i=0;
+		  bool flag=false;//找到标志 
+		  for(i=0;i<n;i++) 
+		  {
+			if(strcmp(stu[i].num,num)==0)
+			{
+				flag=true;
+				break;		
+			}
+		  }
+		  if(flag==true)
+		    return stu[i].score;
+		  else
+		  return -1; 
+		 /**********   End  ***********/
+
+		}
+
+		int main()
+		{ ifstream infile("in.txt",ios::in); 
+		  ofstream outfile("out.txt",ios::out);
+		  student s[N]={{"GA05",85},{"GA03",76},{"GA02",69},{"GA04",85},{"GA01",91},{"GA07",72},{"GA08",64},{"GA06",87},{"GA015",85},{"GA013",91},{"GA012",64},{"GA014",91},{"GA011",91},{"GA017",64},{"GA018",64},{"GA016",72}};
+		  int score;
+		  char num[10];//保存要查找学号  
+		  while(infile>>num)
+		  { 
+			score=fun(s,N,num);
+			outfile<<num<<" "<<score<<endl; 
+		  }
+		  infile.close();
+		  outfile.close();
+		  return 0;
+		}
