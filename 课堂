@@ -1505,3 +1505,66 @@
 		  outfile.close();
 		  return 0;
 		}
+
+
+
+
+
+58.              /*
+		基于下面的main()函数，写出完整的程序，能够编译和运行；
+		程序中的输入文件in.txt包含以下数据
+		6S
+		6Plus
+		7S
+		7Plus 
+		定义类Apple，包括私有成员变量name(string)，包括构造函数和析构函数,使得输出文件out.txt包含以下数据 
+		Apple6S
+		~Apple6S
+		Apple6Plus
+		~Apple6Plus
+		Apple7S
+		~Apple7S
+		Apple7Plus
+		~Apple7Plus
+		提示：程序使用文件实现输入和输出，不可以用 cin 和 cout ； 
+		只能在Begin和End之间输入代码，不能改动程序的任何其余部分。 
+		---------------------------------------------------------------------------------------------------*/
+		#include<string>
+		#include<fstream>
+		using namespace std;
+		ifstream infile("in.txt");
+		ofstream outfile("out.txt");
+		/******************** Begin ****************/
+		class Apple
+		{
+			private:
+				string N;
+			public:
+				Apple(string name)
+				{
+					outfile<<"Apple"<<name<<endl;
+					N=name;
+				}
+				~Apple()
+				{
+					outfile<<"~Apple"<<N<<endl;
+				}
+		 } ;
+		/******************** End ******************/
+
+		int main()
+		{
+		    if(!infile) return -1;
+		    if(!outfile) return -1;
+
+		    string name;
+		    while(infile>>name)
+		    {
+			Apple *pA = new Apple(name);
+		       delete pA;
+		    }	
+
+		    infile.close();
+		    outfile.close();
+		    return 0;
+		}
