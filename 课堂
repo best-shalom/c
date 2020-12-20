@@ -1568,3 +1568,76 @@
 		    outfile.close();
 		    return 0;
 		}
+
+
+
+
+59.              /* 回文字符串（指针版）:
+		写程序，输入多个字符串，判断输入的字符串是否"回文"，若是回文，输出YES，若不是回文输出NO.
+		每个输入的字符串的前端或后端可能包含多个空格，不算作字符串的一部分，不参与判断过程，应该先裁剪掉。
+		字符串的内部包含的空格，算作字符串的一部分，要参与判断的过程。
+		每个字符串的输入长度（包括所有的空格）不超过100，使用指针pi和pj完成计算过程，定义如下：
+		char s[100], *pi, *pj;
+		输入包括多个用例，每个用例包含一个字符串（前端或后端或内部可能包含多个空格，字符串的长度不超过100），以换行作为字符串的结束。
+		判断输入的字符串是否"回文"，若是回文，输出YES，若不是回文输出NO，以换行结束。
+		如：in.txt
+		abc  cba
+		      abc 12321 cba
+		      abc 1221 cba
+		abc 123321 cba
+		abc 123321  cba
+		则:out.txt
+		YES
+		YES
+		YES
+		YES
+		NO
+		注意：请勿改动主函数main和其它函数中的任何内容，仅在Begin和End之间填入你编写的若干语句
+		---------------------------------------------------------------------------------------------------*/
+		#include <fstream>
+		#include <iostream>
+		#include <string.h>
+		using namespace std;
+
+		int main()
+		{
+			ifstream file_in("in.txt");
+			ofstream file_out("out.txt"); 
+			if(!file_in||!file_out) return -1;
+			streambuf *std_in;  
+			streambuf *std_out;
+			std_in= cin.rdbuf(file_in.rdbuf());  
+			std_out= cout.rdbuf(file_out.rdbuf());  
+
+			char s[100], *pi, *pj;
+			int  n;
+			while(cin.getline(s,100))
+			{
+		/********************************* Begin ****************************/
+				n=strlen(s);
+				pi=s;pj=s+n-1;
+				while(*pi==' ')
+				{
+					pi++;
+				}
+				while(*pj==' ')
+				{
+					pj--;
+				}
+				while((pi<pj)&&(*pi==*pj))
+				{
+					pi++;pj--;
+				}
+				if(pi<pj)
+				cout<<"NO"<<endl;
+				else
+				cout<<"YES"<<endl;
+		/********************************* End ******************************/
+			}
+
+			file_in.close();
+			file_out.close();
+			cin.rdbuf(std_in); 
+			cout.rdbuf(std_out);	
+			return 0;
+		}
