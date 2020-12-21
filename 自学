@@ -2251,3 +2251,57 @@
 			ofile.close();   //关闭输出文件out.txt
 			return 0;
 		}
+
+
+
+
+
+71.             /*字符串的截取:编写一个函数char * substr(char *s, int begin, int end，char *s1)，
+		用于取得字符串s中从begin位置开始至end位置结束（包括begin和end位置上的字符，位置从0开始计算）的子字符串，将该子字符串存放在s1中。
+		如：in.txt
+		This is a wonderful world!
+		10 18
+		则:out.txt
+		wonderful
+		注意：请勿改动主函数main和其它函数中的任何内容，仅在Begin和End之间填入你编写的若干语句
+		---------------------------------------------------------------------------------------------------*/
+		#include <fstream>
+		#include <iostream>
+		#include <string.h>
+		using namespace std;
+		void substr(char *s, int begin, int end,char *s1)
+		{
+		/********************************* Begin ****************************/
+		 int t=0;
+		 for(int i=begin;i<=end;i++)
+		 {
+			s1[t]=s[i];
+			t++;
+		  } 
+		  s1[t]='\0';
+		/********************************* End ******************************/
+		}
+		int main()
+		{
+			ifstream file_in("in.txt");
+			ofstream file_out("out.txt"); 
+			if(!file_in||!file_out) return -1;
+			streambuf *std_in;  
+			streambuf *std_out;
+			std_in= cin.rdbuf(file_in.rdbuf());  
+			std_out= cout.rdbuf(file_out.rdbuf());  
+
+			char s[100];
+		       char s1[100];
+			int m,n;
+			cin.getline(s,100);
+			cin>>m>>n;
+			substr(s, m, n,s1);
+			cout<<s1<<endl;
+
+			file_in.close();
+			file_out.close();
+			cin.rdbuf(std_in); 
+			cout.rdbuf(std_out);	
+			return 0;
+		}
