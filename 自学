@@ -2193,3 +2193,61 @@
 			ofile.close();   //关闭输出文件out.txt
 			return 0;
 		}
+
+
+
+70.              /*
+		定义函数fun：根据p指针，计算该学生的4门课的平均分。
+		学生记录由学号，姓名，四门课成绩，平均分组成。
+		注意：请勿改动主函数main和其它函数中的任何内容，仅在函数fun的花括号中填入你编写的若干语句。
+		----------------------------------------------------------------------------------------*/
+		#include<iostream> 
+		#include<fstream> 
+		using namespace std;
+		struct student
+		{
+			int id;
+			char name[20];
+			int score[4];
+			int avg;
+		};
+		void fun(student* p)
+		{
+			/*************begin **************/
+			int s=0;
+			for(int i=0;i<4;i++)
+			{
+				s+=p->score[i];
+			  }
+			  p->avg=s/4;
+			/****************end****************/
+
+		}
+
+		int main()
+		{
+			student stu;
+			int i;
+			ifstream ifile("in.txt");
+			ofstream ofile("out.txt"); 
+			while(!ifile.eof())
+			{
+			ifile>>stu.id;     //从文件读入学号
+			ifile>>stu.name;   //从文件读入姓名
+			for(i=0;i<4;i++) 
+				ifile>>stu.score[i];   //从文件读入四门课的成绩
+			fun(&stu); 
+			cout<<stu.id<<" "<<stu.name<<" ";
+			for(i=0;i<4;i++)
+				cout<<stu.score[i]<<" ";
+			cout<<"平均成绩:"<<stu.avg<<endl;
+			    //输出到out.txt文件 
+			ofile<<stu.id<<" "<<stu.name<<" ";
+			for(i=0;i<4;i++)
+				ofile<<stu.score[i]<<" ";
+			ofile<<"平均成绩:"<<stu.avg<<endl;
+			} 
+			ifile.close();   //关闭输入文件in.txt
+			ofile.close();   //关闭输出文件out.txt
+			return 0;
+		}
