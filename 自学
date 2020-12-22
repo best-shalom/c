@@ -2415,4 +2415,62 @@
 
 
 
-74.               
+74.               /*
+		基于下面的main()函数，写出完整的程序，能够编译和运行；
+		程序中的输入文件in.txt包含以下数据：
+		1001
+		1002
+		1003
+		定义类Student，包括私有成员变量学号(int)，包括构造函数和析构函数,使得输出文件out.txt包含以下数据： 
+		Constructor1001
+		Constructor1002
+		Constructor1003
+		Destructor1003
+		Destructor1002
+		Destructor1001
+		提示：程序使用文件实现输入和输出，不可以用 cin 和 cout ； 
+		只能在Begin和End之间输入代码，不能改动程序的任何其余部分。 
+		---------------------------------------------------------------------------------------------------*/
+		#include <fstream>
+		using namespace std;
+		ifstream infile("in.txt");
+		ofstream outfile("out.txt");
+		/********************** Begin *******************/
+		class Student 
+		{
+			private:
+				int name;
+			public:
+				Student(int N)
+				{
+					name=N;
+					outfile<<"Constructor"<<name<<endl;
+				}
+				~Student()
+				{
+					outfile<<"Destructor"<<name<<endl;
+				}
+		};
+		/********************** End *********************/
+
+		void  CreateObjects()
+		{
+		       int n[3];
+			infile>>n[0]>>n[1]>>n[2];
+			Student s1[3]={n[0],n[1],n[2]};
+		}
+		int main()
+		{
+
+		  if(!infile) return -1;
+		  if(!outfile) return -1;
+
+		  CreateObjects();
+		  infile.close();
+		  outfile.close();
+		  return 0;
+		}
+
+
+
+75.             
