@@ -3159,3 +3159,69 @@
 			outfile.close();
 			return 0;
 		} 
+
+
+
+
+87.             /*插入字符串
+		编写一个函数实现：把一个字符串插入到另一个字符串中的指定位置。
+		void copys2s(char * src,char * dest,int loc)
+		该函数实现将字符串dest插入字符串src中loc的位置。该函数定义可以使用字符串处理函数。
+		如：in.txt
+		abcdef
+		123
+		3
+		abcdef
+		123
+		1
+		abcdef
+		123
+		7       
+		则：out.txt
+		ab123cdef
+		123abcdef
+		abcdef123
+		注意：请勿改动主函数main和其它函数中的任何内容，仅在Begin和End之间填入你编写的若干语句
+		---------------------------------------------------------------------------------------------------*/
+		#include <fstream>
+		#include<iostream>
+		#include <string.h>
+		using namespace std;
+		void copys2s(char * src,char * dest,int loc)
+		{
+		/************************* Begin *************************/
+		char temp[100];
+		strcpy(temp,src+loc-1);
+		strcpy(src+loc-1,dest);
+		int n=strlen(src);
+		strcpy(src+n,temp);
+		/************************* End ***************************/
+		}
+		int main()
+		{
+			ifstream file_in("in.txt");
+			ofstream file_out("out.txt"); 
+			if(!file_in||!file_out) return -1;
+			streambuf *std_in;  
+			streambuf *std_out;
+			std_in= cin.rdbuf(file_in.rdbuf());  
+			std_out= cout.rdbuf(file_out.rdbuf());  
+
+		    char src[100],dest[100];
+		    int loc;
+		    while(cin>>src>>dest>>loc)
+		    {
+			copys2s(src,dest,loc);
+			cout<<src<<endl;
+		    }
+
+			file_in.close();
+			file_out.close();
+			cin.rdbuf(std_in); 
+			cout.rdbuf(std_out);	
+			return 0;
+		}
+		
+		
+		
+88.		
