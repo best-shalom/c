@@ -3614,4 +3614,48 @@
 
 
 
-94.             
+94.             /*编写函数fun：将一个字符串中的大写字母转换成小写，小写转换成大写，其它字符保持不变。 
+		如:in.txt
+		HappyNew2019Year
+		则:out.txt
+		hAPPYnEW2019yEAR
+		请在Begin和End之间完善程序。注意：不要删掉注释语句。 
+		---------------------------------------------------------------------------------------------------*/
+		#include <fstream> 
+		using namespace std;
+		#include <string.h> 
+		/***********Begin**********/
+		void fun(char str[])
+		{
+			int n=strlen(str);
+			for(int i=0;i<n;i++)
+			{
+				if(str[i]>='a'&&str[i]<='z')
+				str[i]-=32;
+				else if(str[i]>='A'&&str[i]<='Z')
+				str[i]+=32;
+			}
+		 } 
+		/***********End***********/
+
+		int main()
+		{
+			ifstream infile("in.txt",ios::in);//定义输入流文件对象infile 
+			ofstream outfile("out.txt",ios::out);//定义输出流文件对象outfile 
+			//infile、outfile的用法同cin、cout
+			char str[100];
+		      while(!infile.eof())
+		     {
+		       infile.getline(str,100);//从文件in.txt中读入字符串到数组str中 
+			fun(str);
+			outfile<<str<<endl; //输出字符串到文件out.txt中 
+		     }
+			infile.close();
+			outfile.close();
+			return 0;
+		}
+
+
+
+
+95.             
