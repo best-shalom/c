@@ -2814,4 +2814,76 @@
 
 
 
-81.              
+81.              /*查找字符串
+		编写一个函数实现：在一个字符串中查找另一个给定的字符串首次出现的位置。
+		int find(char * strSrc, char * strFind)
+		该函数在字符串strSrc中查找字符串srcFind首次出现的位置，并返回一个整数表示该位置，返回-1表示查找失败或未找到。
+		如：in.txt
+		Welcome to the C++ world!
+		C++
+		WelcomeC++ to the C++ world!
+		C++
+		C++Welcome to the world!
+		C++
+		Welcome to the worldC++
+		C++
+		Welcome to the worldC+
+		C++        
+		则:out.txt
+		16
+		8
+		1
+		21
+		-1
+		注意：请勿改动主函数main和其它函数中的任何内容，仅在Begin和End之间填入你编写的若干语句
+		---------------------------------------------------------------------------------------------------*/
+		#include <fstream>
+		#include<iostream>
+		#include <string.h>
+		using namespace std;
+		int find(char * strSrc, char * strFind)
+		{
+		/***************************** Begin ******************************/
+		int n1=strlen(strSrc),n2=strlen(strFind);                 //表示没有字符
+		int i,j;
+		if(n1<n2)
+		return -1;
+		for(i=0;i<n1-n2;i++)
+		{
+			for(j=0;j<n2;j++)
+			{
+				if(strSrc[i+j]!=strFind[j])
+				break;
+			}
+			if(j==n2)
+			return i+1;	
+		}
+		return -1;
+		/***************************** End ********************************/
+		}
+
+		int main()
+		{
+			ifstream file_in("in.txt");
+			ofstream file_out("out.txt"); 
+			if(!file_in||!file_out) return -1;
+			streambuf *std_in;  
+			streambuf *std_out;
+			std_in= cin.rdbuf(file_in.rdbuf());  
+			std_out= cout.rdbuf(file_out.rdbuf());  
+
+			char strSrc[100],strFind[100];
+			while(cin.getline(strSrc,100)&&cin.getline(strFind,100))
+				cout<<find(strSrc,strFind)<<"\n";
+
+			file_in.close();
+			file_out.close();
+			cin.rdbuf(std_in); 
+			cout.rdbuf(std_out);	
+			return 0;
+		}
+
+
+
+
+82.             
