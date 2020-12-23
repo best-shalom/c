@@ -2684,4 +2684,72 @@
 
 
 
-79.              
+79.              /*
+		定义箱子类Box，包括私有成员变量高度height(int)、宽度width(int)、长度length(int)，
+		包括构造函数和成员函数volume()； 
+		构造函数要能够实现main()函数中对象box1,box2,box3,box4的正确构造；
+		成员函数volume(),求箱子的体积:height*width*length
+		程序中的输入文件in.txt包含以下数据:
+		(共2组数据，第1组中第1个箱子的height*width*length为5*3*2，第3个箱子的height*width为2*3)
+		5 3 2
+		2 3
+		6 3 5
+		5 3
+		输出文件out.txt包含以下数据:
+		30
+		30
+		60
+		60
+		90
+		90
+		150
+		150
+		程序从文件in.txt中读取数据，输出到文件out.txt中，不可以用 cin 和 cout ； 
+		只能在Begin和End之间输入代码，不能改动程序的任何其余部分。 
+		--------------------------------------------------------------------------------------------------*/
+		#include <fstream>
+		using namespace std;
+		ifstream infile("in.txt");
+		ofstream outfile("out.txt");
+		/*************************** Begin ***********************/
+		class Box
+		{
+			private:
+				int t;int w;int l;
+			public:
+				Box(int a=10,int b=10,int c=10)
+				{
+					t=a;w=b;l=c;
+				}
+				int volume(void)
+				{
+					return t*w*l;
+				}
+		 } ;
+		/*************************** End *************************/
+
+		int main( )
+		{
+		 if(!infile) return -1;
+		 if(!outfile) return -1;
+		  int n1,n2,n3;
+		  while(!infile.eof())
+		  {
+			infile>>n1>>n2>>n3;
+			Box box1(n1,n2,n3),box2;
+			box2=box1;
+			infile>>n1>>n2;
+			Box box3(n1,n2);
+			Box box4(box3);
+			outfile<<box1.volume()<<'\n'<<box2.volume()<<'\n'
+			<<box3.volume()<<'\n'<<box4.volume()<<endl; 
+		  }
+		  infile.close();
+		  outfile.close();
+		  return 0;
+		}
+
+
+
+
+80.              
