@@ -3400,4 +3400,93 @@
 
 
 
-91.              
+91.              /*
+		定义电影类Movie，包括私有对象成员电影名name(string)，开始时间startTime和结束时间endTime；
+		startTime和endTime是Time类的对象；Time类包括公有成员hour(int)，minute(int)和构造函数； 
+		Movie类包括构造函数，求电影时长(多少分钟)的函数 int Duration()，显示电影播放信息的函数Display(ofstream &output); 
+		程序中的输入文件in.txt包含以下数据:
+		The Fast and the Furious 8
+		12 30 14 50
+		Smurfs: The Lost Village
+		13 9 15 45
+		Battle of Memories
+		15 20 16 54
+		输出文件out.txt包含以下数据（英文冒号）：
+		The Fast and the Furious 8
+		start time:12:30
+		140minutes
+		Smurfs: The Lost Village
+		start time:13:9
+		156minutes
+		Battle of Memories
+		start time:15:20
+		94minutes
+		程序从文件in.txt中读取数据，输出到文件out.txt中，不可以用 cin 和 cout ； 
+		只能在Begin和End之间输入代码，不能改动程序的任何其余部分。 
+		----------------------------------------------------------------------------------------------------*/
+		#include <fstream>
+		using namespace std;
+		ifstream infile("in.txt");
+		ofstream outfile("out.txt");
+		/****************************** Begin ************************/
+		class Time
+		{
+			public:
+				int hour;
+				int minute;
+				Time(int a=0,int b=0)
+				{
+					hour=a;minute=b;
+				}
+		};
+		class Movie
+		{
+			private:
+				string name;
+				Time startTime,endTime;
+			public:
+				Movie(string a,Time &b,Time &c)
+				{
+					name=a;startTime=b;endTime=c;
+				}
+				int Duration()
+				{
+					int t;
+					t=(endTime.hour-startTime.hour)*60+(endTime.minute-startTime.minute);
+					return t;
+				}
+				void Display(ofstream &output)
+				{
+					output<<name<<'\n'<<"start time:"<<startTime.hour<<':'<<startTime.minute<<'\n';
+				}
+		 }; 
+		/****************************** End **************************/
+
+		int main()
+		{ 
+			if(!infile) return -1;
+			if(!outfile) return -1;
+
+			string str;
+			int hour1,minute1,hour2,minute2;
+
+			while(!infile.eof())
+			{
+				getline(infile,str);
+				infile>>hour1>>minute1>>hour2>>minute2;
+				infile.ignore();
+				Time startT(hour1,minute1),endT(hour2,minute2);
+				Movie mov(str,startT,endT);
+				mov.Display(outfile);
+				outfile<<mov.Duration()<<"minutes"<<endl;
+			}
+
+			infile.close();
+			outfile.close();	
+			return 0;
+		}
+
+
+
+
+92.             
