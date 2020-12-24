@@ -3944,4 +3944,57 @@
 
 
 
-100.		
+100.		/*删除升序数组中的重复元素（指针版）
+		编写程序，删除一维数组中所有相同的数，只保留一个，数组中的数已按由小到大的顺序排列，
+		int unique(int *pArr,int num)
+		pArr和num分别为数组首地址和数组元素的个数，函数返回删除重复元素之后数组中元素个数。
+		如：in.txt
+		2 2 2 3 4 4 5 6 6 6 6 7 7 8 9 9 10 10 10
+		则：out.txt
+		2 3 4 5 6 7 8 9 10
+		注意：请勿改动主函数main和其它函数中的任何内容，仅在Begin和End之间填入你编写的若干语句
+		---------------------------------------------------------------------------------------------------*/
+		#include <fstream>
+		#include <iostream>
+		using namespace std;
+		int unique(int *pArr,int num)
+		{
+		/********************************** Begin ****************************/
+		int *p=pArr;
+		for(int i=0;i<num-1;i++)
+		{
+			if(pArr[i+1]!=pArr[i])
+			{	p++;
+				*p=pArr[i+1];
+			}
+		 } 
+		 return p-pArr+1;
+		/********************************** End ******************************/
+		}
+		int main()
+		{
+			ofstream file_out("out.txt"); 
+			if(!file_out) return -1;
+			streambuf *std_out;
+			std_out= cout.rdbuf(file_out.rdbuf());  
+
+			int a[]={2,2,2,3,4,4,5,6,6,6,6,7,7,8,9,9,10,10,10};
+			int num1 = sizeof(a)/sizeof(int);
+			int num2 = unique(a,num1);
+
+			cout<<a[0];
+			for (int i=1;i<num2;i++)
+			{
+				cout<<" "<<a[i];
+			}
+			cout<<'\n';
+
+			file_out.close();
+			cout.rdbuf(std_out);	
+			return 0;
+		}
+
+
+
+
+101.		
