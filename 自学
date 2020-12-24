@@ -4205,4 +4205,97 @@
 
 
 
-104.		
+104.		/*
+		定义时间类Time，包括私有成员变量hour(int)、minute(int)、second(int)； 
+		成员函数set_time(int h,int m,int s)将读入的3个整数规范化后给3个成员变量赋值，使得 
+		second满60向minute进1，并规范化至[0,59]；minute满60向hour进1，并规范化至[0,59]；hour满24则规范化至[0,23]； 
+		成员函数show_time(ofstream & output)读取3个成员变量，格式化为00:00:00形式后，输出到文件中； 
+		程序中的输入文件in.txt包含以下数据：
+		0 0 0
+		1 59 62
+		1 63 63
+		2 63 59
+		3 123 63
+		3 126 125
+		23 59 67
+		26 68 61 
+		输出文件out.txt包含以下数据（英文冒号）：
+		00:00:00
+		02:00:02
+		02:04:03
+		03:03:59
+		05:04:03
+		05:08:05
+		00:00:07
+		03:09:01 
+		程序从文件in.txt中读取数据，输出到文件out.txt中，不可以用 cin 和 cout ； 
+		只能在Begin和End之间输入代码，不能改动程序的任何其余部分。 
+		---------------------------------------------------------------------------------------------------*/
+		#include <fstream>
+		#include <iomanip>
+		using namespace std;
+		ifstream infile("in.txt");
+		ofstream outfile("out.txt");
+		/************************* Begin ***********************/
+		class Time
+		{
+			private:
+				int hour;
+				int minute;
+				int second;
+			public:
+				void set_time(int h,int m,int s)
+				{
+					while(s>=60)
+					{
+						s-=60;m++;
+					}
+					while(m>=60)
+					{
+						m-=60;h++;
+					}
+					while(h>=24)
+					{
+						h-=24;
+					}
+					hour=h;minute=m;second=s;
+				}
+				void show_time(ofstream &output)
+				{
+					if(hour<10)
+					output<<"0"<<hour<<":";
+					else
+					output<<hour<<":";
+					if(minute<10)
+					output<<"0"<<minute<<":";
+					else
+					output<<minute<<":";
+					if(second<10)
+					output<<"0"<<second<<endl;
+					else
+					output<<second<<endl;
+				}
+
+		};
+		/************************* End ************************/
+		int main()
+		{ 
+			if(!infile) return -1;
+			if(!outfile) return -1;
+
+			Time t;
+			int h,m,s;
+			while(!infile.eof())
+			{
+				infile>>h>>m>>s;
+				t.set_time(h,m,s);
+				t.show_time(outfile);		
+			}
+			infile.close();
+			outfile.close();	
+			return 0;
+		}
+
+
+
+105.		
