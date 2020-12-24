@@ -4141,4 +4141,68 @@
 
 
 
-103.		
+103.		/*
+		设计函数fun:从保存n个学生记录的stu1数组中，找出低于平均分的学生数据，并保存在sut2数组中，函数返回值表示找到的学生人数。
+		学生的记录由学号和成绩组成，N名学生的数据已在主函数中放入结构体数组中。
+		请勿改动主函数main和其他函数中的任何内容，仅在函数fun的花括号中填入你编写的若干语句。
+		-------------------------------------------------------------------------------------------------------------------------*/
+		#include <iostream>
+		using namespace std;
+		#include<fstream>
+		#include<iomanip>
+		#define N 8 
+		struct student
+		{   
+		   char num[10];
+		    int score;
+		};
+		int fun(student stu1[],int n,student stu2[])
+		{
+
+		    /**********  Begin  **********/
+		    float s=0,aver;
+		    int t=0;
+		for(int i=0;i<n;i++)
+		{
+			s+=stu1[i].score;
+		 } 
+		 aver=s/n;
+		 for(int i=0;i<n;i++)
+		 {
+			if(stu1[i].score<aver)
+			{
+				stu2[t]=stu1[i];
+				t++;
+			 }
+		 }
+		 return t;
+		    /**********   End  ***********/
+		}
+
+		int main()
+		{  
+			student stu1[N]={{"GA05",85},{"GA03",76},{"GA02",69},{"GA04",85},{"GA01",91},{"GA07",72},{"GA08",64},{"GA06",87}};
+			student stu2[N];
+			int i,n;
+			n=fun(stu1,N,stu2);
+			cout<<"所有学生数据："<<endl;
+			for(i=0;i<N;i++)
+			cout<<stu1[i].num<<setw(4)<<stu1[i].score<<endl;
+		      cout<<n<<endl;	
+			cout<<"低于平均分学生数据："<<endl;
+			for(i=0;i<n;i++)
+			cout<<stu2[i].num<<setw(4)<<stu2[i].score<<endl;
+
+			//结果写入out.txt 
+			ofstream ofile; 
+			ofile.open("out.txt");
+			ofile<<n<<endl;
+			for(i=0;i<n;i++)
+			ofile<<stu2[i].num<<setw(4)<<stu2[i].score<<endl;
+			ofile.close();
+		}
+
+
+
+
+104.		
