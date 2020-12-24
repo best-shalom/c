@@ -3730,4 +3730,51 @@
 
 
 
-96.             
+96.             /*请编写一个函数fun,将一个数字字符串转换为一个整数。
+		如：in.txt
+		-1234
+		则:out.txt
+		-1234
+		注意:请勿改动现有任何内容，仅在Begin和End之间补充代码。
+		---------------------------------------------------------------------------------------------------*/
+		#include <fstream>
+		using namespace std; 
+		 /**********  Begin  **********/
+		 int fun(char *s)
+		 {
+			int flag=1;
+			if (*s=='-')
+			{
+				flag=-1;
+				s++;
+			 }
+			int p=0;
+			while(*s)
+			{
+				p=p*10+(*s-48);
+				s++;
+			 }
+			 return p*flag;
+		  } 
+		 /**********   End  ***********/
+
+		int main()
+		{ 
+			ifstream infile("in.txt",ios::in);    //定义输入文件流类对象infile
+			ofstream outfile("out.txt",ios::out); //定义输出文件流类对象outfile
+		      //infile、outfile与cin、cout用法相同
+
+			char s[10];
+
+			while(infile>>s)
+				outfile<<fun(s)<<endl;
+
+			infile.close();
+			outfile.close();
+			return 0;
+		}
+
+
+
+
+97.             
