@@ -3777,4 +3777,40 @@
 
 
 
-97.             
+97.             /*编写函数fun实现两个整数的交换。
+		如:in.txt
+		60 65
+		则:out.txt
+		a=65 b=60
+		注意：请勿改动主函数main和其它函数中的任何内容，仅在Begin和End之间填入你编写的若干语句
+		---------------------------------------------------------------------------------------------------*/
+		#include<fstream>
+		using namespace std;
+		void fun(int *a,int *b)
+		{
+		  /**********Begin**********/
+		int t;
+		t=*a;*a=*b;*b=t; 
+		  /**********  End  **********/
+		} 
+		int main()
+		{
+		  ifstream infile("in.txt",ios::in);  //创建输入文件流类对象infile 
+		  ofstream outfile("out.txt",ios::out);//创建输出文件流类对象outfile
+		  //infile和outfile用法与cin和cout一样 
+
+		  int a,b;
+		  while(infile>>a>>b)
+		  {   
+		    fun(&a,&b);
+		    outfile<<"a="<<a<<' '<<"b="<<b<<'\n';
+		  }
+
+		  infile.close();   //关闭文件in.txt 
+		  outfile.close();	//关闭文件out.txt 
+		  return 0;
+		}
+
+
+
+98.              
