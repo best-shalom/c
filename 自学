@@ -3874,4 +3874,74 @@
 
 
 
-99.             
+99.             /*
+		基于下面的main()函数，写出完整的程序，能够编译和运行；
+		程序中的输入文件in.txt包含以下数据:
+		Huawei
+		Sumsung
+		iPhone7 
+		定义类Phone，包括私有成员变量name(string)，包括构造函数，成员函数setName()修改name,
+		常成员函数getName()获得name，使得输出文件out.txt包含以下数据;
+		Huawei
+		Sumsung
+		iPhone7
+		提示：程序使用文件实现输入和输出，不可以用 cin 和 cout ； 
+		只能在Begin和End之间输入代码，不能改动程序的任何其余部分。 
+		---------------------------------------------------------------------------------------------------*/
+		#include<string>
+		#include<fstream>
+		using namespace std;
+		ifstream infile("in.txt");
+		ofstream outfile("out.txt");
+		/*************************** Begin **********************/
+		class Phone
+		{
+			private:
+				string name;
+			public:
+				Phone(){
+				}
+				Phone(string N)
+				{
+					name=N;
+				}
+				void setName(string n)
+				{
+					name=n; 
+				}
+				string getName() const
+				{
+					return name;
+				}
+		 } ;
+		/*************************** End ************************/
+
+		int main()
+		{
+			if(!infile) return -1;
+			if(!outfile) return -1;
+
+			Phone ph1,ph2;
+			string name;
+			infile>>name;
+			ph1.setName(name);
+			infile>>name;
+			ph2.setName(name);
+			Phone const *pPhone = &ph1;
+			outfile<<pPhone->getName()<<endl;
+			pPhone = &ph2;
+			outfile<<pPhone->getName()<<endl;
+
+			infile>>name;
+			const Phone ph3(name);	
+			outfile<<ph3.getName()<<endl;
+
+			infile.close();
+			outfile.close();
+			return 0;
+		}
+
+
+
+
+100.		
