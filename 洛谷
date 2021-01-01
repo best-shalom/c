@@ -1951,4 +1951,33 @@ int main()
 
 
 
-78.			
+78.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int n,t=0;
+				cin>>n;
+				int a[n];
+				for(int i=0;i<n;i++)
+				{
+					cin>>a[i];             //将数据储存在数组中 
+				}
+				for(int i=0;i<n;i++)
+				{
+					for(int j=0;j<=i;j++)
+					{
+						if(a[i]>a[j])
+						t++;
+					}
+					cout<<t<<" ";
+					t=0;                   //将t初始化为0，继续循环 
+				}
+				return 0;
+			}
+
+
+
+
+
+
+79.			
