@@ -2096,4 +2096,49 @@ int main()
 
 
 
-84.			
+84.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int n,p[7],q[7],t=0,a=0,b=0,c=0,d=0,e=0,f=0,g=0;
+				cin>>n;
+				for(int i=0;i<7;i++)
+				{
+					cin>>p[i];                        //a数组储存获奖号码 
+				}
+				for(int i=0;i<n;i++)                  //n次循环判断中奖情况 
+				{
+					for(int j=0;j<7;j++)              //将7个号码分别与中奖号码对比 
+					{
+						cin>>q[i];
+						for(int k=0;k<7;k++)
+						{
+							if(q[i]==p[k])
+							t++;
+						 } 
+					}
+					if(t==7)
+					a++;
+				if(t==6)
+					b++;
+					if(t==5)
+					c++;
+					if(t==4)
+					d++;
+					if(t==3)
+					e++;
+					if(t==2)
+					f++;
+					if(t==1)
+					g++;
+					t=0;
+					}
+				cout<<a<<" "<<b<<" "<<c<<" "<<d<<" "<<e<<" "<<f<<" "<<g;
+				return 0;
+			 } 
+
+
+
+
+
+85.			
