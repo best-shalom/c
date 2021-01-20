@@ -2200,4 +2200,44 @@ int main()
 
 
 
-87.			
+87.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int s1,s2,s3,n=0;
+				cin>>s1>>s2>>s3;
+				int s[s1*s2*s3]; 
+				for(int i=1;i<=s1;i++)              //将三个骰子的和储存在s数组中 
+				{
+					for(int j=1;j<=s2;j++)
+					{
+						for(int k=1;k<=s3;k++)
+						{
+							s[n]=i+j+k;
+							n++;                    //最后n即为和的个数 
+						}
+					}
+				}           
+				int i,t,m=0,maxi=0;        
+				for(i=s1+s2+s3;i>=3;i--) //历数s数组，统计相同数据 (逆向：如果有很多个和出现的概率相同，那么只需要输出最小的那个。)
+				{
+					for(int j=0;j<n;j++)
+					{
+						if(s[j]==i)
+						m++;
+					}                        //所得到的m即为该数i出现的频率 
+					if(m>=maxi)              //判断是否为最大值，若是则将对应的数字储存在t上 
+					{
+					t=i;
+					maxi=m;
+					}                    
+					m=0;                     //m还原，进行下一次循环 
+				}
+				cout<<t;
+				return 0;
+			 } 
+
+
+
+
+88.			
