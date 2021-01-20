@@ -2240,4 +2240,40 @@ int main()
 
 
 
-88.			
+88.			#include <bits/stdc++.h>
+			using namespace std;
+			int l[2000000];
+			int main()
+			{
+				int n,t,m;
+				cin>>n;
+				double a;
+				for(int i=0;i<n;i++)          //进行n次操作
+				{
+					cin>>a>>t;
+					for(int j=1;j<=t;j++)     //用j表示一系列路灯
+					{
+						m=a*j;                //m的值即为[a*j],对第m个路灯操作 
+						if(l[m]==0)           
+						l[m]=1;
+						else        
+						l[m]=0;
+					} 
+				 } 
+				 //n次操作完毕，遍历数组找到开着的灯
+				int i;
+				for(i=0;;i++)
+				{
+				if(l[i]==1)
+				{
+					cout<<i;
+					break;
+				  }
+				} 
+				return 0;
+			}
+
+
+
+
+89.			
