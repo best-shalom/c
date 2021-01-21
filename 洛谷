@@ -2427,4 +2427,21 @@ int main()
 
 
 
-93.			
+93.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				char a[100];
+				cin>>a;
+				int n=strlen(a);
+				for(int i=0;i<n;i++)
+				{
+					if(a[i]>='a'&&a[i]<='z')
+					a[i]-=32;
+				}
+				cout<<a;
+			}
+
+
+
+94.			
