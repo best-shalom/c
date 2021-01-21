@@ -2367,4 +2367,38 @@ int main()
 
 
 
-91.			
+91.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				char t[200],str[40000];                 //用字符数组储存第一排数据来求长度 
+				cin>>t;
+				strcat(str,t);            //连接字符串到str上 
+				int n=strlen(t);           //字符串求长度
+				for(int i=0;i<n-1;i++)    //将矩阵储存在字符数组上 
+				{
+					cin>>t;
+					strcat(str,t); 
+				}
+				cout<<n<<" ";
+				int m=1; 
+				if(str[0]=='1')
+				cout<<"0"<<" ";
+				for(int i=0;i<n*n;i++)
+				{
+					if(str[i]==str[i+1])
+					m++;                    //用m表示连续相同数据个数 
+					else if(str[i]!=str[i+1]||i==n*n-1) 
+					{
+						cout<<m<<" ";
+						m=1;
+					}
+				 }  
+			}
+
+
+
+
+
+
+92.			
