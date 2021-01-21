@@ -2326,4 +2326,45 @@ int main()
 
 
 
-90.			
+90.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int n,t,flag=0,s=0;
+				cin>>n;
+				int a[n*n];      //将矩阵设想为一长串数组，输出时再以矩阵形式输出
+				for(int i=0;s<n*n;i++)
+				{
+					cin>>t;      //剩下的各个t即为矩阵数组组成
+					for(int j=s;j<s+t;j++)   //s表示数组0,1位置 
+					{
+						if(flag==0)         //用flag表示数组对应1或0 
+						{
+							a[j]=0;
+						}
+						else
+						a[j]=1;
+					 } 
+				if(flag==0)                //每次循环flag值变换一次 
+				flag=1;
+				else
+				flag=0;
+				s+=t;
+				}                         //矩阵数组储存完毕，开始输出
+				int m=n;
+				for(int i=0;i<n*n;i++)
+				{
+					cout<<a[i];
+					m--;
+					if(m==0)
+					{
+						cout<<'\n';
+						m=n;
+					}
+				 } 
+			}
+
+
+
+
+91.			
