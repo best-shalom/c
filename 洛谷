@@ -2401,4 +2401,30 @@ int main()
 
 
 
-92.			
+92.			#include <bits/stdc++.h>
+			using namespace std;
+			int l(int n)             //定义l函数求阶乘 
+			{
+				int s=1;
+				for(int i=1;i<=n;i++)
+				{
+					s*=i;
+				}
+				return s;
+			}
+			int main()
+			{
+				int n,s=0;
+				cin>>n;
+				for(int i=1;i<=n;i++)        
+				{
+					s+=l(i);
+				}
+				cout<<s;
+				return 0;
+			}
+
+
+
+
+93.			
