@@ -2574,4 +2574,93 @@ int main()
 
 
 
-98.			
+98.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int t,p;
+				cin>>t;               //操作次数
+				char a[1000];   //储存初始字符串
+				cin>>a;
+				while(t--)
+				{
+					int n=strlen(a);
+					cin>>p;
+					if(p==1)
+					{	
+						char b[1000];
+						int j=0;
+						cin>>b;
+						int m=strlen(b);
+						for(int i=n;i<m+n;i++)         //将字符串连接在a后面 
+						{
+							a[i]=b[i-n];
+						}
+						cout<<a<<endl;
+					}
+					else if(p==2)
+					{
+						char d[1000];
+						int b,c,j=0;
+						cin>>b>>c;
+						for(int i=b;i<c;i++)       //将b~c字符段储存在d数组    
+						{
+							d[j]=a[i];
+							j++;
+						}
+						memset(a,0,sizeof(a));       //将a数组清零 
+						for(int i=0;i<strlen(d);i++)
+						{
+							a[i]=d[i];
+						}
+						cout<<a<<endl;
+					}
+					else if(p==3)
+					{
+						int c;
+						char b[1000],d[1000],e[1000];
+						cin>>c>>b;
+						 for(int i=c;i<n;i++)                   //将c后的字符存进一个数组
+						 {
+							e[i-c]=a[i];
+						 }
+						 for(int i=c;i<c+strlen(b);i++)            //将输入的字符串连接
+						 {
+							a[i]=b[i-c];
+						  } 
+						for(int i=c+strlen(b);i<strlen(b);i++)
+						{
+							a[i]=e[i-c-strlen(b)];               //将后半段连接 
+						}
+						cout<<a<<endl;
+					}
+					else if(p==4)
+					{
+						char b[1000];
+						cin>>b;
+						int m=strlen(b),flag;
+						for(int i=0;i<n-m;i++)
+						{
+							flag=1;
+							for(int j=0;j<m;j++)
+							{
+								if(a[i+j]!=b[j])             //判断是否相同 
+								flag=0;
+							}
+							if(flag==1)
+							{
+								cout<<i;
+								break;
+							} 
+						}
+						if(flag==0)
+						{
+							cout<<"-1";
+						}
+					}
+				} 
+			}
+
+
+
+99.			
