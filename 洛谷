@@ -2555,4 +2555,23 @@ int main()
 
 
 
-97.			
+97.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				char a[10];
+				gets(a);
+				int n=strlen(a),t=0;
+				for(int i=0;i<n;i++)
+				{
+					if(a[i]!=' ')
+					t++;
+				}
+				cout<<t;
+				return 0;
+			}
+
+
+
+
+98.			
