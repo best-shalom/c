@@ -2474,4 +2474,45 @@ int main()
 
 
 
-95.			
+95.			#include <bits/stdc++.h>
+			using namespace std;
+			int k[26];                               //初始化k数组为0 
+			int main()
+			{
+				char a[100];
+				cin>>a;
+				int n=strlen(a);
+				for(int i=0;i<n;i++)
+				{
+					k[a[i]-'a']++;                    //用k数组表示a~z（k[0]→a） 
+				}
+				int maxi=1,mini=100;
+				for(int i=0;i<26;i++)                 //历数k数组，统计字母频率
+				{
+					maxi=max(k[i],maxi);
+					if(k[i]!=0)                       //字母频率不能为0，必须出现过 
+					mini=min(k[i],mini);	
+				} 
+				int t=maxi-mini,flag=1;
+				for(int i=2;i<t;i++)
+				{
+					if(t%i==0)                           //如果flag为0，证明非质数 
+					flag=0;
+				}
+				if(t==0||t==1||flag==0)
+				{
+					cout<<"No Answer"<<endl;
+					cout<<"0";
+				 } 
+				else if(t==2||flag==1)                        //质数
+				{
+					cout<<"Lucky Word"<<endl;
+					cout<<t;
+				}
+				return 0;
+			 } 
+
+
+
+
+96.			
