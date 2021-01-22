@@ -2444,4 +2444,34 @@ int main()
 
 
 
-94.			
+94.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int n;
+				cin>>n;
+				char a[50];
+				cin>>a;
+				int m=strlen(a);
+				for(int i=0;i<m;i++)            //循环数组 
+				{
+					int t=n;                    //每次循环完后重新赋值n 
+					while(t)
+					{
+						t--;
+						a[i]++;                 //将数组后移n
+						if(a[i]>'z')            //a~z循环 
+						 a[i]='a';
+					}
+
+				}
+				for(int i=0;i<m;i++)              //输出
+				{
+					cout<<a[i];
+				}
+				return 0; 
+			}
+
+
+
+95.			
