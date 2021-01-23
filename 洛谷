@@ -2663,4 +2663,50 @@ int main()
 
 
 
-99.			
+99.			#include <bits/stdc++.h>
+			using namespace std;
+			void change(char a[10000])                             //设置一个函数将字符串转换为小写
+			{
+				for(int i=0;i<strlen(a);i++)
+				{
+					if(a[i]>='A'&&a[i]<='Z')
+					{
+						a[i]+=32;
+					}
+				}
+			}
+			int main()
+			{
+				char a[10],b[1000000];
+				gets(a);
+				gets(b);
+				change(a);change(b);                               //转换为小写 
+				int flag,s=0,i,t[10000],k=0;
+				for(i=0;i<strlen(b);i++)
+				{
+					flag=1;
+					for(int j=0;j<strlen(a);j++)                   //循环找相同
+					{
+						if(a[j]!=b[i+j])
+						flag=0;
+					} 
+					if(flag==1&&(b[i+strlen(a)]==' '||b[i+strlen(a)]=='\0'))   //证明为单独的单词 
+					{
+						s++;                                        //s统计单词次数 
+						t[k]=i;                                     //用t数组储存出现位置 
+						k++;
+					}
+				}
+				if(s==0)
+				cout<<-1;
+				else
+				{
+					cout<<s<<" "<<t[0];
+				}
+				return 0;
+			}
+
+
+
+
+100.			
