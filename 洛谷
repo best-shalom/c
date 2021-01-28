@@ -2878,4 +2878,25 @@ int main()
 
 
 
-105.			
+105.			#include <bits/stdc++.h>          //错啦
+			using namespace std;
+			char a[101];             //用来储存每个单词
+			int main()
+			{	
+			    while(getchar()!='\n') //判断输入 
+			    {   
+					cin>>a;              //直接输入，遇到空格就停下
+				    int n=strlen(a);     //判断长度
+				    for(int i=n-1;i>=0;i--) //逆向输出
+				    {
+				     cout<<a[i];
+				    }
+				    cout<<" ";           //每个单词输出完之后加空格
+				}
+			    return 0;
+			}
+
+
+
+
+106.			
