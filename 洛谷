@@ -2982,4 +2982,33 @@ int main()
 
 
 
-109.			
+109.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int n,m,a[20],s=0;
+				double b[100];
+				cin>>n>>m;
+				for(int i=0;i<n;i++)      //n名学生
+				{
+					for(int j=0;j<m;j++)     //j个分数
+					{
+						cin>>a[j];
+					}
+					sort(a,a+m);           //排序m个分数
+					for(int k=1;k<m-1;k++) //直接除去最高最低分
+					{
+						s+=a[k];
+					}
+					b[i]=double(s)/double(m-2);   //b数组储存平均分 
+					s=0;                    //复位 
+				} 
+				sort(b,b+n);               //排序平均分
+				printf("%.2lf",b[n-1]);    //保留两位小数输出
+				return 0;    
+			}
+
+
+
+
+110.			
