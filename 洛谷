@@ -3011,4 +3011,21 @@ int main()
 
 
 
-110.			
+110.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int n,s=1;
+				cin>>n;
+				while(n>1)
+				{
+					s*=n;
+					n--;
+				}
+				cout<<s;
+				return 0;
+			}
+
+
+
+111.			
