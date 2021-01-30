@@ -2916,4 +2916,40 @@ int main()
 
 
 
-107.			
+107.			#include <bits/stdc++.h>
+			using namespace std;
+			int chance(int t)              //t是质数，返回1；否则，返回0(包含1这个特例) 
+			{
+				int flag=1;
+				if(t==1)
+				return 0;
+				if(t==2)
+				return 1;
+				for(int i=2;i<t;i++)
+				{
+					if(t%i==0)             //非质数
+					{
+						flag=0;
+					 } 
+				}
+				if(flag==1)
+				return 1;
+				else
+				return 0;
+			}
+			int main()
+			{
+				int n,t;
+				cin>>n;
+				for(int i=0;i<n;i++)
+				{
+					cin>>t;                     //判断t是否为质数 
+					if(chance(t)==1)
+					cout<<t<<" ";
+				}
+				return 0;
+			}
+
+
+
+108.			
