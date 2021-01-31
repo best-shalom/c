@@ -3088,4 +3088,32 @@ int main()
 
 
 
-113.			
+113.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int n,i,t,maxi=0;
+				cin>>n;
+				int s[n],C[n],M[n],E[n];             //分别储存总分,语文，数学，英语成绩 
+				string N[n];                           //储存名字
+				for(i=0;i<n;i++)
+				{
+					cin>>N[i]>>C[i]>>M[i]>>E[i];
+					s[i]=C[i]+M[i]+E[i];
+				}                                   //成功储存所有数据
+				for(int k=0;k<n;k++)                 //找到最大s[i]对应的i值储存在t中 
+				{
+					if(s[k]>maxi)
+					{
+						maxi=s[k];
+						t=k;
+					}
+				}
+				cout<<N[t]<<" "<<C[t]<<" "<<M[t]<<" "<<E[t];
+				return 0; 
+			}
+
+
+
+
+114.			
