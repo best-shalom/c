@@ -3046,4 +3046,46 @@ int main()
 
 
 
-112.			
+112.			#include <bits/stdc++.h>
+			using namespace std;
+			int a[1025][1025];                  //2的十次方 
+			void R(int t,int x,int y)             //赦免系统(递归),输入正方形边长，初始横纵坐标 
+			{
+				if(t==2)                       //边长为2时停止
+				{
+					a[x][y]=0;                 //顶角处为0
+					return;	
+				} 
+				for(int i=x;i<x+t/2;i++)    //四分之一总面积变为0
+				{
+					for(int j=y;j<y+t/2;j++)
+					a[i][j]=0;
+				}
+				R(t/2,x+t/2,y);
+				R(t/2,x+t/2,y+t/2);
+				R(t/2,x,y+t/2);		
+			} 
+			int main()
+			{
+				int n,s=1;
+				cin>>n;
+				for(int i=0;i<n;i++)
+				s*=2;                  //2的n次方 (s表示矩阵边长)
+				for(int i=0;i<s;i++)
+				{
+					for(int j=0;j<s;j++)
+					a[i][j]=1;           //矩阵初始化 
+				}
+				R(s,0,0);
+				for(int i=0;i<s;i++)
+				{
+					for(int j=0;j<s;j++)
+					cout<<a[i][j]<<" ";
+					cout<<'\n';            //输出矩阵 
+				}
+			}
+
+
+
+
+113.			
