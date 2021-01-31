@@ -3204,4 +3204,48 @@ int main()
 
 
 
-117.			
+117.			#include <bits/stdc++.h>
+			using namespace std;
+			int num(int t)                 //判断质数 
+			{
+				if(t==2)
+				return 1;
+				int flag=1;
+				for(int i=2;i<t;i++)
+				{
+					if(t%i==0)
+					flag=0;
+				}
+				if(flag==1)
+				return 1;
+				else
+				return 0;
+			}
+			void magic(int a)              //输出算式 
+			{
+				for(int i=2;i<a-1;i++)
+				{
+					if((num(i)==1)&&(num(a-i)==1))      //若均为质数 
+					{
+						cout<<a<<"="<<i<<"+"<<a-i<<endl;
+						return;                       //输出算式后结束 
+					}
+				}
+			}
+			int main()
+			{
+				int n;
+				cin>>n;
+				for(int i=4;i<=n;i++)
+				{
+					if(i%2==0)             //判断偶数
+					{
+						magic(i);
+					} 
+				}
+				return 0;
+			}
+
+
+
+118.			
