@@ -3156,4 +3156,33 @@ int main()
 
 
 
-115.			
+115.			#include <bits/stdc++.h>
+			using namespace std;
+			struct news{
+				int name;
+				double a,b;               //学业成绩，素质拓展 
+				double c;              //综合分数 
+			}t[1000];
+			int main()
+			{
+				int n;
+				cin>>n;
+				for(int i=0;i<n;i++)
+				{
+					cin>>t[i].name>>t[i].a>>t[i].b;
+					t[i].c=t[i].a*0.7+t[i].b*0.3;
+				}
+				for(int i=0;i<n;i++)
+				{
+					if((t[i].a+t[i].b)>140&&t[i].c>=80)
+					cout<<"Excellent"<<'\n';
+					else
+					cout<<"Not excellent"<<'\n';
+				}
+				return 0;
+			 } 
+
+
+
+
+116.			
