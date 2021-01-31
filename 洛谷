@@ -3300,4 +3300,23 @@ int main()
 
 
 
-119.			
+119.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				long long a,i=0,s=0;
+				while(cin>>a)                   
+				{
+					s+=a;
+					i++;
+				} 
+				//子集和：每个元素都被选中过2^(i-1)次
+				for(int j=1;j<i;j++)          //i-1次 
+				s*=2;
+				cout<<s;
+				return 0;
+			}
+
+
+
+120.			
