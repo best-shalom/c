@@ -3248,4 +3248,56 @@ int main()
 
 
 
-118.			
+118.			#include <bits/stdc++.h>
+			using namespace std;
+			bool check(int x)               //检查位数
+			{
+				if((1000 <= x && x <= 9999) || (100000 <= x && x <= 999999)) return 0;
+				return 1;
+			} 
+			bool num(int t)                 //判断质数 
+			{
+				for(int i=3;i<=sqrt(t);i++)
+				{
+					if(t%i==0)
+					return 0;		
+				}
+				return 1;
+			}
+			bool magic(int n)                  //判断回文 
+			{
+				int a[20],i=0,t=n;
+				while(t)
+				{
+					a[i]=t%10;                //分别储存各个位数上的数字 (个十百。。)
+					t=t/10;
+					i++;
+				}
+				for(int j=0;j<=i/2;j++)
+				{
+					if(a[j]!=a[i-j-1])
+					return 0;
+				}
+				return 1;
+			}
+			int main()
+			{
+				int a,b;
+				cin>>a>>b;
+				if(a%2==0)
+				a++;                                 //从2的倍数+1开始搜索
+				if(b>=9999999) 
+				b=9999999;                          //最大的回文质数处理
+				for(int i=a;i<=b;i+=2)                 //判断回文质数(判断奇数减少时间) 
+				{
+					if(check(i) == 0) continue;
+					if(num(i) == 0) continue;
+					if(magic(i) == 0) continue;
+					printf("%d\n", i);                   //printf会比cout快很多
+				}
+				return 0;
+			}
+
+
+
+119.			
