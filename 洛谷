@@ -3336,4 +3336,29 @@ int main()
 
 
 
-121.			
+121.			#include <bits/stdc++.h>
+			using namespace std;
+			struct mark{
+				string name;
+				int age;
+				int grade;
+			}a[100];
+			int main()
+			{
+				int n;
+				cin>>n;
+				for(int i=0;i<n;i++)
+				{
+					cin>>a[i].name>>a[i].age>>a[i].grade;           //输入数据
+					cout<<a[i].name<<" "<<a[i].age+1<<" ";          //一年训练
+					if(a[i].grade*1.2<=600)
+					cout<<a[i].grade*1.2<<endl;
+					else
+					cout<<600<<endl;
+				}
+			}
+
+
+
+
+122.			
