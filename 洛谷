@@ -3116,4 +3116,44 @@ int main()
 
 
 
-114.			
+114.			#include <bits/stdc++.h>
+			using namespace std;
+			int d(int a,int b)            //判断单科分差函数 
+			{
+				if((a-b)>=-5&&(a-b)<=5)
+				return 0;                 //满足分差小于5则返回0 
+				else 
+				return 1;
+			}
+			int p(int a,int b)            //判断总分分差函数 
+			{
+				if((a-b)>=-10&&(a-b)<=10)
+				return 0;                 //满足分差小于10则返回0 
+				else 
+				return 1;
+			}
+			int main()
+			{
+				int n,i;
+				cin>>n;
+				int s[n],C[n],M[n],E[n];             //分别储存总分,语文，数学，英语成绩 
+				string N[n];                           //储存名字
+				for(i=0;i<n;i++)
+				{
+					cin>>N[i]>>C[i]>>M[i]>>E[i];
+					s[i]=C[i]+M[i]+E[i];
+				}                                   //成功储存所有数据
+				for(int j=0;j<n-1;j++)                //遍历数组寻找对手
+				{
+					for(int k=j+1;k<n;k++)            //不能为自己 
+					{
+						if((p(s[j],s[k])==0)&&(d(C[j],C[k])==0)&&(d(M[j],M[k])==0)&&(d(E[j],E[k])==0))      //判断对手 
+						cout<<N[j]<<" "<<N[k]<<'\n';	
+					}	
+				} 
+				return 0;
+			}
+
+
+
+115.			
