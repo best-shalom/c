@@ -3417,4 +3417,44 @@ int main()
 
 
 
-123.			
+123.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int a,b;
+				cin>>a>>b;               //a行b列
+				char m[101][101];
+				int n[101][101];
+				for(int i=0;i<101;i++)
+					for(int j=0;j<101;j++)
+					n[i][j]=0;                      //初始化 
+				for(int i=0;i<a;i++)
+					for(int j=0;j<b;j++)
+					{
+						cin>>m[i][j];               //输入每行的地雷情况
+						if(m[i][j]=='*')
+						{
+							n[i+1][j+1]++;
+					n[i+1][j-1]++;
+					n[i+1][j]++;
+					n[i][j+1]++;
+					n[i][j-1]++;
+					n[i-1][j]++;
+					n[i-1][j+1]++;
+					n[i-1][j-1]++;				//相邻的八个格子都+1   
+						}
+					}
+				//储存完毕,开始输出
+				for(int i=0;i<a;i++)
+				{
+					for(int j=0;j<b;j++)
+					{
+						if(m[i][j]=='*')
+						cout<<"*";
+						else
+						cout<<n[i][j];
+					}	
+					cout<<'\n';
+				}
+				return 0;
+			}
