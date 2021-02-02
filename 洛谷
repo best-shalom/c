@@ -3547,4 +3547,32 @@ int main()
 				return 0;
 			}
 
-126.			
+
+
+
+126.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int n,m,a,b[1000]={0}; 
+				cin>>n>>m;
+				for(int i=0;i<m;i++)
+				{
+					cin>>a;
+					b[a]++;                 //用b数组表示每个数出现的次数 
+				}
+				for(int i=1;i<=n;i++)
+				{
+					for(int j=1;j<=b[i];j++)   //把对应的i值输出b[i]次 
+					{
+						cout<<i<<" ";
+					}
+				}
+				return 0;
+			}
+
+
+
+
+
+127.			
