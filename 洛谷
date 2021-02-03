@@ -3650,4 +3650,42 @@ int main()
 
 
 
-129.			
+129.			#include <bits/stdc++.h>
+			using namespace std;
+			int a[100000];
+			void qs(int l,int r)
+			{
+				int temp=a[(l+r)/2];                  //取中间为基准
+				int i=l,j=r;
+				while(i<=j) 
+				{
+					while(a[i]<temp)
+					i++;                             //符合条件时
+					while(a[j]>temp)
+					j--;
+					if(i<=j)                         //说明ij在中途停下了，即有数不符合条件，开始交换 
+					{
+						swap(a[i],a[j]); 
+						i++;j--;
+					}
+				}
+				if(l<j) qs(l,j);                  //递归搜索左半部分
+			    if(i<r) qs(i,r);					//递归搜索右半部分
+			}
+			int main()
+			{
+				int n;
+				cin>>n;
+				for(int i=0;i<n;i++)
+				cin>>a[i];
+				qs(0,n-1);
+				for(int i=0;i<n;i++)
+				cout<<a[i]<<" ";
+				return 0;
+			}
+
+
+
+
+
+130.			
