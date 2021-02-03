@@ -3575,4 +3575,35 @@ int main()
 
 
 
-127.			
+127.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int n,t,mini=1000000,a[100000];
+				cin>>n;
+				for(int i=0;i<n;i++)
+					cin>>a[i];
+				for(int i=0;i<n;i++)
+				{
+					int k=i;                          //表示初始位置
+					for(int j=i+1;j<n;j++)
+					{
+						if(a[j]<a[k])                 //如果最小值不在初始位置，则将位置改变
+						k=j; 
+					}
+					if(k!=i)                          //如果最后位置不在初始值上，表明最小值不在初始位置，交换最小值
+					{
+						t=a[k];
+						a[k]=a[i];
+						a[i]=t;
+					} 
+				}
+				for(int i=0;i<n;i++)
+				cout<<a[i]<<" ";
+			}
+
+
+
+
+
+128.			
