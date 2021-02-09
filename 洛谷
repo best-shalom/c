@@ -3861,4 +3861,45 @@ int main()
 
 
 
-136.			
+136.			#include <bits/stdc++.h>
+			using namespace std;
+			struct student{
+				int id;
+				int a;
+				int b;
+				int c;
+				int s;
+			}name[300];
+			int main()
+			{
+				int n;
+				cin>>n;
+				for(int i=1;i<=n;i++)
+				{
+					cin>>name[i].a>>name[i].b>>name[i].c;
+					name[i].s=name[i].a+name[i].b+name[i].c;     
+					name[i].id=i;                                  //总分，i为对应学号 
+				}
+				int p=5,max=1;                                    //输出5次
+				while(p--)
+				{
+					for(int i=2;i<=n;i++)
+					{   
+					    //判断条件是否符合最大值 
+						if((name[i].s>name[max].s)||(name[i].s==name[max].s&&name[i].a>name[max].a)||(name[i].s==name[max].s&&name[i].a==name[max].a&&name[i].id<name[max].id))
+						{
+							max=i;
+						}
+					}
+					cout<<name[max].id<<" "<<name[max].s<<endl;
+					name[max].s=0;                                //将已经输出的最大值排除掉
+					max=1;                                        //进行下一次循环判断 
+				}
+				return 0;
+			}
+
+
+
+
+
+137.			
