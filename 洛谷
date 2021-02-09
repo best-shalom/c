@@ -3979,4 +3979,36 @@ int main()
 
 
 
-138.			
+138.			#include <bits/stdc++.h>
+			using namespace std;
+			int h[10000];
+			int main()
+			{
+				int n,H,t,s=0;
+				cin>>n>>H;
+				for(int i=0;i<n;i++)
+				{
+					cin>>t;
+					h[t]++;
+				}
+				for(int i=10000;H>0;i--)
+				{
+					if(h[i]*i<=H)
+					{
+						H-=h[i]*i;
+						s+=h[i];
+					}
+					else
+					{
+						s+=H/i+1;
+						H=0;
+					}
+				}
+				cout<<s;
+				return 0;
+			}
+
+
+
+
+139.			
