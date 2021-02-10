@@ -4308,4 +4308,39 @@ int main()
 
 
 
-147.			
+147.			#include <bits/stdc++.h>
+			using namespace std;
+			struct student{
+				string id;
+				int a,b,c;
+			}t[100];
+			int main()
+			{
+				int n;
+				cin>>n;
+				for(int i=0;i<n;i++)
+				{
+					cin>>t[i].id>>t[i].a>>t[i].b>>t[i].c;
+				}
+				student temp;
+				for(int i=0;i<n-1;i++)
+				{
+					for(int j=i+1;j<n;j++)
+					{
+						if((t[i].a>t[j].a)||((t[i].a==t[j].a)&&(t[i].b>t[j].b))||((t[i].a==t[j].a)&&(t[i].b==t[j].b)&&(t[i].c>t[j].c))||((t[i].a==t[j].a)&&(t[i].b==t[j].b)&&(t[i].c==t[j].c)))
+						{
+							temp=t[i];t[i]=t[j];t[j]=temp;             //按年龄排序 
+						}
+					}
+				}
+				for(int i=0;i<n;i++)
+				{
+					cout<<t[i].id<<endl;
+				}
+				return 0;
+			}
+
+
+
+
+148.			
