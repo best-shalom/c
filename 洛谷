@@ -4133,4 +4133,61 @@ int main()
 
 
 
-143.			
+143.			#include <bits/stdc++.h>
+			using namespace std;
+			struct name{
+				int id;
+				int x;
+			}a[5000];
+			void xsort(name *p,int n)                                 //对含有n个数据组的结构体中，按照"分数"部分从大到小排序 
+			{
+				name temp;
+				for(int i=0;i<n;i++)
+				{
+					for(int j=i+1;j<n;j++)
+					{
+						if(p[i].x<p[j].x)
+						{
+							temp=p[i];p[i]=p[j];p[j]=temp;
+						}
+						else if(p[i].x==p[j].x&&p[i].id>p[j].id)       //注意，还有学号的影响 
+						{
+							temp=p[i];p[i]=p[j];p[j]=temp;
+						}
+					}
+				}
+			}
+			int main()
+			{
+				int m,n;
+				cin>>n>>m;
+				for(int i=0;i<n;i++)
+				{
+					cin>>a[i].id>>a[i].x;
+				}
+				xsort(a,n);                                            //按分数排序 
+				int p=m*1.5-1,t=0;                                       //找到面试分数线 (录取m*1.5个人，分数线对应序号为m*1.5-1) 
+				for(int i=0;i<n;i++)
+				{
+					if(a[i].x>=a[p].x)
+					t++;                                               //得到可以参加面试的人数 
+				} 
+				cout<<a[p].x<<" "<<t<<endl;
+				int i=0;
+				while(t--)                                             //t次循环输出分数线上的面试者情况 
+				{
+					cout<<a[i].id<<" "<<a[i].x<<endl;                       //输出 
+					i++;
+				}
+				return 0;
+			}
+
+
+
+
+
+
+
+
+
+144.			
