@@ -4275,4 +4275,37 @@ int main()
 
 
 
-146.			
+146.			#include <bits/stdc++.h>
+			using namespace std;
+			struct pl{
+				double x;
+				double y;
+				double z;
+			}t[50000];
+			bool cmp(pl a,pl b)
+			{
+				return a.z<b.z;
+			}
+			int main()
+			{
+				int n;
+				cin>>n;
+				for(int i=0;i<n;i++)
+				{
+					cin>>t[i].x>>t[i].y>>t[i].z;
+				}
+				sort(t,t+n,cmp);
+				double s=0;
+				for(int i=0;i<n-1;i++)
+				{
+					s+=sqrt((t[i].x-t[i+1].x)*(t[i].x-t[i+1].x)+(t[i].y-t[i+1].y)*(t[i].y-t[i+1].y)+(t[i].z-t[i+1].z)*(t[i].z-t[i+1].z));                   //从低到高加距离 
+				}
+				printf("%.3lf",s);
+				return 0;
+			}
+
+
+
+
+
+147.			
