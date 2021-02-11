@@ -4368,4 +4368,24 @@ int main()
 
 
 
-149.			
+149.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int m,n,a,b;
+				cin>>n>>m;
+				a=n;b=m;
+				long long s1,s2;
+				while(a>0&&b>0)
+				{
+					s1+=a*b;                            //其中正方形个数为n*m+(n-1)*(m-1)+..... 
+					a--;b--;
+				}
+				s2=(n*(n+1)/2)*(m*(m+1)/2)-s1;
+				cout<<s1<<" "<<s2;
+			}
+
+
+
+
+150.			
