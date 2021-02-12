@@ -4478,4 +4478,55 @@ int main()
 
 
 
-151.			
+151.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int A,B,C,a[9]={0},b1,b2,b3,temp=1,s=0; //用a数组判断a[1~9]是否都已经出现且只出现一次 
+				cin>>A>>B>>C;
+				for(int i=1;i<=1000/C;i++)           //依次判断数字是否符合
+				{
+					b1=i*A;b2=i*B;b3=i*C;
+					for(int j=0;j<3;j++)                 //三次循环判断位数及数字组成 
+					{
+						a[b1%10]++;                      //个位上的数字存在+1
+						b1=b1/10;  
+					}
+					for(int j=0;j<3;j++)                 //同上 
+					{
+						a[b2%10]++;                      
+						b2=b2/10;  
+					}
+					for(int j=0;j<3;j++)                 //同上 
+					{
+						a[b3%10]++;                      
+						b3=b3/10;  
+					}
+					for(int j=1;j<=9;j++)
+					{
+						if(a[j]!=1)                       //即此时数字不满足三位且不等组成 
+						{
+							temp=0;
+							break;
+						}
+					}
+					if(temp==1)
+					{
+						cout<<i*A<<" "<<i*B<<" "<<i*C<<endl;
+						s++;                               //表示符合条件的数字总数 
+					}
+					for(int j=1;j<=9;j++)                   //初始化 
+						a[j]=0; 
+					temp=1;	                               
+				}
+				if(s==0)
+				cout<<"No!!!";
+				return 0;
+			}
+
+
+
+
+
+
+152.			
