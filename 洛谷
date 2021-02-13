@@ -4529,4 +4529,30 @@ int main()
 
 
 
-152.			
+152.			#include <bits/stdc++.h>
+			using namespace std;
+			bool zs(int a)                         //判断质数 
+			{
+				for(int i=3;i<a;i++)
+				{
+					if(a%i==0)
+					return 0;                      //表示非质数 
+				}
+				return 1;
+			}
+			int main()
+			{
+				int n,k,a[20];
+				cin>>n>>k;
+				for(int i=0;i<n;i++)
+				{
+					cin>>a[i];
+				}
+
+			}
+
+
+
+
+
+153.			
