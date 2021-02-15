@@ -4298,4 +4298,30 @@
 
 
 
-105.		
+105.		#include <bits/stdc++.h>
+		using namespace std;
+		int a[1000];
+		int main()
+		{
+			int i,t=0;
+			while(std::cin>>i)
+			{
+				a[i]++;
+				t++;
+				i=0;
+			}
+			cout<<t<<endl;                      //t即输入数字的个数
+			for(int k=0;k<1000;k++)
+			{
+				if(a[k]!=0)
+				{
+					cout<<k<<" "<<a[k]<<endl;
+				}
+			} 
+			return 0;
+		}
+
+
+
+
+106.		
