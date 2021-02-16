@@ -4349,3 +4349,43 @@
 				}
 				return 0;
 			}
+
+
+
+
+
+
+107.			#include <bits/stdc++.h>
+			#include <algorithm>
+			using namespace std;
+			int main()
+			{
+				int n,m=1,a[20];
+				cin>>n;
+				for(int i=1;i<=n;i++)
+				{
+					a[i]=i;                   //存放排列中的数组 
+					m*=i;                     //求得排列的总和--n! 
+				}
+				for(int i=1;i<=m;i++)
+				{
+					for(int k=1;k<=n;k++)     //输出排列 
+					{
+						cout<<"    "<<a[k];
+					} 
+					cout<<endl;
+					next_permutation(a+1,a+1+n);    //下一个字典序 
+				}
+				return 0;
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+108.			
