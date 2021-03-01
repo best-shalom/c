@@ -103,3 +103,24 @@
                         }
                     };
                     
+
+
+
+
+5.                  class Solution {
+                    public:
+                        int searchInsert(vector<int>& nums, int target) {
+                            int i,n=nums.size();
+                            for(i=0;i<n;i++)                   //查找是否存在相同值
+                            {
+                                if(target==nums[i])
+                                return i;
+                            }
+                            for(i=0;i<n;i++)                   //此时为不存在的情况，开始插入
+                            {
+                                if(target<nums[i])
+                                return i;
+                            }
+                            return n;                           //插入到数组末尾的情况
+                        }
+                    };
