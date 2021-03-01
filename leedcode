@@ -32,3 +32,51 @@
                             return {};
                         }
                     };                                                                    //!!!竟然还是这道题
+
+
+
+
+
+
+3.                  class Solution {
+                    public:
+                        int pivotIndex(vector<int>& nums) {
+                            int s1=0,s2=0,i,n;
+                            n=nums.size();
+                            for(i=0;i<n;i++)        //从0开始对每一个a[i]判断是否符合索引条件
+                            {
+                                if(i==0)
+                                {
+                                    for(int c=1;c<n;c++)
+                                    {
+                                        s2+=nums[c];    //求和判断后续数字是否为0
+                                    }
+                                    if(s2==0)
+                                    {
+                                        cout<<0;
+                                        return 0;        //直接结束程序,否则进行后续判断
+                                    }
+                                    s2=0;
+                                }
+                                else
+                                {
+                                    for(int a=0;a<i;a++) //统计左边
+                                    {
+                                        s1+=nums[a];
+                                    }
+                                    for(int b=i+1;b<n;b++) //统计右边
+                                    {
+                                        s2+=nums[b];
+                                    }
+                                    if(s1==s2)             //直接输出最左侧的索引，结束程序
+                                    {
+                                        cout<<i;
+                                        return 0;
+                                    }
+                                    s1=0,s2=0;             //初始化
+                                }
+                            }
+                            cout<<-1;                      //如果都不满足就输出-1
+                            return 0;
+                        }
+                    };
