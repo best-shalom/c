@@ -124,3 +124,27 @@
                             return n;                           //插入到数组末尾的情况
                         }
                     };
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+6.                  class Solution {
+                    public:
+                        void rotate(vector<vector<int>>& matrix) {
+                            int n=matrix.size();           //矩阵为n*n
+                            auto a=matrix;
+                            for(int i=0;i<n;i++)           
+                            {
+                                for(int j=0;j<n;j++)    //旋转
+                                {
+                                   a[j][n-i-1]=matrix[i][j];   //将旋转后的结果存到a数组
+                                }
+                            }
+                            matrix=a;
+                        }
+                    };
