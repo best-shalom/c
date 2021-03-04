@@ -4596,4 +4596,27 @@ int main()
 
 
 
-155.			
+155.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int n,m,a,s=0;
+				cin>>n>>m;
+				for(int i=1;i<=n;i++)
+				{
+					a=i;                             //防止i值改变！！！ 
+					while(a!=0)
+					{                 
+						if(a%10==m)                  //分解各个位数
+						s++;
+						a=a/10;                      //下次循环 
+					}
+				}
+				cout<<s;
+				return 0;
+			}
+
+
+
+
+156.			
