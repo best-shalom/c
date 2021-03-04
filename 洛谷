@@ -4710,4 +4710,17 @@ int main()
 
 
 
-160.			
+160.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int a,b,n;
+				cin>>a>>b;          //输入a元b角
+				n=a*10+b;
+				cout<<n/19;         //换算成角之后计算输出 
+			 } 
+
+
+
+
+161.			
