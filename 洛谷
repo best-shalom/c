@@ -4555,4 +4555,28 @@ int main()
 
 
 
-153.			
+153.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int n,m=0;
+				cin>>n;
+				if(n<0)                      //换为正数 
+				{
+					cout<<"-";
+					n=-n;
+				}
+				while(n)
+				{
+					m=m*10+n%10;
+					n=n/10;
+				}
+				cout<<m;
+				return 0;
+			}
+
+
+
+
+
+154.			
