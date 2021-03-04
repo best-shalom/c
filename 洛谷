@@ -4636,4 +4636,26 @@ int main()
 
 
 
-157.			
+157.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int a,b,n,j=0,maxi=0;
+				for(int i=1;i<=7;i++)
+				{
+					cin>>a>>b;
+					n=a+b-8;                     //用n表示每天的不高兴值 
+					if(n>maxi)                   //如果两天相等，输出的仍然是靠前的一天 
+					{
+						maxi=n;
+						j=i;
+					}
+					n=0;                         //第二天，刷新 
+				} 
+				cout<<j;                         //如果每天都开心，结果会为0 
+				return 0;
+			}
+
+
+
+158.			
