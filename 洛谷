@@ -4579,4 +4579,21 @@ int main()
 
 
 
-154.			
+154.			//观察到第i行，第j列的数就是i/j
+			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int n,m=1;
+				cin>>n;
+				while(n>m)
+				{
+					n-=m;
+					m++;
+				}
+			}
+
+
+
+
+155.			
