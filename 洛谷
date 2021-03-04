@@ -4688,4 +4688,26 @@ int main()
 
 
 
-159.			
+159.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int n,a,b,m[3];
+				cin>>n;
+				int i=3;
+				while(i--)                        //三次循环判断每种方式的价格 
+				{
+					cin>>a>>b;
+					if(n%a==0)                    //得到该种方式的价格 
+					m[i]=(n/a)*b;                 
+					else
+					m[i]=(n/a+1)*b;         
+				}
+				sort(m,m+3);                       //判断最少的价格 
+				cout<<m[0];                        
+				return 0;
+			 } 
+
+
+
+160.			
