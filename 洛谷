@@ -4658,4 +4658,34 @@ int main()
 
 
 
-158.			
+158.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{ 
+				int n,m=0,i,s=0;                           //m表示上一个月剩下的钱，第一个月为0 
+				for(i=1;i<=12;i++)                     //十二个月分别判断 
+				{
+					cin>>n;
+					m+=300;
+					if(m<n)                      //预算不够的情况，直接结束输出月份 
+					{
+						cout<<"-"<<i;
+						return 0;
+					}
+					else
+					{
+						while(m-n>=100)
+						{
+							m-=100;              //存到妈妈那里
+							s+=100; 
+						}                        //一直到没有多余的整百
+						m-=n;                    //花掉这一个月的钱，进入下一个月 
+					}
+				}
+				cout<<double(s)*1.2+m;           //取得整百的钱，还有自己剩下的钱m 
+				return 0;
+			}
+
+
+
+159.			
