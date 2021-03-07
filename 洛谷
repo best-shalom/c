@@ -4809,4 +4809,39 @@ int main()
 
 
 
-164.			
+164.			#include <bits/stdc++.h>
+			using namespace std;
+			int t[1005][1005];                               //初始化
+			int main()
+			{
+				int n, m, k, a, b=0;
+				cin >> n >> m >> k;
+				for (int i = 0; i < n; i++)                  //n个人的训练
+				{
+					for (int j = 1; j<=m; j++)               //m套题的训练天数
+					{
+						cin >> a;                            
+						t[a][j]++;                            //a表示第a天训练的人,j表示此人训练的套数
+					}
+				}
+				for (int i = 1; i <=k; i++)                   //循环判断老师每天的准备量
+				{
+					for (int j = 1; j <=m; j++)                //对每位同学做的套数(第j套)做判断
+					{
+						if (t[i][j])                           //在同一天做同一套题的人不止一个,老师的准备量均为1
+						{
+							b ++;
+						}
+					}
+					cout << b << " ";
+					b = 0;
+				}
+				return 0;
+			}
+
+
+
+
+
+
+165.			
