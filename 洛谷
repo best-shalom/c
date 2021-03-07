@@ -4911,4 +4911,74 @@ int main()
 
 
 
-167.			
+167.			#include <bits/stdc++.h>
+			using namespace std;
+			void word(string a, int m, int n,int t=0, string b[100000])             //定义分词函数,其中m表示划分的初始位置,t表示单词个数
+			{
+				int i;
+				for (i = m; i < n; i++)               //按照空格把文章a分成单词组b
+				{
+					if (a[i] == ' ')
+					{
+						b[t] = a.substr(0, i-m);       //从a[0]处拷贝i-m个字符到b中
+						t++;
+					}
+				}
+				if (m == n)
+					return;
+				else
+					word(a, i + 1, n, t, b[100000]);    //递归....?(虽然现在还不会用哈哈哈)
+
+			}
+			int main()
+			{
+				string a, b;
+				int t = 0, s = 0, l = 0;
+				string c[100000];
+				cin >> a;                            //输入要查找的单词
+				getline(cin, b);
+				int m = a.size();
+				int n = b.size();
+				for (int i = 0; i < m; i++)           //将所有大写字母换为小写(查找单词)
+				{
+					if (a[i] >= 'A' && a[i] <= 'Z')
+					{
+						a[i] += 26;
+					}
+				}
+				for (int i = 0; i < n; i++)           //将所有大写字母换为小写(输入文章)
+				{
+					if (b[i] >= 'A' && b[i] <= 'Z')
+					{
+						b[i] += 26;
+					}
+				}
+				word(b, 0, n, t, c[100000]);
+				for (int i = 0; i < t; i++)           //查找单词
+				{
+					if (strcmp(c[i], a) == 0)      
+					{
+						s++;                          //额,还要我判断初始位置...
+						if (s == 1)                   //储存第一个符合条件单词的头位置
+						{
+							int L = l;
+						}
+					}
+					l += c[i].size()+1;               //表示下一个单词的头位置
+				}
+				if (s == 0)
+				{
+					cout << -1;
+				}
+				else
+				{
+					cout << s << " " << L;
+				}
+				return 0;
+			}
+
+
+
+
+
+168.			
