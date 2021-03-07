@@ -4871,4 +4871,44 @@ int main()
 
 
 
-166.			
+166.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				char a[13];
+				int s = 0, n, t = 0;
+				for (int i = 0; i < 13; i++)
+				{
+					cin >> a[i];
+				}
+				for (int i = 0; i < 11; i++)
+				{
+					if (a[i] >= '0' && a[i] <= '9')                        //判断数字
+					{
+						t++;
+						s += (a[i] - '0') * t;                             //!!!将字符数字改成整型数字并按照识别码求法计算
+					}
+				}
+				n = s % 11;
+				if ((n == a[12] - '0')||((n==10)&&(a[12]=='X')))
+				{
+					cout << "Right";
+				}
+				else
+				{
+					a[12] = n + '0';
+					if (n == 10)
+					{
+						a[12] = 'X';
+					}
+					for (int i = 0; i < 13; i++)
+					{
+						cout << a[i];
+					}
+				}
+				return 0;
+			}
+
+
+
+167.			
