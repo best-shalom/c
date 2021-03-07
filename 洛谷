@@ -4844,4 +4844,31 @@ int main()
 
 
 
-165.			
+165.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				string a;
+				getline(cin, a);                       //注意含空格字符串的输入及求长度
+				int n = a.size(),t=0;
+				for (int i = 0; i < n; i++)
+				{
+					if (a[i] != ' ')
+					{
+						t++;
+					}
+				}
+				cout << t;
+				return 0;
+			}
+
+
+
+
+
+
+
+
+
+
+166.			
