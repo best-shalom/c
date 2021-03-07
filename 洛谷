@@ -4723,4 +4723,33 @@ int main()
 
 
 
-161.			
+161.			#include <iostream>
+			using namespace std;
+			int l[100000];                         //初始化表示本来的树木
+			int main()
+			{
+				int n,m,a,b,s=0;
+				cin >>m>> n;
+				for (int i = 0; i < n; i++)               //n个循环输入要除去的树木
+				{
+					cin >> a >> b;
+					for (int j = a; j <= b; j++)
+					{
+						l[j] = 1;                      //包括端点的树木被移走,用1表示
+					}
+				}
+				for (int i = 0; i < m+1; i++)            //判断树木剩余(马路长m,但是有m+1颗树)
+				{
+					if (l[i] == 0)
+					{
+						s++;
+					}
+				}
+				cout << s;
+				return 0;
+			}
+
+
+
+
+162.			
