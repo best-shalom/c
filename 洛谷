@@ -4752,4 +4752,28 @@ int main()
 
 
 
-162.			
+162.			#include <iostream>
+			using namespace std;
+			int main()
+			{
+				int a[100],b;
+				for(int i=0;i<100;i++)
+				{
+					cin >> a[i];
+					if (a[i] == 0)
+					{
+						b = i+1;                 //表示输入数字的个数
+						break;
+					}
+				}
+				for (int i = b - 2; i >= 0; i--)         //除去最后一位的0
+				{
+					cout << a[i] << " ";
+				}
+				return 0;
+			}
+
+
+
+
+163.			
