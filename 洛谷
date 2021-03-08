@@ -4981,4 +4981,96 @@ int main()
 
 
 
-168.			
+168.			#include <bits/stdc++.h>
+			using namespace std;
+			int Change(int n)
+			{
+				int a[8] = {0}, i = 0;                                        //保证八位数判断回文
+				while (n)
+				{
+					a[i] = n % 10;                                      //a[i]中储存各位数字
+					n = n / 10;
+					i++;
+				}
+				for (int i = 7; i >= 0; i--)
+				{
+					cout << a[i];
+				}
+				cout << endl;
+				int j = 0, k = 7;
+				while(j<k)
+				{
+					if (a[j] != a[k])
+					{
+						return 0;
+					}
+					j++, k--;
+				}
+				return 1;                                              //1表示回文,2表示非回文
+			}
+			int Time(int n)
+			{
+				int a[8] = {0}, i = 7;                                        //保证八位数对日期年份进行判断
+				while (n)
+				{
+					a[i] = n % 10;                                      //a[i]中储存各位数字
+					n = n / 10;
+					i--;
+				}
+				int Y = a[0] * 1000 + a[1] * 100 + a[2] * 10 + a[3], M = a[4] * 10 + a[5], D = a[6] * 10 + a[7];        //分别表示年月日
+				//如果年月日都相互匹配,返回1,否则返回0
+				//1.判断大小月份
+				if (M % 2 == 0 && M != 2)                                         //二月独立出来判断
+				{
+					if (D != 30)
+					{
+						return 0;
+					}
+				}
+				else if (M % 2 == 1 )                                         
+				{
+					if (D != 31)
+					{
+						return 0;
+					}
+				}
+				//2.判断二月
+				else if (M == 2)
+				{
+					if ((Y % 4 == 0 && Y % 100 != 0) || Y % 400 == 0)             //闰年
+					{
+						if (D != 29)
+						{
+							return 0;
+						}
+					}
+					else
+					{
+						if (D != 28)
+						{
+							return 0;
+						}
+					}
+				}
+					return 1;
+			}
+			int main()
+			{
+				int a, b, s = 0;
+				cin >> a >> b;
+				for (int i = a; i <= b; i++)
+				{
+					if (Change(i) == 1&&Time(i)==1)                     //用change函数判断是否回文,Time函数判断日期是否存在
+					{
+						s++;
+					}
+				}
+				cout << s;
+				return 0;
+			}
+
+
+
+
+
+169.			
