@@ -5073,4 +5073,33 @@ int main()
 
 
 
-169.			
+169.			#include <bits/stdc++.h>
+			using namespace std;
+			int main()
+			{
+				int n;
+				cin >> n;
+				string a[20];
+				for (int i = 0; i < n; i++)
+				{
+					cin >> a[i];
+				}
+				for (int i = 0; i < n-1; i++)
+				{
+					for (int j = i + 1; j < n; j++)
+					{
+						if (a[i] + a[j] < a[j] + a[i])
+							swap(a[i], a[j]);                         //这样交换之后,从a[0]开始输出即为最大值
+					}
+				}
+				for (int i = 0; i < n; i++)
+				{
+					cout << a[i];
+				}
+				return 0;
+			}
+
+
+
+
+170.			
