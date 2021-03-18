@@ -4388,4 +4388,388 @@
 			
 			
 			
-108.			
+108.			#include <stdlib.h>
+			#include <stdio.h>
+			#include <string.h>
+			#include <iostream>
+			#include <bits/stdc++.h>
+
+			#define MaxListSize 20;
+
+			#define TRUE   1
+			#define FALSE  0
+			#define OK     1
+			#define ERROR  0
+			typedef bool   Status;
+
+			struct Student
+			{
+				int   id;                //学号
+				char  name[10];          //姓名
+				float CP;                //计算机基础
+				float DS;                //数据结构
+				float PG;                //程序设计
+				float AV;                //平均分
+			}student[MaxListSize];
+
+			struct LinearList            //学生信息线性表
+			{
+				Etype  *element;
+				int    len;
+				int    Maxsize;
+			}L;
+
+
+			char re_choose[] = { "\n选择非法,请输入正确编号!\n" };                     //重选
+
+			void Menu_name()               //1.打印作者信息函数
+			{
+				printf("\n\n\n\n\n\n\n");
+				printf("              *************************************************\n");
+				printf("                           学生成绩单的线性表顺序存储\n\n");
+				printf("                           制作:小曹\n");
+				printf("                           班级:2004班\n");
+				printf("                           学号: 202021130162\n");
+				printf("                           指导老师: 孙夫雄\n");
+				printf("              **************************************************\n");
+				printf("\n\n\n\t\t");
+			}
+
+			void InitWrite()                                        //2.文件读取函数
+			{
+				char name[10][10] = { "小张","小王","小李","小刘","小邓" };
+
+				float CP[4] = { 100.0,80.0,90.0,60.0 };
+				float DS[4] = { 98.0,90.0,88.0,70.0 };
+				float PG[4] = { 99.0,85.0,89.0,65.0 };
+				float AV[4] = { 99.0,85.0,89.0,65.0 };
+				int id[4] = { 1000,1001,1002,1003 };
+				for (int i = 0; i < 4; i++)                          //把数组中的数据放到结构体数组student中
+				{
+					strcpy(student[i].name,name[i]);
+					student[i].CP = CP[i];
+					student[i].DS = DS[i];
+					student[i].PG = PG[i];
+					student[i].AV = AV[i];
+				}
+				File* f;                                             //定义文件对"学生成绩表"进行操作
+				int numwrite;
+				f = open("学生成绩表.dat", "w+");
+				if (f == NULL)
+				{
+					cout << "文件打开失败!";
+					return;
+				}
+				for (int i = 0; i < 4; i++)
+				{
+					numwrite = fwrite(&student[i], sizeof(student), 1, f);       //将学生数据填入文件f中
+				}
+				fclose(f);
+			}
+
+			void SaveFile()                                                      //不晓得这个是干啥的
+			{
+				FILE* f;
+				int numwrite;
+
+				f = fopen("学生成绩表.dat", "w+");
+				if (f == NULL)
+				{
+					printf("文件打开失败!");
+					return;
+				}
+				for (int i = 0; i < L.length; i++)
+					numwrite = fwrite(&L.element[i], sizeof(Student), 1, f);
+				fclose(f);
+			}
+			char Name[10];                                                         //也不晓得这里是在干啥
+			float CP;
+			float DS;
+			float PG;
+			float AV;
+
+			void Record_add(Student& record)                                       //插入学生数据功能
+			{
+				cout << "\n\t\t\t 输入学号";
+				cin >> record.id;
+				cout << "\n\t\t\t 输入姓名";
+				cin >> record.name;
+				cout << "\n\t\t\t 输入计算机基础成绩";
+				cin >> record.CP;
+				cout << "\n\t\t\t 输入数据结构成绩";
+				cin >> record.DS;
+				cout << "\n\t\t\t 输入程序设计成绩";
+				cin >> record.PG;;
+				record.AV = (record.CP + record.DS + record.PG) / 3;
+			}
+
+			void ReadRecord()
+			{
+				FIle* f;
+				f = fopen("学生成绩表.dat", "r+");
+				if (f == NULL)
+				{
+					printf("文件打开失败!!");
+					return;
+				}
+				int i = 0;
+				while (fread(&L.element[i], sizeof(Student), 1, f))
+				{
+					i++;
+				}
+				L.len = i;
+				fclose(f)
+			}
+
+			void Create(LinearList& L, int& Maxsize)                                //构造线性表
+			{
+				L.Maxsize = Maxsize;
+				L.element = new Student[L.Maxsize];
+				L.len = 0;
+			}
+
+			bool Insert(LinearList& L, int k, Student& x)                             //在线性表L中第k个元素后插入元素x(功能)
+			{
+				if (k<0 || k>L.len || L.len == L.Maxsize)                             //如果不存在k或线性表已满,则返回错误
+				{
+					return ERROR;
+				}
+				for (int i = L.len - 1; i >= k; i--)
+				{
+					L.element[i + 1] = L.element[i];                                   //后移,给新元素腾出位置
+				}
+				L.element[k] = x;
+				L.len++;
+				return OK;
+			}
+
+			bool Delete(LinearList& L, int k)                                           //删除第k个元素(功能)
+			{
+				if (k<1 || k>L.len)
+				{
+					return ERROR;
+				}
+				for (int i = k; i < L.len; i++)
+				{
+					L.element[i - 1] = L.element[i];                                     //前移,删去指定元素
+				}
+				L.len--;
+				return OK;
+			}
+
+			int Search(LinearList& L, unsigned& x)                                       //通过学号查找元素内容(功能)
+			{
+				for (int i = 0; i < L.len; i++)
+				{
+					if (L.element[i].id == x)
+						return i;                                                        //返回位置下标
+				}
+				return -1;                                                               //未找到
+			}
+
+			void output(LinearList& L)                                                    //输出线性表
+			{
+
+				cout << "\n\n";
+				cout << " ┌─────────────────────────────┐" << endl;
+				cout << " │                      成    绩    单                      │" << endl;
+				cout << " ├────┬───┬─────┬────┬────┬────┤" << endl;
+				cout << " │        │      │          │        │        │        │" << endl;
+				cout << " │学    号│姓 名 │计算机基础│数据结构│程序设计│平均成绩│" << endl;
+				cout << " │　　　　│　　　│　　　    │　　　　│　　　　│　　　　│" << endl;
+				cout << " ├────┼───┼─────┼────┼────┼────┤" << endl;
+
+				for (int i = 0; i < L.len; i++)
+				{
+					cout << " │" << setw(8) << L.element[i].id << "│" << setw(6) << L.element[i].Name << "│" << setw(10) << L.element[i].CP << \
+						"│ " << setw(7) << L.element[i].DS << "│" << setw(8) << L.element[i].PG << "│" << setw(8) << L.element[i].AV << "│" << endl;
+					cout << " ├────┼───┼─────┼────┼────┼────┤" << endl;
+				}
+				cout << " │        │      │          │        │        │        │" << endl;
+				cout << " └────┴───┴─────┴────┴────┴────┘" << endl;
+			}
+
+			bool Get(LinearList& L, int k, Student& x)                                    //将第k个元素存到x中
+			{
+				if (k<1 || k>L.len)
+					return false;
+				x = L.ken[k - 1];
+				return true;
+			}
+
+			void Print_record(int pos)                                                   //输出某一条记录
+			{
+				cout << "\n\t      学生学号:" << L.element[pos].No;
+				cout << "\n\t      学生姓名:" << L.element[pos].Name;
+				cout << "\n\t计算机基础成绩:" << L.element[pos].CPMark;
+				cout << "\n\t  数据结构成绩:" << L.element[pos].DSMark;
+				cout << "\n\t  程序设计成绩:" << L.element[pos].PGMark;
+				cout << "\n\t  程序设计成绩:" << L.element[pos].PGMark;
+				cout << "\n\t      平均成绩:" << L.element[pos].Average;
+				cout << endl;
+			}
+
+			void Chance(char j)                                                            //操作选择函数
+			{
+				unsigned k;
+				int pos;
+				Student x;
+				switch (j)
+				{
+				case'1':                                                                   //1.显示线性表中的元素
+					system("cls");
+					output(L);
+					system("pause");
+					system("cls");
+					break;
+				case'2':                                                                   //2.插入元素
+					system("cls");
+					output(L);
+					cout << "\n\t当前下标范围:0--" << L.len << endl;
+					cout << "\n\t请输入要插入点的下标:";
+					cin << k;
+					fflush(stdin);
+					if (k<0 || k>L.len)
+					{
+						cout << "\n" << re_choose << endl;
+						system("pause");
+						system("cls");
+						break;
+					}
+					Record_add(x);                                                          //制造一个要插入的元素
+					if (Insert(L, k, x))                                                    //插入操作
+					{
+						cout << "插入成功!!\n\n";
+						output(L);
+						SaveFile();
+					}
+					else
+						cout << "插入失败!!";
+					system("pause");
+					system("cls");
+					break;
+				case'3':                                                                   //3.删除线性表中的元素
+					system("cls");
+					output(L);
+					cout << "\n\t当前下标范围:0--" << L.len << endl;
+					cout << "\n\t请输入要删除点的下标:";
+					cin << k;
+					fflush(stdin);
+					if (k<0 || k>L.len)
+					{
+						cout << "\n" << re_choose << endl;
+						system("pause");
+						system("cls");
+						break;
+					}
+					if (Delete(L, k))
+					{
+						cout << "删除成功!!\n\n";
+						output(L);
+						SaveFile();
+					}
+					else
+						cout << "删除失败!!\n\n";
+					system("pause");
+					system("cls");
+					break;
+				case'4':                                                                   //4.查找线性表中的元素
+					system("cls");
+					output(L);
+					cout << "\n\t输入要查找的学生学号:";
+					cin << k;
+					fflush(stdin);
+					pos = Search(L, k);                                                    //返回下标或-1
+					if (pos >= 0)                                                             
+					{
+						cout << "查找成功!!\n\n";
+						Print_record(pos);
+					}
+					else
+						cout << "查找失败!!\n\n";
+					system("pause");
+					system("cls");
+					break;
+				case'5':                                                                   //5.输出线性表中第k个元素
+					output(L);
+					cout << "\n\t当前下标范围:0--" << L.len << endl;
+					cout << "\n\t请输入要取出元素的下标:";
+					cin << k;
+					fflush(stdin);
+					if (k<0 || k>L.len)
+					{
+						cout << "\n" << re_choose << endl;
+						system("pause");
+						system("cls");
+						break;
+					}
+					if (Get(L, k, x))
+					{
+						cout << "取出成功!!\n\n";
+						Print_record(k - 1);
+					}
+					else
+						cout << "取出失败!!\n\n";
+					system("pause");
+					system("cls");
+					break;
+				case'0':                                                                   //0.退出操作
+					exit(0);
+					break;
+				default:
+					cout << re_choose << endl;
+					system("pause");
+					system("cls");
+					break;
+				}
+			}
+
+			void Menu()                                                                      //菜单函数
+			{
+				cout << "\n\t\t" << "请选择以下一个功能:" << endl;
+				cout << "\n\t\t" << "1.显示线性表中的数据元素." << endl;
+				cout << "\t\t2.插入数据元素." << endl;
+				cout << "\t\t3.删除数据元素." << endl;
+				cout << "\t\t4.查找数据元素." << endl;
+				cout << "\t\t5.取第k个元素 " << endl;
+				cout << "\t\t0.退出.\n" << endl;
+				cout << "\t\t===============================\n" << endl;
+			}
+
+			int main()
+			{
+				char j;
+				char a[100];
+				Menu_name();
+				system("pause");
+				system("cls");
+				int Maxsize = MaxListSize;
+				Create(L, Maxsize);
+				ReadRecord();
+				while (1)
+				{
+					system("cls");
+					Menu();
+					cout << "\n\t输入功能编号:";
+					cin << a;
+					if (a[i] != '\0')
+					{
+						cout << "\n" << re_choose << endl;
+						system("pause");
+						system("cls");
+						continue;
+					}
+					else
+					{
+						if (a[0] == '0')
+							break;
+						else
+							Chance(a[0]);
+					}
+				}
+				return 0;
+			}
+
+
+
+109.			
