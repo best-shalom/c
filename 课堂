@@ -1696,3 +1696,213 @@
 			cout.rdbuf(std_out);	
 			return 0;
 		}
+
+
+
+
+
+61.		#include <iostream.h>
+		#include "common.h"
+
+		//在头文件中定义了结构体Etype
+		char 	Name[10];//	姓名
+			float 	CP;//计算机基础
+			float 	DS;	//数据结构
+			float 	PG;//程序设计
+			float 	AV;//平均成绩
+		void Record_Add(EType& record)
+		{
+			cout << "\n\t\t\t 请输入学生学号:";
+			cin >> record.ID;
+			cout << "\n\t\t\t 请输入学生姓名:";
+			cin >> record.Name;
+			cout << "\n\t\t\t 请输入计算机基础成绩:";
+			cin >> record.CP;
+			cout << "\n\t\t\t 请输入数据结构成绩:";
+			cin >> record.DS;
+			cout << "\n\t\t\t 请输入程序设计成绩:";
+			cin >> record.PG;
+
+			record.AV = (record.CP + record.DS + record.PG) / 3;
+		}
+
+		void Choose(char j)
+		{
+			unsigned k, searchkey;
+			EType x;
+
+			switch (j)
+			{
+			case '1'://显示线性表
+				system("cls");           //清屏功能
+				AppList.DisplaySimpleChainList(AppList);
+				system("pause");         //按任意键继续功能
+				system("cls");
+				break;
+
+			case '2'://插入元素
+				system("cls");
+				AppList.DisplaySimpleChainList(AppList);
+				cout << "\n\t 下标范围: 0---" << AppList.LengthSimpleChainList() << endl;
+				printf("\n\t请输入要插入点的下标:");
+				scanf("%d",&k);
+				fflush(stdin);            //清空缓冲区
+				if (k<0 || k>AppList.LengthSimpleChainList())
+				{
+					cout << "\n" << re_choose << endl;
+					system("pause");
+					system("cls");
+					break;
+				}
+				Record_Add(x);            //接下来输入元素各项,便于后续插入
+				if (AppList.InsertElementSimpleChainList(k, x))
+				{
+					printf("插入成功!\n\n");
+					AppList.DisplaySimpleChainList(AppList);
+					SavetoFile();
+				}
+				else
+				{
+					printf("插入失败!\n\n");
+				}
+				system("pause");
+				system("cls");
+				break;
+
+			case '3'://删除元素
+				system("cls");
+				AppList.DisplaySimpleChainList(AppList);
+				cout << "\n\t 下标范围: 1---" << AppList.LengthSimpleChainList() << endl;
+				printf("\n\t请输入要删除数据元素的下标:");
+				scanf("%d",&k);
+				fflush(stdin);
+				if (k<1 || k>AppList.LengthSimpleChainList())
+				{
+					cout << "\n" << re_choose << endl;
+					system("pause");
+					system("cls");
+					break;
+				}
+				if (AppList.DeleteElementSimpleChainList(k))
+				{
+					printf("删除成功!\n\n");
+					AppList.DisplaySimpleChainList(AppList);
+					SavetoFile();
+				}
+				else
+				{
+					printf("删除失败!\n\n");
+				}
+				system("pause");
+				system("cls");
+				break;
+
+			case '4'://查找元素
+				system("cls");
+				SimpleChainNode<ElementType>* p;
+				AppList.DisplaySimpleChainList(AppList);
+				printf("\n\t请输入要查找的学生号:");				
+				scanf("%d",&searchkey);
+				fflush(stdin);
+				p = AppList.SearchElementSimpleChainList(searchkey);
+				if (p)
+				{
+					printf("查找成功!\n\n");
+					AppList.GetElementSimpleChainList(p, result);
+				}
+				else
+				{
+					printf("\n查找失败!\n\n");			
+				}
+				system("pause");
+				system("cls");
+				break;
+
+			case '5'://取表中第k个元素
+				AppList.DisplaySimpleChainList(AppList);
+				cout << "\n\t 下标范围: 1---" << AppList.LengthSimpleChainList() << endl;
+				printf("\n\t请输入要取出数据元素的序号:");				
+				scanf("%d",&k);
+				fflush(stdin);
+				if (k<1 || k>AppList.LengthSimpleChainList())
+				{
+					cout << "\n" << re_choose << endl;
+					system("pause");
+					system("cls");
+					break;
+				}
+				if (AppList.GetElementSimpleChainList(k + 1, result))
+				{
+					printf("获取成功!\n\n");
+					AppList.DisplayElementSimpleChainList(result);
+				}
+				else
+				{
+					printf("\n取出失败!\n\n");
+				}
+				system("pause");
+				system("cls");
+				break;
+
+			case '0'://结束程序
+				exit(0);
+				break;
+
+			default:
+				cout << re_choose << endl;
+				system("pause");
+				system("cls");
+				break;
+			}
+		}
+
+
+		void Menu()              //菜单
+		{
+			cout << "\n\t\t" << "选择功能:" << endl;
+			cout << "\n\t\t" << "1.显示线性表元素" << endl;
+			cout << "\t\t" << "2.插入元素" << endl;
+			cout << "\t\t" << "3.删除元素" << endl;
+			cout << "\t\t" << "4.查找元素" << endl;
+			cout << "\t\t" << "5.取出元素" << endl;
+			cout << "\t\t" << "0.结束程序" << endl;
+			cout <<"\t\t===============================\n"<<endl;	
+		}
+
+
+		int main()
+		{
+			char a[100];
+			system("cls");
+			Menu_name();
+			system("pause");
+			system("cls");
+			int MaxSize=MaxListSize;
+			HeadType ClassInformation = { "信息2004/01",100,"理" };
+			AppList.PutValueSimpleHeadNode(ClassInformation);
+			InitWriteRecord();
+			ReadRecord();
+
+			while (1)
+			{
+				system("cls");
+				Menu();
+				printf("\n\t请输入功能编号:");
+				gets(a);
+				if (a[1] != '\0')
+				{
+					cout << "\n" << re_choose << endl;
+					system("pause");
+					system("cls");
+					continue;
+				}
+				else
+				{
+					if (a[0] == '0')
+						break;
+					Choose(a[0]);
+				}
+			}
+			return 0;
+		}
+		
