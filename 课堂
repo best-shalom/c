@@ -2476,4 +2476,123 @@
 
 
 
-66.		
+66.		#pragma once
+		template <class ElementType>
+		class LinearList
+		{
+		public:
+			LinearList(int MaxListSize = 10);                                      //构造函数
+			~LinearList() { delete[]element; };                                    //析构函数,释放空间
+			int LengthLinearList() { return length; };                             //返回线性表长
+			bool GetElementAddressLinearList() { return element; };                //返回线性表元素首地址
+			bool GetElementLinearList(int k, ElementType& result)                  //查找第k元素,存储到result中
+			int SearchElementLinearList(char *searchkey);                          //查找值为searchkey(字符型)的元素,返回地址
+			int SearchElementLinearList(int searchkey);                            //查找值为searchkey(数值型)的元素,返回地址
+			bool InsertElementLinearList(int k, ElementType& newvalue);            //将newvalue元素插入到第k元素后
+			bool DeleteElementLinearList(int k);                                   //删除第k元素
+			void DisplayElementLinearList(ElementType result);                    //显示数据元素
+			void DisplayLinearList(LinearList<ElementType>& AppList);              //显示线性表
+		private:
+			ElementType* element;
+			int length;
+			int MaxSpaceSize;
+		};
+
+		template<class ElementType>
+		LinearList <ElementType>::LinearList(int MaxListSize)                        //构造函数
+		{
+			MaxSpaceSize = MaxListSize;
+			element = new ElementType[MaxSpaceSize];                                //申请内存空间
+			length = 0;
+		}
+
+		template<class ElementType>
+		bool LinearList<ElementType>::GetElementLinearList(int k, ElementType& result)
+		{
+			if (k<1 || k>length)                                                    //查找第k元素
+				return false;
+			result = element[k - 1];
+			return true;
+		}
+
+		template<class ElementType>
+		int LinearList<ElementType>::SearchElementLinearList(char* searchkey)
+		{
+			for (int i = 1; i < length; i++)
+			{
+				if (element[i].key == searchkey)
+					return i;                                                      //返回下标
+			}
+			return -1;
+		}
+
+		template<class ElementType>
+		int LinearList<ElementType>::SearchElementLinearList(int searchkey)
+		{
+			for (int i = 1; i < length; i++)
+			{
+				if (element[i].key == searchkey)
+					return i;
+			}
+			return -1;
+		}
+
+		template<class ElementType>                                                 //插入
+		bool LinearList<ElementType>::InsertElementLinearList(int k, ElementType& newvalue)
+		{
+			if (k<0 || k>length)          
+				return false;
+			if (length == MaxSpaceSize)                                             //判断线性表是否已满
+				return false;
+			for (int i = length; i > k; i--)                                        //线性表元素后移
+			{
+				element[i + 1] = element[i];
+			}
+			element[k + 1] = newvalue;
+			length++;
+			return true;
+		}
+
+		template<class ElementType>
+		bool LinearList<ElementType>::DeleteElementLinearList(int k)                //删除
+		{
+			if (k<0 || k>length)
+				return false;
+			for (int i = k; i < length; i++)
+			{
+				element[i] = element[i + 1];
+			}
+			length--;
+			return true;
+		}
+
+		template<class ElementType>
+		void LinearList<ElementType>::DisplayElementLinearList(ElementType result)  //输出元素
+		{
+			cout << result.number << "     ";
+			cout << result.name << "     ";
+			cout << result.sex << "     ";
+			cout << result.age << "     ";
+			cout << result.place << "     ";
+		}
+
+		template<class ElementType>
+		void LinearList<ElementType>::DisplayLinearList(LinearList<ElementType>& AppList)
+		{
+			ElementType result;
+			cout << "                  number  name  sex  age  place " << endl;
+			cout << "                  ------  ----  ---  ---  ----- " << endl;
+			for (int i = 1; i < AppList.LengthLinearList(); i++)
+			{
+				cout << element[i] << endl;
+				AppList.GetElementLinearList(i, result);
+				cout << "ELEMENT--" << i << ":";
+				DisplayElementLinearList(result);
+			}
+			cout << endl << endl;
+		}
+
+
+
+
+67.		
