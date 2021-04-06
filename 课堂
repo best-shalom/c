@@ -2050,4 +2050,414 @@
 
 
 
-64.		
+64.		#pragma once                          //设置线性表操作
+		#include <iomanip>
+		template<class HeadType>class SimpleHeadNode;
+		template<class HeadType,class ElementType>class SimpleChainList;
+
+
+
+		template<class ElementType>           //*****!模板,其中ElementType的类型可以随意改变,SimpleChainNode<ElementType>为类型,相当于int
+		class SimpleChainNode                 //简单链表数据元素结点结构类定义
+		{
+		public:
+			ElementType data;
+			SimpleChainNode <ElementType>* link;
+		};
+
+		template<class HeadType>              //模板,解释同上
+		class SimpleHeadNode                  //简单链表表头数据元素结点结构类定义
+		{
+		public:
+			HeadType Hdata;
+			SimpleChainNode <class ElementType>* first;
+		};
+
+
+
+
+
+		template<class HeadType,class ElementType>
+		class SimpleChainList                 //线性表链式存储结构 - 简单链表模板类的定义
+		{
+		public:
+			SimpleChainList();
+			~SimpleChainList();               //析构函数
+			int LengthSimpleChainList() const;//简单链表长度
+			void PutValueSimpleHeadNode(HeadType& headValue)
+			{
+				HeadPtr->Hdata = headValue;    //已知值headValue给表头结点Hdata域赋值
+			};
+			SimpleHeadNode<HeadType>* GetHeadPtrSimpleChainList()
+			{
+				return HeadPtr;                //返回链表表头的指针HeadPtr
+			};
+			SimpleChainNode<ElementType>* GetFirstPtrSimpleChainList()
+			{
+				return HeadPtr->first;         //获取简单链表中第一个结点指针first值
+			};
+
+			//1.查找
+			//①简单链表中查找第k个元素，存入result中，多态函数
+			bool GetElementSimpleChainList(int k, ElementType& result); 
+			//②简单链表中查找current指针所指的数据元素，存入result中，多态函数
+			bool GetElementSimpleChainList(SimpleChainNode<ElementType>* current,ElementType &result);
+			//③查找关键字值为searchkey(数值型)的元素，返回元素位置（指针）
+			SimpleChainNode<ElementType>* SearchElementSimpleChainList(int searchkey);
+			//④查找关键字值为searchkey(字符型)的元素，返回元素位置（指针）
+			SimpleChainNode<ElementType>* SearchElementSimpleChainList(char* searchkey);
+
+			//2.插入,删除
+			//①插入：插入值为newvalue元素到简单链表中第k个数据元素之后
+			bool InsertElementSimpleChainList(int k, ElementType& newvalue);
+			//②插入元素：插入值为newvalue元素到简单链表中InsertPtr指针所指数据元素之前
+			bool InsertElementFrontSimpleChainList(ElementType& newvalue, SimpleChainNode<ElementType>* InsertPtr);
+			//③删除元素：删除简单链表中第k个数据元素（多态函数）
+			bool DeleteElementSimpleChainList(int k);
+			//④删除元素：删除简单链表中DeletePtr指针所指数据元素（多态函数）
+			bool DeleteElementSimpleChainList(SimpleChainNode<ElementType>* DeletePtr);
+
+			//3.应用
+			//① 删除简单链表中所有数据结点，并释放结点空间。保留表头结点
+			void DestroyElementSimpleChainList();
+			//②显示输出链表的所有数据元素的值
+			void DisplaySimpleChainList(SimpleChainList<HeadType, ElementType>& AppList);
+			//③显示输出链表的数据元素result的值
+			void DisplayElementSimpleChainList(ElementType result);
+		private:
+			SimpleHeadNode<HeadType>* HeadPtr;
+		};
+
+
+
+
+		//1.构造函数
+		template<class HeadType,class ElementType>
+		SimpleChainList<HeadType, ElementType>::
+		SimpleChainList()                     //构造函数:定义线性表空间大小MaxSize、申请元素空间element、定义线性表长度初值length
+		{
+			HeadPtr = new SimpleHeadNode<HeadType>;
+			HeadPtr->first = NULL;
+		}
+
+
+		//2.析构函数
+		template<class HeadType,class ElementType>
+		SimpleChainList<HeadType,ElementType>::
+		~SimpleChainList()                    //析构函数:删除链表中所有数据结点及表头结点，并释放结点空间
+		{
+			SimpleChainNode<ElementType>* current;
+			current = HeadPtr->first;
+			while (HeadPtr->first)            // 删除链表中所有数据结点，并释放结点空间
+			{
+				current = current->link;
+				delete HeadPtr->first;
+				HeadPtr->first = current;
+			}                                 //从链表头部开始删除,一直到尾部指向NULL
+			delete HeadPtr;                   //再删除最后一个结点
+		}
+
+
+		//3.表长函数
+		template<class HeadType,class ElementType>
+		int SimpleChainList<HeadType, ElementType>::
+		LengthSimpleChainList() const        //求简单链表中数据元素结点数（链表长度）
+		{
+			SimpleChainNode<ElementType>* current = HeadPtr->first;
+			int len = 0;
+			while (current)
+			{
+				len++;
+				current = current->link;
+			}
+			return len;
+		}
+
+
+		//4.取第k元素
+			//①
+		template<class HeadType,class ElementType>
+		bool SimpleChainList<HeadType,ElementType>::
+		GetElementSimpleChainList(int k, ElementType& result) //简单链表第k个元素值取至result中带回,如不存在返回false，存在返回true
+		{
+			if (k < 1)
+				return false;
+			SimpleChainNode<ElementType>* current = HeadPtr->first;
+			int i = 1;
+			while (i < k && current)
+			{
+				current = current->link;
+				i++;
+			}
+			if (current)
+			{
+				result = current->data;
+				return true;
+			}
+			return false;
+		}
+
+			//②
+		template<class HeadType,class ElementType>
+		bool SimpleChainList<HeadType,ElementType>::
+		GetElementSimpleChainList(SimpleChainNode<ElementType>* current, ElementType& result)//简单链表第current个元素值取至result中带回。如不存在返回false，存在返回true
+		{
+			if (!current)
+				return false;
+			result = current->data;
+			return true;
+		}
+
+
+		//5.查找
+			//①
+		template<class HeadType,class ElementType>
+		SimpleChainNode<ElementType> *SimpleChainList<HeadType,ElementType>:: //这里的SimpleChainNode<ElementType>相当于前面的int
+		SearchElementSimpleChainList(int searchkey)                           // 简单链表中查找数据元素关键字为searchkey(数值型)的元素.如果找到返回元素所在的地址；如果未找到返回NULL 
+		{
+			SimpleChainNode<ElementType>* current = HeadPtr->first;
+			while (current && current->data.key != searchkey)
+			{
+				current = current->link;
+			}
+			if (current)
+				return current;
+			else
+				return NULL;
+		}
+
+			//②
+		template<class HeadType, class ElementType>
+		SimpleChainNode<ElementType>* SimpleChainList<HeadType, ElementType>:: //这里的SimpleChainNode<ElementType>相当于前面的int
+		SearchElementSimpleChainList(char searchkey[])                         // 简单链表中查找数据元素关键字为searchkey(字符型)的元素.如果找到返回元素所在的地址；如果未找到返回NULL 
+		{
+			SimpleChainNode<ElementType>* current = HeadPtr->first;
+			while (current && !strcmp(current->data.key,searchkey ))
+			{
+				current = current->link;
+			}
+			if (current)
+				return current;
+			else
+				return NULL;
+		}
+
+
+		//6.插入
+			//①
+		template<class HeadType,class ElementType>
+		bool SimpleChainList<HeadType,ElementType>::
+		InsertElementSimpleChainList(int k, ElementType& newvalue)  //在简单链表中第k个数据元素之后中插入新元素（值为newvalue),如果不存在第k个元素，则返回false
+		{
+			if (k < 0)
+				return false;
+			int i = 1;
+			SimpleChainNode<ElementType>* current = HeadPtr->first;
+			while (i < k && current)
+			{
+				i++;
+				current = current->link;
+			}
+			if (k > 0 && !current)
+				return false;
+			SimpleChainNode<ElementType>* q = new SimpleChainNode<ElementType>;
+			q -> data = newvalue;
+			if (k)
+			{
+				q->link = current->link;       //q指向current的下一位,current指向q,完成插入操作
+				current->link = q;
+			}
+			else                               // 作为第一个元素结点插入,找头结点操作
+			{
+				q->link = HeadPtr->first;
+				HeadPtr->first = q;
+			}
+			return true;
+		}
+
+			//②
+		template<class HeadType,class ElementType>
+		bool SimpleChainList<HeadType,ElementType>::
+		InsertElementFrontSimpleChainList(ElementType& newvalue, SimpleChainNode<ElementType>* InsertPtr)  // 在简单链表中InsertPtr指针所指数据元素之前中插入新元素（值为newvalue）
+		{
+			if (!InsertPtr)
+				return false;
+			SimpleChainNode<ElementType>* current = HeadPtr->first;
+			if (InsertPtr != HeadPtr->first)         //InsertPtr不是头结点指针时，推进指针current直到current=InsertPtr，查找结点
+			{
+				while (current && current->link != InsertPtr)
+				{
+					current = current->link;
+				}
+				if (!current)
+					return false;                   //查找失败，不存在此结点
+			}
+			//查找到相应结点,开始执行插入操作
+			SimpleChainNode<ElementType>* q = new SimpleChainNode<ElementType>;//申请新数据空间
+			q->data = newvalue;                                                //赋值
+			if (InsertPtr == HeadPtr->first)                                   // InsertPtr== HeadPtr->first时，作为第一个元素结点插入
+			{
+				q->link = HeadPtr->first;
+				HeadPtr->first = q;
+			}
+			else                                                               // InsertPtr！= HeadPtr->first时，插入在current 之后
+			{
+				q->link = current->link;
+				current->link = q;
+			}
+			return true;
+		}
+
+
+		//7.删除
+			//①
+		template<class HeadType,class ElementType>
+		bool SimpleChainList<HeadType,ElementType>::
+		DeleteElementSimpleChainList(int k)                                  // 在简单表中删除第k个数据元素,如果不存在第k个元素返回false  
+		{
+			if (k < 1 || !HeadPtr->first)
+				return false;
+			SimpleChainNode<ElementType>* current = HeadPtr->first;
+			if (k == 1)                                                      // 删除的是链表中第一个结点
+			{
+				HeadPtr->first = current->link;
+			}
+			else
+			{
+				SimpleChainNode<ElementType>* q = HeadPtr->first;
+				for (int i = 1; i < k - 1 && q; i++)                         // q 指向第k-1个结点
+				{
+					q = q->link;                                             
+				}
+				if (!q || !q->link)                                          //q为空时：不存在第k-1个结点；q->link为空时：不存在第k个结点
+					return false;
+				current = q->link; 
+				q->link = current->link;                                     //即指针跳过了q->link结点
+			}
+			delete current;
+			return true;
+		}
+
+			//②
+		template<class HeadType,class ElementType>
+		bool SimpleChainList<HeadType,ElementType>:: 
+		DeleteElementSimpleChainList(SimpleChainNode<ElementType>* DeletePtr) // 在简单表中删除DeletePtr指针所指数据元素,如果不存在返回false
+		{
+			if (!HeadPtr->first)
+				return false;
+			if (DeletePtr == HeadPtr->first)                                  //删除的是链表中第一个结点
+			{
+				HeadPtr->first = DeletePtr->link;
+				return true;
+			}
+			else
+			{
+				SimpleChainNode<ElementType>* q = HeadPtr->first;
+				while (q->link != DeletePtr && q)
+				{
+					q = q->link;
+				}
+				if (!q)
+					return false;
+				q->link = DeletePtr->link;                                     //跳过要删除的结点
+				delete DeletePtr;
+			}
+			return true;
+		}
+
+
+		//8.输出
+			//①
+		template<class HeadType,class ElementType>
+		void SimpleChainList<HeadType, ElementType>::
+		DisplayElementSimpleChainList(ElementType result)                        // 输出简单链表中的数据元素，此算法不属于模板类SimpleChainList
+		{
+
+		}
+
+			//②
+		template<class HeadType, class ElementType>
+		void SimpleChainList<HeadType, ElementType>::
+		DisplaySimpleChainList(SimpleChainList<HeadType,ElementType> &AppList)  // 输出简单链表中的所有数据元素，此算法不属于模板类SimpleChainList
+		{
+			SimpleChainNode<ElementType>* current;
+			SimpleHeadNode<HeadType>* HeadPtr;
+			HeadPtr = AppList.GetHeadPtrSimpleChainList();
+
+			cout << "-----表头结点信息------" << endl;
+			cout << " 班级     人数    教室" << endl;
+			cout << HeadPtr->Hdata.nameclass << "  "
+				<< HeadPtr->Hdata.number << "人  "
+				<< HeadPtr->Hdata.place << endl;
+			cout << "-----------------------" << endl;
+			//////////////////////////////////////////////
+			current = HeadPtr->first;
+			cout << "HeadPtr->first--》";
+			while (current)
+			{
+				current = current->link;
+				cout << "link" << "--->";
+			}
+			cout << "NULL" << endl;
+			//////////////////////////////////////////////
+			current = HeadPtr->first;
+			cout << "                  ";
+			while (current)
+			{
+				cout<< current->data.ID << "    ";
+				current = current->link;
+			}
+			cout << endl;
+			///////////////////////////////////////////////
+			current = HeadPtr->first;
+			cout << "                  ";
+			while (current)
+			{
+				cout << current->data.Name << "    ";
+				current = current->link;
+			}
+			cout << endl;
+			/////////////////////////////////////////////////
+			current = HeadPtr->first;
+			cout << "                  ";
+			while (current)
+			{
+				cout << current->data.CP << "      ";
+				current = current->link;
+			}
+			cout << endl;
+			/////////////////////////////////////////////////
+			current = HeadPtr->first;
+			cout << "                  ";
+			while (current)
+			{
+				cout << current->data.DS << "      ";
+				current = current->link;
+			}
+			cout << endl;
+			/////////////////////////////////////////////////
+			current = HeadPtr->first;
+			cout << "                  ";
+			while (current)
+			{
+				cout << current->data.PG << "      ";
+				current = current->link;
+			}
+			cout << endl;
+			/////////////////////////////////////////////////
+			current = HeadPtr->first;
+			cout << "                  ";
+			while (current)
+			{
+				cout << current->data.AV << "      ";
+				current = current->link;
+			}
+
+			cout << endl << endl << endl;
+		}
+
+
+
+
+
+65.		
