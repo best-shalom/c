@@ -1906,3 +1906,39 @@
 			return 0;
 		}
 		
+
+
+
+
+
+62.		#pragma once               //定义结构体
+		#define STUDENT ElementType
+
+		#define HEADSTUDENT  HeadType
+		#define STUDENT	ElementType
+		#define ID           key
+		#define name         key1
+
+		class HEADSTUDENT
+		{
+		public:
+			char nameclass[20];
+			int  number;
+			char place[20];
+		};
+
+		class STUDENT
+		{
+		public:
+			int   ID;
+			char  Name[10];
+			float CP;
+			float DS;
+			float PG;
+			float AV;
+		};
+
+
+
+
+63.		
