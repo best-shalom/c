@@ -1941,4 +1941,113 @@
 
 
 
-63.		
+63.		#include <stdio.h>
+		#include <conio.h>
+		#include <stdlib.h>
+		#include "AppData_LinearList.h"
+		#include "linearlist_Class.h"
+		#include <iostream>
+		#include <cstring>
+		#include <stdio.h>
+		#include <string.h>
+
+		#define MaxListSize 20
+
+		#define TRUE  1
+		#define FALSE 0
+		#define OK    1
+		#define ERROR 0
+		typedef bool Status;
+
+		STUDENT student[MaxListSize];
+		typedef STUDENT EType;
+		ElementType newvalue, result;
+		SimpleChainList<HeadType, ElementType> AppList;
+		char re_choose[] = { "\n请输入正确编号...\n" };
+
+		void Menu_name()          //作者信息
+		{
+			printf("\n\n\n\n\n\n\n");
+			printf("              *************************************************\n");
+			printf("                           学生成绩单的线性表顺序存储\n\n");
+			printf("                           制作:小曹\n");
+			printf("                           班级:2004班\n");
+			printf("                           学号: 6666\n");
+			printf("                           指导老师: 孙夫雄\n");
+			printf("              **************************************************\n");
+			printf("\n\n\n\t\t");
+		}
+
+		void SavetoFile()
+		{
+			FILE* f;
+			int numwrite;
+			ElementType result;
+			f = fopen("学生成绩表.dat", "w+");
+			if (f == NULL)
+			{
+				printf("文件打开失败!");
+				return;
+			}
+			for (int i = 1; i <= AppList.LengthSimpleChainList(); i++)
+			{
+				AppList.GetElementSimpleChainList(i, result);
+				numwrite = fwrite(&result, sizeof(STUDENT), 1, f);
+			}
+			fclose(f);
+		}
+
+		void InitWriteRecord()
+		{
+			int ID[4] = { 1000,1001,1002,1003 };
+			char name[10][10] = { "老大","老二","老三","老四" };
+			float CP[4] = { 90.0,80.0,70.0,60.0 };
+			float DS[4] = { 90.0,80.0,70.0,60.0 };
+			float PG[4] = { 90.0,80.0,70.0,60.0 };
+			float AV[4] = { 90.0,80.0,70.0,60.0 };
+
+			for (int i = 0; i < 4; i++)
+			{
+				student[i].ID = ID[i];
+				strcpy(student[i].Name, name[i]);
+				student[i].CP = CP[i];
+				student[i].DS = DS[i];
+				student[i].PG = PG[i];
+				student[i].AV = AV[i];
+			}
+			FILE* f;
+			int numwrite;
+
+			f = fopen("学生成绩表.dat", "w+");
+			if (f == NULL)
+			{
+				printf("文件打开失败!");
+				return;
+			}
+			for (i = 0; i < 4; i++)
+				numwrite = fwrite(&student[i], sizeof(STUDENT), 1, f);
+			fclose(f);
+		}
+
+		void ReadRecord()
+		{
+			ElementType newvalue;
+			FILE* f;
+			f = fopen("学生成绩表.dat", "r+");
+			if (f == NULL)
+			{
+				printf("文件打开失败!");
+				return;
+			}
+			int i = 0;
+			while (fread(&newvalue, sizeof(newvalue), 1, f))
+			{
+				AppList.InsertElementSimpleChainList(0, newvalue);
+			}
+			fclose(f);
+		}
+
+
+
+
+64.		
