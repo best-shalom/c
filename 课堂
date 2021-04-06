@@ -2460,4 +2460,20 @@
 
 
 
-65.		
+65.		#pragma once
+		#define STUDENT ElementType 
+		class STUDENT
+		{
+		public:
+			char number[10];
+			char name[8];
+			char sex[3];
+			int age;
+			char place[20];
+		};
+
+
+
+
+
+66.		
