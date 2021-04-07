@@ -4772,4 +4772,28 @@
 
 
 
-109.			
+109.			#pragma once
+			#define HEADSTUDENT HeadType              //!!!!宏相当于替换,即用一个标识符来替换字符串,如果后面的代码中出现该标识符,全部视为指定字符串
+			#define STUDENT ElementType               //例如:如果后续出现STUDENT,处理器会将其视为ElementType
+			#define age key                           //宏定义:    #define 宏名 字符串
+
+			class HEADSUDENT
+			{
+			public:
+				char nameclass[20];
+				int number;
+				char place[20];
+			};
+			class STUDENT
+			{
+			public:
+				char number[8];
+				char sex[3];
+				int age;
+			};
+
+
+
+
+
+110.			
