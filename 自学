@@ -4796,4 +4796,74 @@
 
 
 
-110.			
+110.			#pragma once
+			template <class ElementType>                                 //1.定义数据元素结点
+			class SimpleChainNode
+			{
+			public:
+				ElementType data;                                        //数据域:结点中储存的数据类型为ElementType
+				SimpleChainNode<ElementType>* link;                      //指针域:指向下一个元素
+			};
+
+			template <class HeadType,class ElementType>                  //2.定义头结点
+			class SimpleHeadNode
+			{
+			public:
+				HeadType Hdata;                                          //数据域:结点中储存的数据类型为HeadType
+				SimpleChainNode<ElementType>* first;                     //指针域:指向第一个结点
+			};
+
+
+			//-------------------------元素定义完毕,开始定义简单链表模板类SimpleChainList-------------------------//
+			template <class HeadType,class ElementType>
+			class SimpleChainList
+			{
+			private:
+				PutSimpleHeadNode<HeadType>* HeadPtr;                     //定义头结点指针
+			public:
+				SimpleChainList();                                        //构造函数
+				~SimpleChianList();                                       //析构函数
+				int LengthSimpleChainList();                              //表长函数
+				void PutSimpleHeadNode(HeadType& head)                    //已知值head,给头结点赋值
+				{HeadPtr->Hdata = head;}
+				SimpleHeadNode<HeadType>* GetHeadPtrSimpleChainList()     //返回头结点指针
+				{return HeadPtr;}
+				SimpleChainNode<ElementType>* GetFirstPtrSimpleChainList()//返回第一个结点指针
+				{return HeadPtr->first;}
+
+				//1.查找函数
+					// ①查找第k个元素,存入result中
+				bool GetElementSimpleChainList(int k, ElementType& result);
+					// ②查找current指向的元素,存入result中
+				bool GetElementSimpleChainList(SimpleChainNode<ElementType>* current, ElementType& result);
+					// ③查找关键字(key1)值为searchkey(字符型)的元素,返回元素指针(在AppData中有宏定义了key,其中key1=name,key2=age)
+				SimpleChainNode<ElementType>* SearchElementSimpleChainList(char searchkey);
+					// ④查找关键字(key2)值为searchkey(数值型)的元素,返回元素指针
+				SimpleChainNode<ElementType>* SearchElementSimpleChainList(int searchkey);
+
+				//2.插入函数
+					// ①插入值为newvalue的元素到链表第k个元素的后面
+				bool InsertElementSimpleChainList(int k, ElementType& newvalue);
+					// ②插入值为newvalue的元素到InsertPtr指针所指的元素的前面
+				bool InsertElementSimpleChainList(SimpleChainNode<ElementType>* InsertPtr, ElementType& newvalue);
+
+				//3.删除函数
+					// ①删除第k个元素
+				bool DeleteElementSimpleChainList(int k);
+					// ②删除DeletePtr指针所指的元素
+				bool DeleteElementSimpleChainList(SimpleChainNode<ElementType>* DeletePtr);
+
+				//4.应用函数
+					// ①删除元素和空间,只保留表头结点
+				void DestoryElementSimpleChainList();
+					// ②输出元素
+				void DisplayElementSimpleChainList();
+					// ③输出链表
+				void DisplaySimpleChainList();
+			};
+
+
+
+
+
+111.			
