@@ -5535,4 +5535,153 @@
 
 
 
-113.			
+113.			#include <iostream>
+			#include <cstring>
+			#include <stdlib.h>
+			#include "AppData.h"
+			#include "SimpleChainList.h"
+			using namespace std;
+			int main()
+			{
+				SimpleChainNode<ElementType>* current;
+				SimpleHeadNode<HeadType>* HeadPtr;
+				ElementType newvalue, result;
+				int k, choice;
+				HeadType Class = { "信息2004",40,"文泽212" };
+				char number[][8] = { "","1001","1002","1003","1004","1005","1006","1007","1008" };
+				char name[][8] = { "","1号","2号","3号","4号","5号","6号","7号","8号" };
+				char sex[][8] = { "","男","女","女","女","男","女","女","男" };
+				int age[] = { 0,18,19,18,20,23,24,22,21 };
+
+				SimpleChainList<HeadType, ElementType> AppList;
+				HeadPtr = AppList.GetHeadPtrSimpleChainList();
+				AppList.PutSimpleHeadNode(Class);
+				for (int i = 8; i >= 1; i--)
+				{
+					strcpy(newvalue.number, number[i]);
+					strcpy(newvalue.name, name[i]);
+					strcpy(newvalue.sex, sex[i]);
+					newvalue.age = age[i];
+					AppList.InsertElementSimpleChainList(0, newvalue);
+				}
+				while (1)
+				{
+					cout << "            简单链表存储"<< endl;
+					cout << "_________________________________________" << endl;
+					cout << "0----------退出" << endl;
+					cout << "1----------显示表长" << endl;
+					cout << "2----------查找第k元素" << endl;
+					cout << "3----------查找关键字为searchkey的元素" << endl;
+					cout << "4----------在第k个结点后插入元素" << endl;
+					cout << "5----------删除第k元素" << endl;
+					cout << "6----------显示链表元素" << endl;
+					cout << "_________________________________________" << endl;
+					cout << "请选择功能:" << endl;
+					cin >> choice;
+					system("cls");
+
+					switch (choice)
+					{
+					case 0:
+					{
+						system("cls");
+						return 0;
+					}
+					case 1:
+					{
+						cout<<"表长:"<<AppList.LengthSimpleChainList()<<endl;
+						break;
+					}
+					case 2:
+					{
+						cout << "请输入序号:" << endl;
+						cin >> k;
+						cout << "查找结果如下:" << endl;
+						if (AppList.GetElementSimpleChainList(k, result))
+						{
+							AppList.DisplayElementSimpleChainList(result);
+						}
+						else
+							cout << "查找失败!!";
+						break;
+					}
+					case 3:
+					{
+						int searchkey;
+						cout << "请输入searchkey:" << endl;
+						cin >> searchkey;
+						current = AppList.SearchElementSimpleChainList(searchkey);
+						cout << "查找结果如下:" << endl;
+						if (current)
+						{
+							AppList.GetElementSimpleChainList(current , result);
+							AppList.DisplayElementSimpleChainList(result);
+						}
+						else
+							cout << "查找失败!!";
+						break;
+					}
+					case 4:
+					{
+						cout << "请输入插入序号:" << endl;
+						cin >> k;
+						cout << "请输入元素数据:" << endl;
+						cout << "            学号:" ;
+						cin>>newvalue.number;
+						cout<<endl;
+						cout << "            姓名:" ;
+						cin>>newvalue.name;
+						cout<<endl;
+						cout << "            性别:" ;
+						cin>>newvalue.sex;
+						cout<<endl;
+						cout << "            年龄:" ;
+						cin>>newvalue.age;
+						cout<<endl;
+						if (AppList.InsertElementSimpleChainList(k, newvalue))
+						{
+							cout << "插入后结果如下:" << endl;
+							AppList.DisplaySimpleChainList(AppList);
+						}
+						else
+							cout << "插入失败!!";
+						break;
+					}
+					case 5:
+					{
+						cout << "请输入删除序号:" << endl;
+						cin >> k;
+						if (AppList.DeleteElementSimpleChainList(k))
+						{
+							cout << "删除后结果如下:" << endl;
+							AppList.DisplaySimpleChainList(AppList);
+						}
+						else
+							cout << "删除失败!!";
+						break;
+					}
+					case 6:
+					{
+						cout << "链表如下:" << endl;
+						AppList.DisplaySimpleChainList(AppList);
+						break;
+					}
+					}
+					cout<<endl<<endl;
+					system("pause");
+					system("cls");
+				}
+				return 0;
+			}
+
+
+
+
+
+
+
+
+
+
+
+114.			
