@@ -5684,4 +5684,50 @@
 
 
 
-114.			
+114.			#pragma once
+			template<class ElementType>
+			class DoubleChainNode
+			{
+			public:
+				ElementType data;
+				DoubleChainNode<ElementType>* prelink;                                         //前驱结点
+				DoubleChainNode<ElementType>* nextlink;                                        //后继结点
+			};
+
+			template<class HeadType>
+			class DoubleHeadNode
+			{
+			public:
+				HeadType Hdata;
+				DoubleChainNode<ElementType>* first;
+			};
+
+			template<class HeadType,class ElementType>
+			class DoubleChainList
+			{
+			public:
+				DoubleChainList();                                                           //构造函数
+				~DoubleChainList();                                                          //析构函数
+				int LengthDoubleChainList();                                                 //表长函数
+				void DestroyElementsDoubleChainList();                                       //删除表中元素,只留下表头
+				void PutValueDoubleHeadNode(HeadType& head)                                  //将数据放入表头
+				{HeadPtr->Hdata = head};
+				DoubleHeadNode<HeadType>* GetHeadPtrDoubleChianList()                        //获取表头指针
+				{return HeadPtr;}
+				DoubleChainNode<ElementType>* GetFirstPtrDoubleChainList()                   //获取第一个结点指针
+				{return HeadPtr->first;}
+				bool GetElementDoubleChainList(int k, ElementType& result);                  //1.查找函数
+				bool GetElementDoubleChainList(DoubleChainNode<ElementType>* current, ElementType& result);
+				DoubleChainNode<ElementType>* SearchElementDoubleChainList(int searchkey);   
+				bool InsertElementDoubleChainList(int k, ElementType& newvalue);             //2.插入函数
+				bool DeleteElementDoubleChainList(int k);                                    //3.删除函数
+			private:
+				DoubleHeadNode<HeadType>* HeadPtr;
+			};
+
+
+
+
+
+
+115.			
