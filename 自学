@@ -5730,4 +5730,140 @@
 
 
 
-115.			
+115.			#pragma once
+			template<class ElementType>
+			class DoubleChainNode
+			{
+			public:
+				ElementType data;
+				DoubleChainNode<ElementType>* prelink;                                         //前驱结点
+				DoubleChainNode<ElementType>* nextlink;                                        //后继结点
+			};
+
+			template<class HeadType>
+			class DoubleHeadNode
+			{
+			public:
+				HeadType Hdata;
+				DoubleChainNode<ElementType>* first;
+			};
+
+			template<class HeadType,class ElementType>
+			class DoubleChainList
+			{
+			public:
+				DoubleChainList();                                                           //构造函数
+				~DoubleChainList();                                                          //析构函数
+				int LengthDoubleChainList();                                                 //表长函数
+				void DestroyElementsDoubleChainList();                                       //删除表中元素,只留下表头
+				void PutValueDoubleHeadNode(HeadType& head)                                  //将数据放入表头
+				{HeadPtr->Hdata = head};
+				DoubleHeadNode<HeadType>* GetHeadPtrDoubleChianList()                        //获取表头指针
+				{return HeadPtr;}
+				DoubleChainNode<ElementType>* GetFirstPtrDoubleChainList()                   //获取第一个结点指针
+				{return HeadPtr->first;}
+				bool GetElementDoubleChainList(int k, ElementType& result);                  //1.查找函数
+				bool GetElementDoubleChainList(DoubleChainNode<ElementType>* current, ElementType& result);
+				DoubleChainNode<ElementType>* SearchElementDoubleChainList(int searchkey);   
+				bool InsertElementDoubleChainList(int k, ElementType& newvalue);             //2.插入函数
+				bool DeleteElementDoubleChainList(int k);                                    //3.删除函数
+			private:
+				DoubleHeadNode<HeadType>* HeadPtr;
+			};
+
+
+
+			/*主要理解点:对于前后指针域的修改,一共有四个,插入newvalue的prelink,nextlink,第k个元素的nextlink,第k+1个元素的prelink(对于NULL无需做修改)*/
+			template<class HeadType,class ElementType>
+			bool DoubleChainList<HeadType,ElementType>::
+			InsertElementDoubleChainList(int k, ElementType &newvalue)
+			{
+				if (k < 0)
+					return false;
+				DoubleChainNode<ElementType>* current = HeadPtr->first;
+				int i = 0;
+				while (i < k && current)                                                     //指向第k个结点
+				{
+					current = current->nextlink;
+					i++;
+				}
+				if (k > 0 && current == NULL)
+					return false;
+				DoubleChainNode<ElementType>* p = new DoubleChainNode<ElementType>;
+				p->data = newvalue;
+				if (k != 0)
+				{
+					p->nextlink = current->nextlink;                                         //注意理解两个指针(pre和next),课本P47,即前后结点都会与newvalue产生联系,要对他们的结点都进行修改
+					p->prelink = current;
+					DoubleChainNode<ElementType>* q = current->nextlink;                     //q指向第k+1个结点,该结点的prelink指向newvalue(新插入的结点)
+					if (q)                                                                   //如果q为NULL,就不用修改prelink了
+					{
+						q->prelink = p;
+					}
+					current->nextlink = p;
+				}
+				else                                                                         //此时k==0,作为第一个结点插入
+				{
+					p->nextlink = HeadPtr->first;
+					p->prelink = HeadPtr;
+					DoubleChainNode<ElementType>* q = HeadPtr->first;
+					if (q)                                                                 
+					{
+						q->prelink = p;
+					}
+					HeadPtr->first = p;
+				}
+				return true;
+			}
+
+			/*主要理解点:一般要修改第k-1个结点的nextlink和第k+1个结点的prelink,来删除第k个结点(对于NULL无需做修改)*/
+			template<class HeadType,class ElementType>
+			bool DoubleChainList<HeadType,ElementType>::
+			DeleteElementDoubleChainList(int k)
+			{
+				if (k < 1 || !HeadPtr->first)
+					return false;
+				DoubleChainNode<ElementType>* current = HeadPtr->first;                      //current用来指向第k-1个结点,帮助修改nextlink
+				DoubleChainList<ElementType>* p;                                             //p用来指向第k+1个结点,帮助修改prelink
+				if (k == 1)
+				{
+					p = current->nextlink;
+					if (p)                                                                   //在p非空时,其prelink还是要修改的
+					{
+						p->prelink = HeadPtr;
+					}
+					HeadPtr->first = p;
+				}
+				else
+				{
+					int i = 0;
+					while (i < k - 1)                                                        //将current指向第k-1个结点
+					{
+						current = current->nextlink;
+					}
+					if (!current||!current->nextlink)                      
+					{
+						return false;
+					}
+					else
+					{
+						DoubleChainNode<ElementType>* q = current->nextlink;                  //q指向第k个结点
+						p = q->nextlink;                                                      //p指向第k+1个结点
+						current->nextlink = p;
+						if (p)
+						{
+							p->prelink = current;
+						}	
+					}
+				}
+				delete current;
+				return true;
+			}
+
+			//还有查找操作为定义
+
+
+
+
+
+116.			
