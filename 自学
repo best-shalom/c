@@ -5866,4 +5866,195 @@
 
 
 
-116.			
+116.			#pragma once
+
+			/*循环单链表*/
+			template<class ElementType>
+			class LoopChainNode
+			{
+			public:
+				ElementType data;
+				LoopChainNode<ElementType>* link;
+			};
+
+			template<class HeadType>
+			class LoopHeadNode
+			{
+			public:
+				HeadType Hdata;
+				LoopHeadNode<HeadType>* first;
+			};
+
+			template<class HeadType,class ElementType>
+			class LoopChainList
+			{
+			public:
+				LoopChainList();                                                  //构造函数
+				~LoopChainList();                                                 //析构函数
+				int LengthChainList();                                            //表长函数
+				void DestoryElementChainList();                                   //删除结点
+				void PutValueChainList(HeadType& value)                           //输入头结点
+				{HeadPtr->Hdata = value;};
+				LoopHeadNode<HeadType>* GetHeadPtrChainList()                     //获取头指针
+				{return HeadPtr;};
+				LoopChainNode<ElementType>* GetFirstPtrChainList()                //获取第一个结点指针
+				{return HeadPtr->first;};
+				bool GetElementChainList(int k,ElementType &result);              //1.查找函数
+				bool GetElementChainList(LoopChainNode<ElementType>* p, ElementType& result);
+				LoopChainNode<ElementType>* SearchElementChainList(int searchkey);
+				bool InsertElementChainList(int k, ElementType& newvalue);        //2.插入函数
+				bool DeleteElementChainList(int k);                               //3.删除函数
+			private:
+				LoopHeadNode<HeadType>* HeadPtr;
+			};
+
+
+			template<class HeadType,class ElementType>                            //一.构造函数
+			LoopChainList<HeadType, ElementType>::
+			LoopChainList()
+			{
+				HeadPtr = new LoopHeadNode<HeadType>;
+				HeadPtr->first = NULL;
+			}
+
+			template<class HeadType,class ElementType>                            //二.析构函数
+			LoopChainList<HeadType, ElementType>::
+			~LoopChainList()
+			{
+				LoopChainNode<ElementType>* current = HeadPtr->first;
+				while (HeadPtr->first)
+				{
+					current = current->link;
+					delete HeadPtr->first;
+					HeadPtr->first = current;
+				}
+				delete HeadPtr;
+			}
+
+			template<class HeadType,class ElementType>                            //三.表长函数
+			int LoopChainList<HeadType, ElementType>::
+			LengthChainList()
+			{
+				LoopChainNode<ElementType>* current = HeadPtr->first;
+				int len = 0;
+				while (current->link != HeadPtr->first)
+				{
+					len++;
+					current = current->link;
+				}
+				return len;
+			}
+
+			template<class HeadType,class ElementType>                            //四.查找函数1
+			bool LoopChainList<HeadType, ElementType>::
+			GetElementChainList(int k, ElementType& result)
+			{
+				if (k < 1)
+					return false;
+				LoopChainNode<ElementType>* current = HeadPtr->first;
+				int i = 0;
+				while (i < k && current->link != HeadPtr->first)                  //current指向第k个结点
+				{
+					current = current->link;
+					i++;
+				}
+				if (current->link != HeadPtr->first)
+				{
+					result = current->data;
+					return true;
+				}
+				return false;
+			}
+
+			template<class HeadType,class ElementType>                            //四.查找函数2
+			bool LoopChainList<HeadType, ElementType>::
+			GetElementChainList(LoopChainNode<ElementType>* p, ElementType& result)
+			{
+				if (!p)
+					return false;
+				result = p->data;
+				return true;
+			}
+
+			template<class HeadType,class ElementType>                            //四.查找函数3
+			LoopChainNode<ElementType>* LoopChainList<HeadType,ElementType>::
+			SearchElementChainList(int searchkey)
+			{
+				LoopChainNode<ElementType>* current = HeadPtr->first;
+				while (current->link != HeadPtr->first && current->data.key != searchkey)
+				{
+					current = current->link;
+				}
+				if (current->link != HeadPtr->first)
+					return current;
+				else
+					return NULL;
+			}
+
+			template<class HeadType,class ElementType>                            //五.插入函数
+			bool LoopChainList<HeadType, ElementType>::
+			InsertElementChainList(int k,ElementType& newvalue)
+			{
+				if (k < 0)
+					return false;
+				LoopChainNode<ElementType>* current = HeadPtr->first;
+				int i = 0;
+				while (i < k && current->link != HeadPtr->first)                  //current指向第k个结点
+				{
+					current = current->link;
+					i++;
+				}
+				if (k > 0 && current->link == HeadPtr->first)
+					return false;
+				LoopChainNode<ElementType>* p = new LoopChainNode<ElementType>;
+				p->data = newvalue;
+				if (k == 0)
+				{
+					p->link = HeadPtr->first;
+					HeadPtr->first = p;
+				}
+				else
+				{
+					if (current->link == HeadPtr->first)                          //此时current指向最后一个结点
+					{
+						p->link = HEadPtr->first;
+						current->link = p;
+					}
+					else
+					{
+						p->link = current->link;
+						current->link = p;
+					}
+				}
+				return true;
+			}
+
+			template<class HeadType,class ElementType>                            //六.删除函数
+			bool LoopChainList<HeadType, ElementType>::
+			DeleteElementChainList(int k)
+			{
+				if (k < 1 || !HeadPtr->first)
+					return false;
+				LoopChainNode<ElementType>* current = HeadPtr->first;
+				if (k == 1)
+				{
+					HeadPtr->first = current->link;
+				}
+				else
+				{
+					LoopChainNode<ElementType>* p = HeadPtr->first;
+					int i = 0;
+					while (i < k - 1 && p)
+					{
+						p = p->link;                                              //p指向第k-1个结点
+					}
+					if(p->link==HeadPtr->first)
+
+				}
+			}
+			//好难啊....先停一停
+
+
+
+
+117.			
