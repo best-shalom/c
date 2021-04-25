@@ -6248,4 +6248,20 @@
 
 
 
-118.			
+118.			#include "DoubleList.h"
+
+			int main()
+			{
+				DoubleHeadNode<HeadType>* HeadPtr;
+				DoubleChainNode<ElementType>* p;
+				HeadType ClassInformation = { 2004 };
+				ElementType newvalue, result;
+
+				//1.构建链表
+				DoubleChainList<HeadType,ElementType> AppList;
+				HeadPtr = AppList.GetHeadPtrDoubleChainList();
+				AppList.PutValueDoubleHeadNode(ClassInformation);
+
+				//2.输入链表数据
+
+			}
