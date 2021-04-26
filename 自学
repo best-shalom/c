@@ -6838,4 +6838,268 @@
 
 
 
-123.			
+123.			template<class ElementType>
+			class DoubleChainNode
+			{
+				public:
+				ElementType data;
+				DoubleChainNode<ElementType>* prelink;
+				DoubleChainNode<ElementType>* nextlink;
+			};
+
+			template<class HeadType>
+			class DoubleHeadNode
+			{
+				public:
+				HeadType Hdata;
+				DoubleChainNode<ElementType>* first;
+			};
+
+			template<class HeadType,class ElementType>
+			class DoubleChainList
+			{
+			public:
+				DoubleChainList();
+				~DoubleChainList();
+				int LengthDoubleChainList();
+				void PutValueDoubleHeadNode(HeadType& headvalue)
+				{HeadPtr->Hdata = headvalue;};
+				DoubleHeadNode<HeadType>* GetHeadPtrDoubleChainList()
+				{return HeadPtr;};
+				DoubleChainNode<ElementType>* GetFirstPtrDoubleChainList()
+				{return HeadPtr->first;};
+
+				bool GetElementDoubleChainList(int k, ElementType& result);
+				bool GetElementDoubleChainList(DoubleChainNode<ElementType>* current, ElementType& result);
+				DoubleChainNode<ElementType>* SearchElementDoubleChainList(int searchkey);
+				bool InsertElementDoubleChainList(int k, ElementType& newvalue);
+				bool DeleteElementDoubleChainList(int k);
+
+				void DisplayElementDoubleChainList(ElementType result);
+				void DisplayDoubleChainList(DoubleChainList<HeadType,ElementType>& AppList);
+			private:
+				DoubleHeadNode<HeadType>* HeadPtr;
+			};
+
+
+
+			template<class HeadType,class ElementType>
+			DoubleChainList<HeadType, ElementType>::
+			DoubleChainList()
+			{
+				HeadPtr = new DoubleHeadNode<HeadType>;
+				HeadPtr->first = NULL;
+			}
+
+			template<class HeadType,class ElementType>
+			DoubleChainList<HeadType, ElementType>::
+			~DoubleChainList()
+			{
+				DoubleChainNode<ElementType>* current = HeadPtr->first;
+				while (HeadPtr->first)
+				{
+					current = current->nextlink;
+					delete HeadPtr->first;
+					HeadPtr->first = current;
+				}
+				delete HeadPtr;
+			}
+
+			template<class HeadType,class ElementType>
+			int DoubleChainList<HeadType, ElementType>::
+			LengthDoubleChainList()
+			{
+				DoubleChainNode<ElementType>* current = HeadPtr->first;
+				int i = 0;
+				while (current)
+				{
+					i++;
+					current = current->nextlink;
+				}
+				return i;
+			}
+
+			template<class HeadType,class ElementType>
+			bool DoubleChainList<HeadType, ElementType>::
+			GetElementDoubleChainList(int k, ElementType& result)
+			{
+				if (k < 1)
+					return false;
+				DoubleChainNode<ElementType>* current = HeadPtr->first;
+				int i = 0;
+				while (i < k && current)
+				{
+					current = current->nextlink;
+					i++;
+				}
+				if (current)
+				{
+					result = current->data;
+					return true;
+				}
+				return false;
+			}
+
+			template<class HeadType,class ElementType>
+			bool DoubleChainList<HeadType,ElementType>::
+			GetElementDoubleChainList(DoubleChainNode<ElementType>* current, ElementType& result)
+			{
+				if (!current)
+				{
+					result = current->data;
+					return true;
+				}
+				else
+					return false;
+			}
+
+			template<class HeadType,class ElementType>
+			DoubleChainNode<ElementType>* DoubleChainList<HeadType, ElementType>::
+			SearchElementDoubleChainList(int searchkey)
+			{
+				DoubleChainNode<ElementType>* current = HeadPtr->first;
+				while (current && current->data.key != searchkey)
+				{
+					current = current->nextlink;
+				}
+				if (current)
+				{
+					return current;
+				}
+				else
+					return NULL;
+			}
+
+			/*主要理解点:对于前后指针域的修改,一共有四个,插入newvalue的prelink,nextlink,第k个元素的nextlink,第k+1个元素的prelink(对于NULL无需做修改)*/
+			template<class HeadType,class ElementType>
+			bool DoubleChainList<HeadType, ElementType>::
+			InsertElementDoubleChainList(int k, ElementType& newvalue)
+			{
+				if (k < 0)
+					return false;
+				DoubleChainNode<ElementType>* current = HeadPtr->first;
+				int i = 0;
+				while (i < k && current)
+				{
+					current = current->nextlink;
+					i++;
+				}
+				if (k > 0 && !current)
+				{
+					return false;
+				}
+				DoubleChainNode<ElementType>* q = new DoubleChainNode<ElementType>;
+				q->data = newvalue;
+				if (k)
+				{
+					DoubleChainNode<ElementType>* p = current->nextlink;
+					q->nextlink = current->nextlink;
+					q->prelink = current;
+					if (p)
+					{
+						p->prelink = q;
+
+					}
+					current->nextlink = q;
+				}
+				else
+				{
+					DoubleChainNode<ElementType>* p = HeadPtr->first;
+					q->nextlink = HeadPtr->first;
+					q->prelink = NULL;
+					if (p)
+					{
+						p->prelink = q;
+					}
+					HeadPtr->first = q;
+				}
+				return true;
+			}
+
+			/*主要理解点:一般要修改第k-1个结点的nextlink和第k+1个结点的prelink,来删除第k个结点(对于NULL无需做修改)*/
+			template<class HeadType, class ElementType>
+			bool DoubleChainList<HeadType, ElementType>::
+			DeleteElementDoubleChainList(int k)
+			{
+				if (k < 1 || !HeadPtr->first)
+					return false;
+				DoubleChainNode<ElementType>* current = HeadPtr->first;                      //current用来指向第k-1个结点,帮助修改nextlink
+				DoubleChainNode<ElementType>* p;                                             //p用来指向第k+1个结点,帮助修改prelink
+				if (k == 1)
+				{
+					p = current->nextlink;
+					if (p)                                                                   //在p非空时,其prelink还是要修改的
+					{
+						p->prelink = NULL;
+					}
+					HeadPtr->first = p;
+				}
+				else
+				{
+					int i = 0;
+					while (i < k - 1)                                                        //将current指向第k-1个结点
+					{
+						current = current->nextlink;
+					}
+					if (!current || !current->nextlink)
+					{
+						return false;
+					}
+					else
+					{
+						DoubleChainNode<ElementType>* q = current->nextlink;                  //q指向第k个结点
+						p = q->nextlink;                                                      //p指向第k+1个结点
+						current->nextlink = p;
+						if (p)
+						{
+							p->prelink = current;
+						}
+					}
+				}
+				delete current;
+				return true;
+			}
+
+			template<class HeadType,class ElementType>
+			void DoubleChainList<HeadType,ElementType>::
+			DisplayElementDoubleChainList(ElementType result)
+			{
+				cout << result.ID << "    ";
+				cout << result.age << "    ";
+			}
+
+			template<class HeadType,class ElementType>
+			void DoubleChainList<HeadType,ElementType>::
+			DisplayDoubleChainList(DoubleChainList<HeadType,ElementType>& AppList)
+			{
+				DoubleChainNode<ElementType>* current;
+				DoubleHeadNode<HeadType>* HeadPtr;
+
+				HeadPtr = AppList.GetHeadPtrDoubleChainList();
+
+				cout << "----------表头结点信息-----------" << endl;
+				cout << "-----------班级:"<<HeadPtr->Hdata.num<<"-------------" << endl;
+				cout << "---------------------------------" << endl;
+
+				current = HeadPtr->first;
+				while (current)
+				{
+					cout << current->data.ID << "       ";
+					current = current->nextlink;
+				}
+				cout << endl;
+
+				current = HeadPtr->first;
+				while (current)
+				{
+					cout << current->data.age << "         ";
+					current = current->nextlink;
+				}
+				cout << endl;
+			}
+
+
+
+
+
+124.			
