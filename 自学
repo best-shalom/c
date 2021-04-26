@@ -6670,4 +6670,30 @@
 
 
 
-121.			
+121.			#pragma once
+			#include <iostream>
+			#include <string>
+			#include <stdlib.h>
+
+			using namespace std;
+
+			#define HEADSTUDENT HeadType
+			#define STUDENT ElementType
+			#define age key
+
+			class HEADSTUDENT
+			{
+			public:
+				int num;
+			};
+
+			class STUDENT
+			{
+			public:
+				int ID;
+				int age;
+			};
+
+
+
+122.			
