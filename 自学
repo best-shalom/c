@@ -7102,4 +7102,28 @@
 
 
 
-124.			
+124.			#pragma once
+			#define HEADSTUDENT HeadType
+			#define STUDENT ElementType
+			#define age key
+
+			class HEADSTUDENT
+			{
+			public:
+				int num;
+			};
+
+			class STUDENT
+			{
+			public:
+				int ID;
+				int age;
+			};
+
+
+
+
+
+
+
+125.			
