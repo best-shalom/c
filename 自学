@@ -6265,3 +6265,143 @@
 				//2.输入链表数据
 
 			}
+
+
+
+119.			#include "DoubleList.h"
+
+			int main()
+			{
+				DoubleHeadNode<HeadType>* HeadPtr;
+				DoubleChainNode<ElementType>* p;
+				HeadType ClassInformation = { 2004 };
+				ElementType newvalue, result;
+				int ID[4], age[4];
+				int choice, k, searchkey;
+
+				//1.构建链表
+				DoubleChainList<HeadType,ElementType> AppList;
+				HeadPtr = AppList.GetHeadPtrDoubleChainList();
+				AppList.PutValueDoubleHeadNode(ClassInformation);
+
+				//2.输入链表数据
+				cout << "请输入数据:" << endl;
+				for (int i = 1; i <= 4; i++)
+				{
+					cout << "学号:";
+					cin >> ID[i];
+					newvalue.ID = ID[i];
+					cout << "年龄:" << endl;
+					cin >> age[i];
+					newvalue.age = age[i];
+					AppList.InsertElementDoubleChainList(0, newvalue);
+				}
+				while (true)
+				{
+					cout << "请选择:" << endl;
+					cin >> choice;
+					cout << "-------------------------" << endl;
+					cout << "1.计算链表长度" << endl;
+					cout << "2.查找第k个元素" << endl;
+					cout << "3.查找指定年龄的元素" << endl;
+					cout << "4.插入新元素到第k个后面" << endl;
+					cout << "5.删除第k个元素" << endl;
+					cout << "6.输出链表" << endl;
+					cout << "0.退出" << endl;
+					cout << "-------------------------" << endl;
+					system("cls");
+
+					switch (choice)
+					{
+					case 1:
+					{
+						cout << "链表长度为:" << endl;
+						cout << AppList.LengthDoubleChainList() << endl;
+						break;
+					}
+					case 2:
+					{
+						cout << "请输入查找的序号:" << endl;
+						cin >> k;
+						if (AppList.GetElementDoubleChainList(k, result))
+						{
+							AppList.DisplayElementDoubleChainList(result);
+						}
+						else
+						{
+							cout << "查找失败!!";
+						}
+						break;
+					}
+					case 3:
+					{
+						cout << "请输入查找的年龄:" << endl;
+						cin >> searchkey;
+						p = AppList.SearchElementDoubleChainList(searchkey);
+						if (p)
+						{
+							AppList.GetElementDoubleChainList(p, result);
+							AppList.DisplayElementDoubleChainList(result);
+						}
+						else
+						{
+							cout << "查找失败!!";
+						}
+						break;
+					}
+					case 4:
+					{
+						cout << "请输入要插入的位置:" << endl;
+						cin >> k;
+						cout << "请输入插入元素的值:" << endl;
+						cout << "学号:" << "   ";
+						cin >> newvalue.ID;
+						cout << "年龄:" << "   ";
+						cin >> newvalue.age;
+						if (AppList.InsertElementDoubleChainList(k, newvalue))
+						{
+							AppList.DisplayDoubleChainList(AppList);
+						}
+						else
+						{
+							cout << "插入失败!!";
+						}
+						break;
+					}
+					case 5:
+					{
+						cout << "请输入要删除的元素序号:" << endl;
+						cin >> k;
+						if (AppList.DeleteElementDoubleChainList(k))
+						{
+							AppList.DisplayDoubleChainList(AppList);
+						}
+						else
+						{
+							cout << "删除失败!!";
+						}
+						break;
+					}
+					case 6:
+					{
+						AppList.DisplayDoubleChainList(AppList);
+						break;
+					}
+					case 0:
+					{
+						system("cls");
+						return 0;
+					}
+					}
+					system("pause");
+					system("cls");
+				}
+				return 0;
+			}
+
+
+
+
+
+
+120.			
