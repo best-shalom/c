@@ -7126,4 +7126,78 @@
 
 
 
-125.			
+125.			//一元多项式的加法操作
+			//原理:给出两个式子,将它们相加.链表数据中分别存放系数和指数,系数相同则相加,系数不同则按指数从大到小排列插入
+			//输入:两行数字,分别表示两个式子,前面的数字表示系数,后面的式子表示指数,中间用空格逗号隔开
+			//输出:一行多项式
+			//示例:输入:3 6,4 4,6 0
+			//         7 7,3 4,5 1
+			//     输出:7x^7+3x^6+7x^4+5x+6
+
+			#include <bits/stdc++.h>
+			using namespace std;
+			//定义数据
+			class num
+			{
+			public:
+				int first;
+				int second;
+			};
+			class HeadNode 
+			{
+			public:
+				num Hdata;
+				ChainNode* first;
+			};
+			class ChainNode
+			{
+			public:
+				num data;
+				ChainNode* link;
+			};
+			class ChainList
+			{
+			public:
+				ChainList();
+				~ChainList();
+				void InsertElement(int k, num& newvalue);
+			private:
+				HeadNode* HeadPtr;
+			};
+
+			//功能函数
+			void InsertElement(int k, num& newvalue)
+			{
+				HeadNode *HeadPtr;
+				ChainNode* current = HeadPtr->first;
+				for (int i = 0; i < k && current; i++)
+				{
+					current = current->link;
+				}
+				ChainNode* p;
+				p->data = newvalue;
+				p->link = current->link;
+				current->link = p;
+			}
+
+			//实现函数
+			int main()
+			{
+				//1.构建链表
+				ChainList List;
+				//2.将输入的数据挨个插入到链表中
+				int f[4], s[4];
+				num newvalue;
+				for (int i = 1; i <= 3; i++)
+				{
+					cout << "请输入1:";
+					cout << "系数:";
+					cin >> f[i];
+					newvalue.first = f[i];
+					cout << "指数:";
+					cin >> s[i];
+					newvalue.second = s[i];
+					InsertElement(0, newvalue);
+				}
+				//3.
+			}
