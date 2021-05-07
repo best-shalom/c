@@ -7201,3 +7201,158 @@
 				}
 				//3.
 			}
+
+
+
+
+
+
+126.			//一元多项式的加法操作
+			//原理:给出两个式子,将它们相加.链表数据中分别存放系数和指数,系数相同则相加,系数不同则按指数从大到小排列插入
+			//输入:两行数字,分别表示两个式子,前面的数字表示系数,后面的式子表示指数,中间用空格逗号隔开
+			//输出:一行多项式
+			//示例:输入:3 6,4 4,6 0
+			//         7 7,3 4,5 1
+			//     输出:7x^7+3x^6+7x^4+5x+6
+
+			#include <bits/stdc++.h>
+			using namespace std;
+			//定义数据
+			class num
+			{
+			public:
+				int first;                               //系数
+				int second;                              //指数
+			};
+			class HeadNode 
+			{
+			public:
+				num Hdata;
+				ChainNode* first;
+			};
+			class ChainNode
+			{
+			public:
+				num data;
+				ChainNode* link;
+			};
+
+			//功能函数
+			void InsertElement(int k, num& newvalue)
+			{
+				HeadNode *HeadPtr;
+				ChainNode* current = HeadPtr->first;
+				for (int i = 0; i < k && current; i++)
+				{
+					current = current->link;
+				}
+				ChainNode* p;
+				p->data = newvalue;
+				p->link = current->link;
+				current->link = p;
+			}
+
+			void Add(HeadNode* L1, HeadNode* L2, HeadNode* L3)
+			{
+				ChainNode* p, * q, * r, * x;
+				int choice,first;
+				//链表L1和L2相加,结果存在L3中
+				p = L1->first;
+				q = L2->first;
+				r = NULL;
+				while (p && q)
+				{
+					if (p->data.second > q->data.second)
+						choice = 1;
+					if (p->data.second == q->data.second)
+						choice = 2;
+					if (p->data.second < q->data.second)
+						choice = 3;
+					switch (choice)
+					{
+					case 1:
+					{
+						x = new ChainNode;
+						x->data.second = p->data.second;
+						x->data.first = p->data.first;
+						x->link = NULL;
+						if (r)
+							r->link = x;
+						else
+							L3->first = x;
+						r = x;
+						p = p->link;
+						break;
+					}
+					case 2:
+					{
+						first = p->data.first + q->data.first;
+						if (first)                              //此时系数非零
+						{
+							x = new ChainNode;
+							x->data.first = first;
+							x->data.second = p->data.second;
+							x->link = NULL;
+							if (r)
+								r->link = x;
+							else
+								L3->first = x;
+							r = x;
+						}
+						p = p->link;
+						q = q->link;
+						break;
+					}
+					case 3:
+					{
+						x = new ChainNode;
+						x->data.first = q->data.first;
+						x->data.second = q->data.first;
+						x->link = NULL;
+						if (r)
+							r->link = x;
+						else
+							L3->first = x;
+						r = x;
+						q = q->link;
+						break;
+					}
+				}
+			}
+
+			//实现函数
+			int main()
+			{
+				//1.构建链表
+				HeadNode *List1;
+				HeadNode *List2;
+
+				//2.将输入的数据挨个插入到链表中
+				int a, b;
+				x = new ChainNode;
+				cout << "请输入1:";
+				cout << "系数:";
+				cin >> a;
+				x->data.first = a;
+				cout << "指数:";
+				cin >> b;
+				x->data.second = b;
+				x->link = NULL;
+
+
+				{
+					cin >> f[i];
+					newvalue.first = f[i];
+
+					cin >> s[i];
+					newvalue.second = s[i];
+					InsertElement(0, newvalue);
+				}
+				//3.
+			}
+			
+			
+			
+			
+			
+127.			
