@@ -7355,4 +7355,306 @@
 			
 			
 			
-127.			
+127.			#include <iostream>
+			#include <stdio.h>
+			#include <stdlib.h>
+			#include <string.h>
+			#include <conio.h>
+			using namespace std;
+
+
+			typedef struct
+			{
+				int ID;
+				char name[20];
+			}student;
+
+			student stu[5];
+
+			typedef student EType;
+
+			//1.作者信息
+			void Inform()                  
+			{
+				printf("\n\n\n\n\n\n\n");
+				printf("              *************************************************\n");
+				printf("                           学生成绩单的混合表存储\n\n");
+				printf("                           制作:xxx\n");
+				printf("                           班级:xxx\n");
+				printf("                           学号:xxx\n");
+				printf("                           指导老师:孙夫雄\n");
+				printf("              **************************************************\n");
+				printf("\n\n\n\t\t");
+			}
+			//2.输入数据
+			void Input(student stu[], int k)
+			{
+				printf("请输入相应数据:\n");
+				for (int i = 0; i < k; i++)
+				{
+					printf("请输入第%d个学生的学号:", i + 1);
+					cin >> stu[i].ID;
+					printf("请输入姓名:");
+					cin >> stu[i].name;
+					printf("\n");
+				}
+			}
+
+
+
+
+			//一.顺序栈//
+
+			typedef struct
+			{
+				EType* element;
+				int top;
+				int MaxSize;
+			}Stack;
+
+			Stack S;
+
+			//1.构建堆栈
+			void Create1(Stack& S, int MaxSize)
+			{
+				S.MaxSize = MaxSize;
+				S.element = new EType[S.MaxSize];
+				S.top = -1;
+			}
+
+			//2.判断栈空
+			bool IsEmpty1(Stack& S)
+			{
+				if (S.top == -1)
+					return true;
+				return false;
+			}
+
+			//3.判断栈满
+			bool IsFull1(Stack& S)
+			{
+				if (S.top == S.MaxSize - 1)
+					return true;
+				return false;
+			}
+
+			//4.入栈操作
+			bool Push1(Stack& S, EType& x)
+			{
+				if (IsFull1(S))
+					return false;
+				S.top++;
+				S.element[S.top].ID = x.ID;
+				strcpy(S.element[S.top].name, x.name);
+				return true;
+			}
+
+			//5.出栈操作
+			bool Pop1(Stack& S, EType& x)
+			{
+				if (IsEmpty1(S))
+					return false;
+				x.ID = S.element[S.top].ID;
+				strcpy(x.name, S.element[S.top].name);
+				S.top--;
+				return true;
+			}
+
+			//6.输入操作
+			void InPut1(Stack& S, student stu[], int k)
+			{
+				for (int i = 0; i < k; i++)              //将之前输入的数组学生数据存到栈中
+				{
+					S.element[i].ID = stu[i].ID;
+					strcpy(S.element[i].name , stu[i].name);
+					S.top++;
+				}
+			}
+
+			//7.输出操作
+			void OutPut1(Stack& S)
+			{
+				if (IsEmpty1(S))
+				{
+					printf("空栈!");
+				}
+				else
+				{
+					printf("元素显示(顺序栈)如下:\n");
+					for (int i = 0; i <= S.top; i++)
+					{
+						cout << "第" << i + 1 << "名学生\n";
+						cout << "学号:" << S.element[i].ID << "\t";
+						cout << "姓名:" << S.element[i].name << "\n";
+					}
+				}
+			}
+
+
+
+
+			//二.链式栈//
+
+			typedef struct
+			{
+				EType data;
+				StackNode* link;
+			}StackNode;
+
+			typedef struct
+			{
+				int len;
+				StackNode* top;
+			}StackFirst;
+
+			StackFirst* SS;
+
+			//1.构建堆栈
+			StackFirst* Create2(StackFirst* SS)
+			{
+				SS = new StackFirst;
+				SS->top = NULL;
+				return SS;
+			}
+
+			//2.判断栈空
+			bool IsEmpty2(StackFirst* SS)
+			{
+				if (SS->top)
+					return false;
+				return true;
+			}
+
+			//3.入栈操作
+			bool Push2(StackFirst* SS, EType& x)
+			{
+				StackNode* p = new StackNode;
+				p->data.ID = x.ID;
+				strcpy(p->data.name, x.name);
+				if (IsEmpty2(SS))
+				{
+					SS->top = p;
+					p->link = NULL;
+				}
+				else
+				{
+					p->link = SS->top;
+					SS->top = p;
+				}
+				return true;
+			}
+
+			//4.出栈操作
+			bool Pop2(StackFirst* SS, EType& x)
+			{
+				if (IsEmpty2(SS))
+				{
+					cout << "空栈!";
+					return false;
+				}
+				StackNode* p = new StackNode;
+				p = SS->top;
+				x.ID = p->data.ID;
+				strcpy(x.name, p->data.name);
+				SS->top = p->link;
+				delete p;
+				return true;
+			}
+
+			//5.输入操作
+			void InPut2(StackFirst* SS, student stu[], int k)
+			{
+				for (int i = 0; i < k; i++)
+				{
+					Push2(SS, stu[i]);
+				}
+			}
+
+			//6.输出操作
+			void OutPut2(StackFirst* SS)
+			{
+				if (IsEmpty2(SS))
+				{
+					cout << "空栈!";
+				}
+				else
+				{
+					StackNode* p = SS->top;
+					printf("元素显示(链式栈)如下:\n");
+					int i = 1;
+					while (p)
+					{
+						cout << "第" << i << "名学生:\n";
+						cout << "学号:" << p->data.ID << '\t';
+						cout << "姓名:" << p->data.name << '\n';
+						p = p->link;
+						i++;
+					}
+				}
+			}
+
+
+
+
+
+
+
+
+			//总输出函数//
+			bool OutPut(int n)
+			{
+				switch (n)
+				{
+				case 1:
+					OutPut1(S);
+					break;
+				case 2:
+					OutPut2(SS);
+					break;
+				default:
+					return 0;
+				}
+			}
+
+			//总入栈操作//
+			bool InPut(int n,EType &x)
+			{
+				switch (n)
+				{
+				case 1:
+					return Push1(S, x);
+				case 2:
+					return Push2(SS, x);
+				default:
+					return 0;
+				}
+			}
+
+			//总出栈操作//
+			bool Pop(int n, EType& x)
+			{
+				switch (n)
+				{
+				case 1:
+					return Pop1(S, x);
+				case 2:
+					return Pop2(SS, x);
+				default:
+					return 0;
+				}
+			}
+
+
+			//第一级选择菜单//
+			void MenuFirst()
+			{
+				cout << "\n\t\t" << "请选择以下一个功能:" << endl;
+				cout << "\n\t\t" << "1.顺序栈." << endl;
+				cout << "\t\t2.链式栈." << endl;
+				cout << "\t\t3.退出.\n" << endl;
+			}
+
+
+
+
+128.			
