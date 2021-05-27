@@ -8173,4 +8173,80 @@
 
 
 
-130.			
+130.			#pragma once
+			#include "AppData.h"
+			template<class StackType>
+			class Stack
+			{
+			public:
+				Stack(int MaxSize = 10);
+				~Stack(){delete[] element;}
+				int GetAddress() { return top; }
+				bool IsEmpty() { return top == -1; }
+				bool IsFull(){ return top >= MaxSize - 1; }
+				bool Push(StackType& newvalue);
+				bool Pop(StackType& result);
+				void Display();
+				void DisplayElement(int i);
+			private:
+				int top;
+				int MaxSize;
+				StackType* element;
+			};
+
+			template<class StackType>
+			Stack<StackType>::Stack(int MaxSize)
+			{
+				MaxSize = 10;
+				element = new StackType[MaxSize];
+				top = -1;
+			}
+
+			template<class StackType>
+			bool Stack<StackType>::Push(StackType& newvalue)
+			{
+				if (IsFull())
+					return false;
+				top++;
+				element[top] = newvalue;
+				return true;
+			}
+
+			template<class StackType>
+			bool Stack<StackType>::Pop(StackType& result)
+			{
+				if (IsEmpty())
+					return false;
+				result = element[top];
+				top--;
+				return true;
+			}
+
+			template<class StackType>
+			void Stack<StackType>::Display()
+			{
+				cout << "**********输出堆栈**********" << endl;
+				cout << "学号        年龄        姓名" << endl;
+				for (int i = top; i >= 0; i--)
+				{
+					cout << "第" << i << "名学生:"
+						<< element[i].ID << "       "
+						<< element[i].age << "       "
+						<< element[i].name << endl;
+				}
+			}
+
+			template<class StackType>
+			void Stack<StackType>::DisplayElement(int i)
+			{
+				cout << "第" << i << "名学生:"
+					<< element[i].ID << "       "
+					<< element[i].age << "       "
+					<< element[i].name << endl;
+			}
+
+
+
+
+
+131.			
