@@ -8262,4 +8262,115 @@
 
 
 
-132.			
+132.			#include <iostream>
+			#include <cstring>
+			#include <stdlib.h>
+			#include <conio.h>
+			#include "AppData.h"
+			#include "Stack.h"
+			using namespace std;
+
+			int main()
+			{
+				int MaxSize = 10;
+				EType newvalue, result;
+				Stack<EType> AppStack(MaxSize);
+				int k, choice;
+				cout << "请输入学生数量:" << endl;
+				cin >> k;
+				for (int i = 0; i < k; i++)
+				{
+					cout<<"第"<<i+1<<"名学生:"<<endl;
+					cout << "请输入学号:";
+					cin >> newvalue.ID;
+					cout << "请输入年龄:";
+					cin >> newvalue.age;
+					cout << "请输入姓名:";
+					cin >> newvalue.name;
+					AppStack.Push(newvalue);
+					cout<<endl;
+				}
+				system("cls");
+				while (1)
+				{
+					cout << "********堆栈顺序存储的运算********" << endl;
+					cout << "   1------输出堆栈中的所有元素" << endl;
+					cout << "   2------返回堆栈的栈顶元素" << endl;
+					cout << "   3------进栈" << endl;
+					cout << "   4------退栈" << endl;
+					cout << "   0------退出" << endl;
+					cout << "***************************************************************" << endl;
+					cout << "请选择处理功能：";
+					cin >> choice;
+					system("cls");
+					switch (choice)
+					{
+					case 1:
+					{
+						AppStack.Display();
+						break;
+					}
+					case 2:
+					{
+						if (!AppStack.IsEmpty())
+						{
+							int i = AppStack.GetAddress();
+							AppStack.DisplayElement(i);
+						}
+						else
+						{
+							cout << "栈空!" << endl;
+						}
+						break;
+					}
+					case 3:
+					{
+						if (AppStack.IsFull())
+						{
+							cout << "栈满!" << endl;
+						}
+						else
+						{
+							cout << "请输入学号:" << endl;
+							cin >> newvalue.ID;
+							cout << "请输入年龄:" << endl;
+							cin >> newvalue.age;
+							cout << "请输入姓名:" << endl;
+							cin >> newvalue.name;
+							AppStack.Push(newvalue);
+							cout << "结果如下:" << endl;
+							AppStack.Display();
+						}
+						break;
+					}
+					case 4:
+					{
+						if (AppStack.IsEmpty())
+						{
+							cout << "栈空!" << endl;
+						}
+						else
+						{
+							AppStack.Pop(result);
+							AppStack.DisplayElement(AppStack.GetAddress());
+							cout << endl << endl;
+							cout << "结果如下" << endl;
+							AppStack.Display();
+						}
+						break;
+					}
+					case 0:
+					{
+						return 0;
+						break;
+					}
+					}
+					system("pause");
+					system("cls");
+				}
+			}
+
+
+
+
+133.			
