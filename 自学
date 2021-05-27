@@ -8249,4 +8249,17 @@
 
 
 
-131.			
+131.			#pragma once
+			#define STUDENT EType
+			class STUDENT
+			{
+			public:
+				int ID;
+				int age;
+				int name;
+			};
+
+
+
+
+132.			
