@@ -8373,4 +8373,189 @@
 
 
 
-133.			
+133.			#include <iostream>
+			#include <bits/stdc++.h>
+			using namespace std;
+
+			//定义数据
+			typedef struct
+			{
+				int ID;
+				char name[20];
+			}student;
+			typedef student ElementType;
+
+			//定义队列
+			typedef struct
+			{
+				ElementType* element;
+				int front;
+				int end;
+				int MaxSize;
+			}Team;
+
+			//建立队列
+			Team Create(int MaxSize, Team& S)
+			{
+				S.MaxSize = MaxSize;
+				S.element = new ElementType[S.MaxSize];
+				S.front = 0;
+				S.end = 0;
+				return S;
+			}
+
+			//判断队空
+			bool IsEmpty(Team& S)
+			{
+				if (S.front == S.end)
+					return true;
+				return false;
+			}
+
+			//判断队满
+			bool IsFull(Team& S)
+			{
+				if (S.front == (S.end + 1) % (S.MaxSize + 1))
+					return true;
+				return false;
+			}
+
+			//入队操作
+			bool In(Team& S, ElementType& x)
+			{
+				if (IsFull(S))
+					return false;
+				else
+				{
+					S.end = (S.end + 1) % (S.MaxSize + 1);
+					S.element[S.end].ID = x.ID;
+					strcpy(S.element[S.end].name, x.name);
+					return true;
+				}
+			}
+
+			//出队操作
+			bool Out(Team& S, ElementType& result)
+			{
+				if (IsEmpty(S))
+					return false;
+				else
+				{
+					result.ID = S.element[S.front+1].ID;
+					strcpy(result.name, S.element[S.front+1].name);
+					S.front = (S.front + 1) % (S.MaxSize + 1);
+					return true;
+				}
+			}
+
+			//显示函数
+			void Display(Team& S)
+			{
+				cout << "*****学生数据*****" << endl;
+				cout << "学号               姓名" << endl;
+				for (int i = S.front + 1; (i-1)% (S.MaxSize + 1) != S.end; i++)
+				{
+					cout << S.element[i].ID << "              " << S.element[i].name << endl;
+				}
+				cout << "*****************" << endl;
+			}
+
+			//显示菜单
+			void Menu()
+			{
+				cout << "功能菜单如下:" << endl;
+				cout << "1.显示学生信息" << endl;
+				cout << "2.插入队尾数据" << endl;
+				cout << "3.删除队头数据" << endl;
+				cout << "4.退出" << endl << endl;
+				cout << "请输入选择:";
+			}
+
+			//主函数
+			int main()
+			{
+				int n, k, choice;
+				ElementType x, result;
+				cout << "请输入最大学生数:";
+				cin >> n;
+				Team S;
+				S = Create(n, S);
+				cout << "请输入当前学生数:";
+				cin >> k;
+				for (int i = 0; i < k; i++)
+				{
+					cout << "第" << i + 1 << "名学生:" << endl;
+					cout << "学号:";
+					cin >> x.ID;
+					cout << "姓名:";
+					cin >> x.name;
+					cout << endl;
+					In(S, x);
+				}
+
+				system("cls");
+				while (1)
+				{
+					Menu();
+					cin >> choice;
+					system("cls");
+					switch (choice)
+					{
+					case 1:
+					{
+						Display(S);
+						break;
+					}
+					case 2:
+					{
+						if (IsFull(S))
+						{
+							cout << "队列已满!" << endl;
+							break;
+						}
+						else
+						{
+							cout << "请输入要插入学生的数据:" << endl;
+							cout << "学号:";
+							cin >> x.ID;
+							cout << "姓名:";
+							cin >> x.name;
+							In(S, x);
+							cout << endl << endl;
+							cout << "插入后结果如下:" << endl;
+							Display(S);
+							break;
+						}
+					}
+					case 3:
+					{
+						if (IsEmpty(S))
+						{
+							cout << "队列为空!" << endl;
+							break;
+						}
+						else
+						{
+							Out(S, result);
+							cout << "删除的学生数据如下:" << endl;
+							cout << "学号:" << result.ID << "           " << "姓名:" << result.name << endl << endl;
+							cout << "删除后结果如下:" << endl;
+							Display(S);
+							break;
+						}
+					}
+					case 4:
+					{
+						return 0;
+					}
+					}
+					system("pause");
+					system("cls");
+				}
+			}
+
+
+
+
+
+134.			
