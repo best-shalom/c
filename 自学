@@ -8558,4 +8558,173 @@
 
 
 
-134.			
+134.			#include <iostream>
+			#include <bits/stdc++.h>
+			using namespace std;
+
+			//学生数据
+			typedef struct
+			{
+				int ID;
+				char name[10];
+			}student;
+
+			typedef student ElementType;
+
+			//链表结点
+			typedef struct StackNode
+			{
+				ElementType data;
+				StackNode* link;
+			}StackNode;
+
+			//定义链表
+			typedef struct
+			{
+				int len;
+				StackNode* top;
+			}Stack;
+
+			//构建链表
+			Stack* CreateStack(Stack* S)
+			{
+				S = new Stack;
+				S->top = NULL;
+				return S;
+			}
+
+			bool IsEmpty(Stack* S)
+			{
+				if (!S->top)
+					return true;
+				return false;
+			}
+
+			bool Push(Stack* S, ElementType& x)
+			{
+				StackNode* p = new StackNode;
+				p->data.ID = x.ID;
+				strcpy(p->data.name, x.name);
+				if (IsEmpty(S))
+				{
+					S->top = p;
+					p->link = NULL;
+				}
+				else
+				{
+					p->link = S->top;
+					S->top = p;
+				}
+				return true;
+			}
+
+			bool Pop(Stack* S, ElementType& result)
+			{
+				if (IsEmpty(S))
+					return false;
+				StackNode* p = new StackNode;
+				p = S->top;
+				result.ID = p->data.ID;
+				strcpy(result.name, p->data.name);
+				S->top = p->link;
+				delete p;
+				return true;
+			}
+
+			void Display(Stack* S)
+			{
+				StackNode* p = new StackNode;
+				p = S->top;
+				cout << "*****学生数据*****" << endl;
+				cout << "学号               姓名" << endl;
+				while (p)
+				{
+					cout << p->data.ID << "          " << p->data.name << endl;
+					p = p->link;
+				}
+				cout << "*****************" << endl;
+			}
+
+			void Menu()
+			{
+				cout << "功能菜单如下:" << endl;
+				cout << "1.显示学生信息" << endl;
+				cout << "2.插入学生数据" << endl;
+				cout << "3.删除最后学生数据" << endl;
+				cout << "4.退出" << endl << endl;
+			}
+
+			//主函数
+			int main()
+			{
+				int k, choice;
+				cout << "请输入当前学生数量:" << endl;
+				cin >> k;
+				Stack* S;
+				S=CreateStack(S);
+				ElementType newvalue, result;
+				cout << endl << "请输入学生数据:" << endl;
+				for (int i = 0; i < k; i++)
+				{
+					cout << "第" << i + 1 << "名学生:" << endl;
+					cout << "学号:";
+					cin >> newvalue.ID;
+					cout << "姓名:";
+					cin >> newvalue.name;
+					Push(S, newvalue);
+						cout<<endl;
+				}
+				system("cls");
+				while (1)
+				{
+					Menu();
+					cout << "请输入选择功能:";
+					cin >> choice;
+					system("cls");
+					switch (choice)
+					{
+					case 1:
+					{
+						Display(S);
+						break;
+					}
+					case 2:
+					{
+						cout << "请输入插入数据:" << endl;
+						cout << "学号:";
+						cin >> newvalue.ID;
+						cout << "姓名:";
+						cin >> newvalue.name;
+						Push(S, newvalue);
+						cout << endl << "插入后结果如下:" << endl;
+						Display(S);
+						break;
+					}
+					case 3:
+					{
+						if (IsEmpty(S))
+							cout << "栈空!";
+						Pop(S, result);
+						cout << "删除的数据如下:" << endl;
+						cout << "学号:" << result.ID << "           " << "姓名:" << result.name << endl;
+						cout << endl << "删除后结果如下:" << endl;
+						Display(S);
+						break;
+					}
+					case 4:
+					{
+						return 0;
+						break;
+					}
+					}
+					system("pause");
+					system("cls");
+				}
+				system("pause");
+			}
+
+
+
+
+
+135.			
