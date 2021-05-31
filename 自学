@@ -8920,4 +8920,269 @@
 
 
 
-136.			
+136.			#include <bits/stdc++.h>
+			using namespace std;
+
+			/*学生数据*/
+			typedef struct
+			{
+				int ID;
+				char name[10];
+			}student;
+			typedef student ElementType;
+
+			/*开始定义不同结构操作*/
+
+
+			/*1.顺序栈*/
+			//定义顺序栈
+			typedef struct
+			{
+				ElementType* element;
+				int MaxSize;
+				int top;
+			}Stack1;
+
+			//创建顺序栈
+			Stack1 Create1(Stack1& S1, int MaxSize)
+			{	
+				S1.MaxSize = MaxSize;
+				S1.element = new ElementType[S1.MaxSize];
+				S1.top = -1;
+				return S1;
+			}
+
+			//判断栈空
+			bool IsEmpty1(Stack1& S1)
+			{
+				if (S1.top == -1)
+					return true;
+				return false;
+			}
+
+			//判断栈满
+			bool IsFull1(Stack1& S1)
+			{
+				if (S1.top == S1.MaxSize - 1)
+					return true;
+				return false;
+			}
+
+			//入栈
+			bool Push1(Stack1& S1, ElementType& x)
+			{
+				if (IsFull1(S1))
+					return false;
+				S1.top++;
+				S1.element[S1.top].ID = x.ID;
+				strcpy(S1.element[S1.top].name, x.name);
+			}
+
+			//出栈
+			bool Pop1(Stack1& S1, ElementType& result)
+			{
+				if (IsEmpty1(S1))
+					return false;
+				result.ID = S1.element[S1.top].ID;
+				strcpy(result.name, S1.element[S1.top].name);
+				S1.top--;
+			}
+
+			//输出
+			void Display1(Stack1& S1)
+			{
+				if (IsEmpty1(S1))
+					cout << "顺序栈为空!" << endl;
+				else
+				{
+					cout << "**********学生数据**********" << endl;
+					cout << "学号                    姓名" << endl;
+					for (int i = 0; i <= S1.top; i++)
+					{
+						cout << S1.element[i].ID << "                    " << S1.element[i].name << endl;
+					}
+					cout << "***************************" << endl;
+				}
+			}
+
+
+
+			/*2.链式栈*/
+			//定义结点
+			typedef struct StackNode
+			{
+				ElementType data;
+				StackNode* link;
+			}StackNode;
+
+			//定义链式栈
+			typedef struct
+			{
+				int length;
+				StackNode* top;
+			}Stack2;
+
+			//创建链式栈
+			Stack2* Create2(Stack2* S2)
+			{
+				S2 = new Stack2;
+				S2->top = NULL;
+				S2->length = 0;
+				return S2;
+			}
+
+			//判断栈空
+			bool IsEmpty2(Stack2* S2)
+			{
+				if (S2->top == NULL)
+					return true;
+				return false;
+			}
+
+			//入栈
+			bool Push2(Stack2* S2, ElementType& x)
+			{
+				StackNode* p = new StackNode;
+				p->data.ID = x.ID;
+				strcpy(p->data.name, x.name);
+				if (IsEmpty2(S2))
+				{
+					S2->top = p;
+					p->link = NULL;
+				}
+				else
+				{
+					S2->top = p;
+					p->link = S2->top;
+				}
+				S2->length++;
+			}
+
+			//出栈
+			bool Pop2(Stack2* S2, ElementType& result)
+			{
+				if (IsEmpty2(S2))
+					return false;
+				else
+				{
+					StackNode* p = S2->top;
+					result.ID = p->data.ID;
+					strcpy(result.name, p->data.name);
+					S2->top = p->link;
+					delete p;
+					return true;
+				}
+			}
+
+			//输出
+			void Display2(Stack2* S2)
+			{
+				if (IsEmpty2(S2))
+					cout << "链式栈为空!" << endl;
+				else
+				{
+					cout << "**********学生数据**********" << endl;
+					cout << "学号                    姓名" << endl;
+					StackNode* p = S2->top;
+					while (p)
+					{
+						cout << p->data.ID << "                    " << p->data.name << endl;
+						p = p->link;
+					}
+					cout << "***************************" << endl;
+				}
+			}
+
+
+
+			/*3.顺序队*/
+			//定义顺序队列
+			typedef struct
+			{
+				ElementType* element;
+				int MaxSize;
+				int front;
+				int last;
+			}Team1;
+
+			//创建顺序队列
+			Team1 Create3(Team1& T, int MaxSize)                    //MaxSize指可以存储数据的个数,在目前队列中,element[0]会空置,1~MaxSize会存储
+			{
+				T.element = new ElementType[MaxSize];
+				T.MaxSize = MaxSize;
+				T.front = 0;
+				T.last = 0;
+			}
+
+			//判断队空
+			bool IsEmpty3(Team1& T)
+			{
+				if (T.front == T.last)
+					return true;
+				return false;
+			}
+
+			//判断队满
+			bool IsFull3(Team1& T)
+			{
+				if (T.front == (T.last + 1) % (T.MaxSize + 1))
+					return true;
+				return false;
+			}
+
+			//入队
+			bool In1(Team1& T1, ElementType& x)
+			{
+				if (IsFull3(T1))
+					return false;
+				else
+				{
+					T1.last = (T1.last + 1) % (T1.MaxSize + 1);           //考虑队列的循环利用性
+					T1.element[T1.last].ID = x.ID;
+					strcpy(T1.element[T1.last].name, x.name);
+					return true;
+				}
+			}
+
+			//出队
+			bool Out1(Team1& T1, ElementType& result)
+			{
+				if (IsEmpty3(T1))
+					return false;
+				else
+				{
+					T1.front = (T1.front + 1) % (T1.MaxSize + 1);
+					result.ID = T1.element[T1.front].ID;
+					strcpy(result.name, T1.element[T1.front].name);
+					return true;
+				}
+			}
+
+			//输出
+			void Display3(Team1& T1)
+			{
+				if (IsEmpty3(T1))
+					cout << "顺序队列为空!" << endl;
+				else
+				{
+					cout << "**********学生数据**********" << endl;
+					cout << "学号                    姓名" << endl;
+					for (int i = (T1.front + 1) % (T1.MaxSize + 1); i%(T1.MaxSize+1)!= T1.last; i++)
+					{
+						cout << T1.element[i].ID << "                    " << T1.element[i].name << endl;
+					}
+					cout << "***************************" << endl;
+				}
+			}
+
+
+
+			/*链式队列*/
+			//
+
+
+
+
+
+
+137.			
