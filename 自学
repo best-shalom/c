@@ -9185,4 +9185,669 @@
 
 
 
-137.			
+137.			#include <bits/stdc++.h>
+			using namespace std;
+
+			/*学生数据*/
+			typedef struct
+			{
+				int ID;
+				char name[10];
+			}student;
+			typedef student ElementType;
+
+			/*开始定义不同结构操作*/
+
+
+			/*1.顺序栈*/
+			//定义顺序栈
+			typedef struct
+			{
+				ElementType* element;
+				int MaxSize;
+				int top;
+			}Stack1;
+
+			//创建顺序栈
+			Stack1 Create1(Stack1& S1, int MaxSize)
+			{	
+				S1.MaxSize = MaxSize;
+				S1.element = new ElementType[S1.MaxSize];
+				S1.top = -1;
+				return S1;
+			}
+
+			//判断栈空
+			bool IsEmpty1(Stack1& S1)
+			{
+				if (S1.top == -1)
+					return true;
+				return false;
+			}
+
+			//判断栈满
+			bool IsFull1(Stack1& S1)
+			{
+				if (S1.top == S1.MaxSize - 1)
+					return true;
+				return false;
+			}
+
+			//入栈
+			bool Push1(Stack1& S1, ElementType& x)
+			{
+				if (IsFull1(S1))
+					return false;
+				S1.top++;
+				S1.element[S1.top].ID = x.ID;
+				strcpy(S1.element[S1.top].name, x.name);
+			}
+
+			//出栈
+			bool Pop1(Stack1& S1, ElementType& result)
+			{
+				if (IsEmpty1(S1))
+					return false;
+				result.ID = S1.element[S1.top].ID;
+				strcpy(result.name, S1.element[S1.top].name);
+				S1.top--;
+			}
+
+			//输入
+			void Cin1(Stack1& S1)
+			{
+				int k;
+				cout << "请输入当前学生数量:" << endl;
+				cin >> k;
+				ElementType newvalue;
+				cout << endl << "请输入学生数据:" << endl;
+				for (int i = 0; i < k; i++)
+				{
+					cout << "第" << i + 1 << "名学生:" << endl;
+					cout << "学号:";
+					cin >> newvalue.ID;
+					cout << "姓名:";
+					cin >> newvalue.name;
+					Push1(S1, newvalue);
+					cout << endl;
+				}
+			}
+
+			//输出
+			void Display1(Stack1& S1)
+			{
+				if (IsEmpty1(S1))
+					cout << "顺序栈为空!" << endl;
+				else
+				{
+					cout << "**********学生数据**********" << endl;
+					cout << "学号                    姓名" << endl;
+					for (int i = 0; i <= S1.top; i++)
+					{
+						cout << S1.element[i].ID << "                    " << S1.element[i].name << endl;
+					}
+					cout << "***************************" << endl;
+				}
+			}
+
+
+
+			/*2.链式栈*/
+			//定义结点
+			typedef struct StackNode
+			{
+				ElementType data;
+				StackNode* link;
+			}StackNode;
+
+			//定义链式栈
+			typedef struct
+			{
+				int length;
+				StackNode* top;
+			}Stack2;
+
+			//创建链式栈
+			Stack2* Create2(Stack2* S2)
+			{
+				S2 = new Stack2;
+				S2->top = NULL;
+				S2->length = 0;
+				return S2;
+			}
+
+			//判断栈空
+			bool IsEmpty2(Stack2* S2)
+			{
+				if (S2->top == NULL)
+					return true;
+				return false;
+			}
+
+			//入栈
+			bool Push2(Stack2* S2, ElementType& x)
+			{
+				StackNode* p = new StackNode;
+				p->data.ID = x.ID;
+				strcpy(p->data.name, x.name);
+				if (IsEmpty2(S2))
+				{
+					S2->top = p;
+					p->link = NULL;
+				}
+				else
+				{
+					p->link = S2->top;
+					S2->top = p;
+				}
+				S2->length++;
+			}
+
+			//出栈
+			bool Pop2(Stack2* S2, ElementType& result)
+			{
+				if (IsEmpty2(S2))
+					return false;
+				else
+				{
+					StackNode* p = S2->top;
+					result.ID = p->data.ID;
+					strcpy(result.name, p->data.name);
+					S2->top = p->link;
+					delete p;
+					S2->length--;
+					return true;
+				}
+
+			}
+
+			//输入
+			void Cin2(Stack2* S2)
+			{
+				int k;
+				cout << "请输入当前学生数量:" << endl;
+				cin >> k;
+				ElementType newvalue;
+				cout << endl << "请输入学生数据:" << endl;
+				for (int i = 0; i < k; i++)
+				{
+					cout << "第" << i + 1 << "名学生:" << endl;
+					cout << "学号:";
+					cin >> newvalue.ID;
+					cout << "姓名:";
+					cin >> newvalue.name;
+					Push2(S2, newvalue);
+					cout << endl;
+				}
+			}
+
+			//输出
+			void Display2(Stack2* S2)
+			{
+				if (IsEmpty2(S2))
+					cout << "链式栈为空!" << endl;
+				else
+				{
+					cout << "**********学生数据**********" << endl;
+					cout << "学号                    姓名" << endl;
+					StackNode* p = S2->top;
+					while (p)
+					{
+						cout << p->data.ID << "                    " << p->data.name << endl;
+						p = p->link;
+					}
+					cout << "***************************" << endl;
+				}
+			}
+
+
+
+			/*3.顺序队*/
+			//定义顺序队列
+			typedef struct
+			{
+				ElementType* element;
+				int MaxSize;
+				int front;
+				int last;
+			}Team1;
+
+			//创建顺序队列
+			Team1 Create3(Team1& T1, int MaxSize)                    //MaxSize指可以存储数据的个数,在目前队列中,element[0]会空置,1~MaxSize会存储
+			{
+				T1.element = new ElementType[MaxSize];
+				T1.MaxSize = MaxSize;
+				T1.front = 0;
+				T1.last = 0;
+				return T1;
+			}
+
+			//判断队空
+			bool IsEmpty3(Team1& T1)
+			{
+				if (T1.front == T1.last)
+					return true;
+				return false;
+			}
+
+			//判断队满
+			bool IsFull3(Team1& T1)
+			{
+				if (T1.front == (T1.last + 1) % (T1.MaxSize + 1))
+					return true;
+				return false;
+			}
+
+			//入队
+			bool In1(Team1& T1, ElementType& x)
+			{
+				if (IsFull3(T1))
+					return false;
+				else
+				{
+					T1.last = (T1.last + 1) % (T1.MaxSize + 1);           //考虑队列的循环利用性
+					T1.element[T1.last].ID = x.ID;
+					strcpy(T1.element[T1.last].name, x.name);
+					return true;
+				}
+			}
+
+			//出队
+			bool Out1(Team1& T1, ElementType& result)
+			{
+				if (IsEmpty3(T1))
+					return false;
+				else
+				{
+					T1.front = (T1.front + 1) % (T1.MaxSize + 1);
+					result.ID = T1.element[T1.front].ID;
+					strcpy(result.name, T1.element[T1.front].name);
+					return true;
+				}
+			}
+
+			//输入
+			void Cin3(Team1& T1)
+			{
+				int k;
+				cout << "请输入当前学生数量:" << endl;
+				cin >> k;
+				ElementType newvalue;
+				cout << endl << "请输入学生数据:" << endl;
+				for (int i = 0; i < k; i++)
+				{
+					cout << "第" << i + 1 << "名学生:" << endl;
+					cout << "学号:";
+					cin >> newvalue.ID;
+					cout << "姓名:";
+					cin >> newvalue.name;
+					In1(T1, newvalue);
+					cout << endl;
+				}
+			}
+
+			//输出
+			void Display3(Team1& T1)
+			{
+				if (IsEmpty3(T1))
+					cout << "顺序队列为空!" << endl;
+				else
+				{
+					cout << "**********学生数据**********" << endl;
+					cout << "学号                    姓名" << endl;
+					for (int i = (T1.front) % (T1.MaxSize + 1); i%(T1.MaxSize+1)!= T1.last; i++)
+					{
+						cout << T1.element[i].ID << "                    " << T1.element[i].name << endl;
+					}
+					cout << "***************************" << endl;
+				}
+			}
+
+
+
+			/*链式队列*/
+			//定义队列结点
+			typedef struct TeamNode
+			{
+				ElementType data;
+				TeamNode* link;
+			}TeamNode;
+
+			//定义链式队列
+			typedef struct
+			{
+				int length;
+				TeamNode* front;
+				TeamNode* last;
+			}Team2;
+
+			//创建链式队列
+			Team2* Create4(Team2* T2)
+			{
+				T2 = new Team2;
+				T2->length = 0;
+				T2->front = NULL;
+				T2->last = NULL;
+				return T2;
+			}
+
+			//判断队空
+			bool IsEmpty4(Team2* T2)
+			{
+				if (T2->front == NULL)
+					return true;
+				return false;
+			}
+
+			//入队
+			bool In2(Team2* T2, ElementType& x)
+			{
+				TeamNode* p = new TeamNode;
+				p->data.ID = x.ID;
+				strcpy(p->data.name, x.name);
+				if (IsEmpty4(T2))
+				{
+					T2->last = p;
+					T2->front = p;
+					p->link = NULL;
+				}
+				else
+				{
+					TeamNode* q = T2->last;
+					q->link = p;
+					T2->last = p;
+					p->link = NULL;
+				}
+				T2->length++;
+				return true;
+			}
+
+			//出队
+			bool Out2(Team2* T2, ElementType& result)
+			{
+				if (IsEmpty4(T2))
+					return false;
+				TeamNode* p = T2->front;
+				result.ID = p->data.ID;
+				strcpy(result.name, p->data.name);
+				T2->front = p->link;
+				delete p;
+				T2->length--;
+				return true;
+			}
+
+			//输入
+			void Cin4(Team2* T2)
+			{
+				int k;
+				cout << "请输入当前学生数量:" << endl;
+				cin >> k;
+				ElementType newvalue;
+				cout << endl << "请输入学生数据:" << endl;
+				for (int i = 0; i < k; i++)
+				{
+					cout << "第" << i + 1 << "名学生:" << endl;
+					cout << "学号:";
+					cin >> newvalue.ID;
+					cout << "姓名:";
+					cin >> newvalue.name;
+					In2(T2, newvalue);
+					cout << endl;
+				}
+			}
+
+			//输出
+			void Display4(Team2* T2)
+			{
+				if (IsEmpty4(T2))
+					cout << "链式队列为空!" << endl;
+				else
+				{
+					cout << "**********学生数据**********" << endl;
+					cout << "学号                    姓名" << endl;
+					TeamNode* p = T2->front;
+					while (p)
+					{
+						cout << p->data.ID << "                    " << p->data.name << endl;
+						p = p->link;
+					}
+					cout << "***************************" << endl;
+				}
+			}
+
+
+
+			/*综合操作*/
+			//定义栈和队
+			Stack1 S1;
+			Stack2* S2;
+			Team1 T1;
+			Team2* T2;
+
+			//菜单1
+			void Menu1()
+			{
+				cout << "选择菜单如下:" << endl;
+				cout << "1.顺序堆栈" << endl;
+				cout << "2.链式堆栈" << endl;
+				cout << "3.顺序队列" << endl;
+				cout << "4.链式队列" << endl;
+				cout << "5.退出" << endl << endl;
+				cout << "请输入选择:" << endl;
+			}
+
+			//菜单2
+			void Menu2()
+			{
+				cout << "功能菜单如下:" << endl;
+				cout << "1.显示学生信息" << endl;
+				cout << "2.插入学生数据" << endl;
+				cout << "3.删除学生数据" << endl;
+				cout << "4.退出" << endl << endl;
+				cout << "请输入选择:" << endl;
+			}
+
+			//总创建函数
+			void Create(int choice)
+			{
+				switch (choice)
+				{
+				case 1:
+					int Max1;
+					cout << "请输入最大学生数:" << endl;
+					cin >> Max1;
+					S1 = Create1(S1, Max1);
+					break;
+				case 2:
+					S2 = Create2(S2);
+					break;
+				case 3:
+					int Max2;
+					cout << "请输入最大学生数:" << endl;
+					cin >> Max2;
+					T1 = Create3(T1, Max2);
+					break;
+				case 4:
+					T2 = Create4(T2);
+					break;
+				}
+			}
+
+			//总输入函数
+			void Cin(int choice)
+			{
+				switch (choice)
+				{
+				case 1:
+					Cin1(S1);
+					break;
+				case 2:
+					Cin2(S2);
+					break;
+				case 3:
+					Cin3(T1);
+					break;
+				case 4:
+					Cin4(T2);
+					break;
+				}
+			}
+
+			//总判空函数
+			bool IsEmpty(int choice)
+			{
+				switch (choice)
+				{
+				case 1:
+					return IsEmpty1(S1);
+				case 2:
+					return IsEmpty2(S2);
+				case 3:
+					return IsEmpty3(T1);
+				case 4:
+					return IsEmpty4(T2);
+				}
+			}
+
+			//总判满函数
+			bool IsFull(int choice)
+			{
+				switch (choice)
+				{
+				case 1:
+					return IsFull1(S1);
+				case 2:
+					return false;
+				case 3:
+					return IsFull3(T1);
+				case 4:
+					return false;
+				}
+			}
+
+			//总插入函数
+			bool In(int choice, ElementType& x)                                //这里的choice是菜单1的选择
+			{
+				switch (choice)
+				{
+				case 1:
+					Push1(S1, x);
+					break;
+				case 2:
+					Push2(S2, x);
+					break;
+				case 3:
+					In1(T1, x);
+					break;
+				case 4:
+					In2(T2, x);
+					break;
+				}
+			}
+
+			//总删除函数
+			bool Out(int choice, ElementType& result)
+			{
+				switch (choice)
+				{
+				case 1:
+					Pop1(S1, result);
+					break;
+				case 2:
+					Pop2(S2, result);
+					break;
+				case 3:
+					Out1(T1, result);
+					break;
+				case 4:
+					Out2(T2, result);
+					break;
+				}
+			}
+
+			//总输出函数
+			bool Display(int choice)
+			{
+				switch (choice)
+				{
+				case 1:
+					Display1(S1);
+					break;
+				case 2:
+					Display2(S2);
+					break;
+				case 3:
+					Display3(T1);
+					break;
+				case 4:
+					Display4(T2);
+					break;
+				}
+			}
+
+			//主函数
+			int main()
+			{
+				int k1 = 0, k2 = 0;
+				ElementType x, result;
+				while (1)
+				{
+					Menu1();
+					cin >> k1;
+					system("cls");
+					if (k1 == 5)
+						return 0;
+					Create(k1);
+					Cin(k1);
+					system("cls");
+					while (k2 != 4)
+					{
+						Menu2();
+						cin >> k2;
+						system("cls");
+						switch (k2)
+						{
+						case 1:
+							Display(k1);
+							break;
+						case 2:
+							if (IsFull(k1))
+								cout << "满!" << endl;
+							else
+							{
+								cout << "请输入插入数据:" << endl;
+								cout << "学号:";
+								cin >> x.ID;
+								cout << "姓名:";
+								cin >> x.name;
+								In(k1, x);
+								cout << endl << "插入后结果如下:" << endl;
+								Display(k1);
+							}
+							break;
+						case 3:
+							if (IsEmpty(k1))
+								cout << "空!" << endl;
+							else
+							{
+								Out(k1, result);
+								cout << "删除的数据如下:" << endl;
+								cout << "学号:" << result.ID << "           " << "姓名:" << result.name << endl;
+								cout << endl << "删除后结果如下:" << endl;
+								Display(k1);
+							}
+							break;
+						}
+						system("pause");
+						system("cls");
+					}
+					k2 = 0;
+				}
+			}
+
+
+
+
+
+
+139.			
