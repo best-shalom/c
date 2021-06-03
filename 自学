@@ -9960,4 +9960,164 @@
 
 
 
-140.			
+140.			#pragma once
+			#include "AppData.h";
+			#include <bits/stdc++.h>
+			using namespace std;
+
+			typedef struct BinaryTreeNode
+			{
+				ElementType data;
+				BinaryTreeNode* left;
+				BinaryTreeNode* right;
+			}BinaryTreeNode;
+
+			template<class ElementType>
+			class BinaryTree
+			{
+			public:
+				BinaryTree() { TreeRoot = NULL };
+				~BinaryTree() {};
+				bool IsEmpty();
+
+				//遍历算法,递归
+				void PreOrder1(BinaryTreeNode* TreeRoot);
+				void InOrder1(BinaryTreeNode* TreeRoot);
+				void PostOrder1(BinaryTreeNode* TreeRoot);
+
+				//遍历算法,非递归
+				void PreOrder2(BinaryTreeNode* TreeRoot);
+				void InOrder2(BinaryTreeNode* TreeRoot);
+				void PostOrder2(BinaryTreeNode* TreeRoot);
+
+				//层次遍历
+				void LevelOrder_LtoR_UtoD(BinaryTreeNode* TreeRoot);    //从左到右，从上到下
+				void LevelOrder_RtoL_DtoU(BinaryTreeNode* TreeRoot);    //从右到左，从下到上
+
+				void MakeBinaryTree(BinaryTreeNode* Root, BinaryTreeNode* left, BinaryTreeNode* right);
+				BinaryTreeNode* MakeNode(ElementType& x);
+				BinaryTreeNode* DeleteTree(BinaryTreeNode* TreeRoot);
+				int Node(BinaryTreeNode* TreeRoot, int& count);
+				int High(BinaryTreeNode* TreeRoot);
+				void DisplayNode(BinaryTreeNode* TreeRoot);
+			private:
+				BinaryTreeNode* TreeRoot;
+			};
+
+			//创建结点
+			template<class ElementType>
+			BinaryTreeNode* BinaryTree<ElementType>::MakeNode(ElementType& x)
+			{
+				BinaryTreeNode* p = new BinaryTreeNode;
+				p->data = x;
+				p->left = NULL;
+				p->right = NULL;
+				return p;
+			}
+
+			//构造子树
+			template<class ElementType>
+			void BinaryTree<ElementType>::MakeBinaryTree(BinaryTreeNode* Root, BinaryTreeNode* left, BinaryTreeNode* right)
+			{
+				Root->left = left;
+				Root->right = right;
+			}
+
+			//计算高度
+			template<class ElementType>
+			int BinaryTree<ElementType>::High(BinaryTreeNode* TreeRoot)
+			{
+				if (!TreeNode)
+					return 0;
+				else
+				{
+					int High1 = High(TreeRoot->left);
+					int High2 = High(TreeRoot->right);
+					if (High1 > High2)
+						return ++High1;
+					else
+						return ++High2;
+				}
+			}
+
+			//计算结点
+			template<class ElementType>
+			int BinaryTree<ElementType>::Node(BinaryTreeNode* TreeRoot, int& counts)
+			{
+				if (TreeRoot)
+				{
+					count++;
+					Node(TreeRoot->left, counts);
+					Node(TreeRoot->right, counts);
+				}
+			}
+
+			//删除二叉树
+			template<class ElementType>
+			BinaryTreeNode* BinaryTree<ElementType>::DeleteTree(BinaryTreeNode* TreeRoot)
+			{
+				if (TreeRoot)
+				{
+					DeleteTree(TreeRoot->left);
+					DeleteTree(TreeRoot->left);
+					delete TreeRoot;
+				}
+				TreeRoot = NULL;
+				return TreeRoot;
+			}
+
+			//输出结点
+			template<class ElementType>
+			void BinaryTree<ElementType>::DisplayNode(BinaryTreeNode* TreeRoot)
+			{
+				cout << "学号:" << TreeRoot->data.ID << "\t姓名:" << TreeRoot->data.name << endl;
+			}
+
+
+
+			/*遍历算法,递归*/
+			//前序遍历
+			template<class ElementType>
+			void BinaryTree<ElementType>::PreOrder1(BinaryTreeNode* TreeRoot)
+			{
+				if (TreeRoot)
+				{
+					DisplayNode(TreeRoot);
+					PreOrder1(TreeRoot->left);
+					PreOder1(TreeRoot->right);
+				}
+			}
+
+			//中序遍历
+			template<class ElementType>
+			void BinaryTree<ElementType>::InOrder1(BinaryTreeNode* TreeRoot)
+			{
+				if (TreeRoot)
+				{
+					InOrder1(TreeRoot->left);
+					DisplayNode(TreeRoot);
+					InOrder1(TreeRoot->right);
+				}
+			}
+
+			//后序遍历
+			template<class ElementType>
+			void BinaryTree<ElementType>::PostOrder1(BinaryTreeNode* TreeRoot)
+			{
+				if (TreeRoot)
+				{
+					PostOrder1(TreeRoot->left);
+					PostOrder1(TreeRoot->right);
+					DisplayNode(TreeRoot);
+				}
+			}
+
+
+
+			/*遍历算法,非递归*/
+
+
+
+
+
+141.			
