@@ -10120,4 +10120,402 @@
 
 
 
-141.			
+141.			#pragma once
+			#include "AppData.h";
+			#include <bits/stdc++.h>
+			using namespace std;
+
+			typedef struct BinaryTreeNode
+			{
+				ElementType data;
+				BinaryTreeNode* left;
+				BinaryTreeNode* right;
+			}BinaryTreeNode;
+
+			template<class ElementType>
+			class BinaryTree
+			{
+			public:
+				BinaryTree() { TreeRoot = NULL };
+				~BinaryTree() {};
+				bool IsEmpty();
+
+				//遍历算法,递归
+				void PreOrder1(BinaryTreeNode* TreeRoot);
+				void InOrder1(BinaryTreeNode* TreeRoot);
+				void PostOrder1(BinaryTreeNode* TreeRoot);
+
+				//遍历算法,非递归
+				void PreOrder2(BinaryTreeNode* TreeRoot);
+				void InOrder2(BinaryTreeNode* TreeRoot);
+				void PostOrder2(BinaryTreeNode* TreeRoot);
+
+				//层次遍历
+				void LevelOrder_LtoR_UtoD(BinaryTreeNode* TreeRoot);    //从左到右，从上到下
+				void LevelOrder_RtoL_DtoU(BinaryTreeNode* TreeRoot);    //从右到左，从下到上
+
+				void MakeBinaryTree(BinaryTreeNode* Root, BinaryTreeNode* left, BinaryTreeNode* right);
+				BinaryTreeNode* MakeNode(ElementType& x);
+				BinaryTreeNode* DeleteTree(BinaryTreeNode* TreeRoot);
+				int Node(BinaryTreeNode* TreeRoot, int& count);
+				int High(BinaryTreeNode* TreeRoot);
+				void DisplayNode(BinaryTreeNode* TreeRoot);
+			private:
+				BinaryTreeNode* TreeRoot;
+			};
+
+			//创建结点
+			template<class ElementType>
+			BinaryTreeNode* BinaryTree<ElementType>::MakeNode(ElementType& x)
+			{
+				BinaryTreeNode* p = new BinaryTreeNode;
+				p->data = x;
+				p->left = NULL;
+				p->right = NULL;
+				return p;
+			}
+
+			//构造子树
+			template<class ElementType>
+			void BinaryTree<ElementType>::MakeBinaryTree(BinaryTreeNode* Root, BinaryTreeNode* left, BinaryTreeNode* right)
+			{
+				Root->left = left;
+				Root->right = right;
+			}
+
+			//计算高度
+			template<class ElementType>
+			int BinaryTree<ElementType>::High(BinaryTreeNode* TreeRoot)
+			{
+				if (!TreeNode)
+					return 0;
+				else
+				{
+					int High1 = High(TreeRoot->left);
+					int High2 = High(TreeRoot->right);
+					if (High1 > High2)
+						return ++High1;
+					else
+						return ++High2;
+				}
+			}
+
+			//计算结点
+			template<class ElementType>
+			int BinaryTree<ElementType>::Node(BinaryTreeNode* TreeRoot, int& counts)
+			{
+				if (TreeRoot)
+				{
+					count++;
+					Node(TreeRoot->left, counts);
+					Node(TreeRoot->right, counts);
+				}
+			}
+
+			//删除二叉树
+			template<class ElementType>
+			BinaryTreeNode* BinaryTree<ElementType>::DeleteTree(BinaryTreeNode* TreeRoot)
+			{
+				if (TreeRoot)
+				{
+					DeleteTree(TreeRoot->left);
+					DeleteTree(TreeRoot->left);
+					delete TreeRoot;
+				}
+				TreeRoot = NULL;
+				return TreeRoot;
+			}
+
+			//输出结点
+			template<class ElementType>
+			void BinaryTree<ElementType>::DisplayNode(BinaryTreeNode* TreeRoot)
+			{
+				cout << "学号:" << TreeRoot->data.ID << "\t姓名:" << TreeRoot->data.name << endl;
+			}
+
+
+
+			/*遍历算法,递归*/
+			//前序遍历
+			template<class ElementType>
+			void BinaryTree<ElementType>::PreOrder1(BinaryTreeNode* TreeRoot)
+			{
+				if (TreeRoot)
+				{
+					DisplayNode(TreeRoot);
+					PreOrder1(TreeRoot->left);
+					PreOder1(TreeRoot->right);
+				}
+			}
+
+			//中序遍历
+			template<class ElementType>
+			void BinaryTree<ElementType>::InOrder1(BinaryTreeNode* TreeRoot)
+			{
+				if (TreeRoot)
+				{
+					InOrder1(TreeRoot->left);
+					DisplayNode(TreeRoot);
+					InOrder1(TreeRoot->right);
+				}
+			}
+
+			//后序遍历
+			template<class ElementType>
+			void BinaryTree<ElementType>::PostOrder1(BinaryTreeNode* TreeRoot)
+			{
+				if (TreeRoot)
+				{
+					PostOrder1(TreeRoot->left);
+					PostOrder1(TreeRoot->right);
+					DisplayNode(TreeRoot);
+				}
+			}
+
+
+
+			/*遍历算法,迭代*/
+			//建立堆栈
+			typedef BinaryTreeNode StackType;
+
+			template<class StackType>
+			class Stack
+			{
+			public:
+				Stack(int MadxSize);
+				~Stack() { delete[] element; }
+				bool GetTop(StackType* result);
+				bool IsEmpty() { return top == -1; }
+				bool IsFull() { return top >= MaxSpace; }
+				bool Push(StackType* newvalue);
+				bool Pop(StackType* result);
+				bool Display();
+			private:
+				int top;
+				int MaxSpace;
+				StackType* element;
+			};
+
+			template<class StackType>
+			Stack<StackType>::Stack(int MaxSize)
+			{
+				MaxSpace = MaxSize;
+				element = new StackType[MaxSpace];
+				top = -1;
+			}
+
+			template<class StackType>
+			bool Stack<StackType>::GetTop(StackType* result)
+			{
+				If(IsEmpty())
+					return false;
+				result = element[top];
+				return true;
+			}
+
+			template<class StackType>
+			bool Stack<StackType>::Push(StackType* newvalue)
+			{
+				if (IsFull())
+					return false;
+				top++;
+				element[top] = newvalue;
+				return true;
+			}
+
+			template<class StackType>
+			bool Stack<StackType>::Pop(StackType* result)
+			{
+				if (IsEmpty())
+					return false;
+				result = element[top];
+				top--;
+				return true;
+			}
+
+			template<class StackType>
+			bool Stack<StackType>::Display()
+			{
+				StackType x;
+				while (!IsEmpty())
+				{
+					if (!IsEmpty())
+					{
+						Pop(x);
+						cout << "学号:" << x->data.ID << "\t姓名:" << x->data.name << endl;
+					}
+				}
+			}
+
+			//迭代算法(统一迭代法)
+			//前序迭代(中左右)
+			template<class ElementType>
+			void BinaryTree<ElementType>::PreOrder2(BinaryTreeNode* TreeRoot)
+			{
+				int Max = 20;
+				Stack<StackType> S(Max);
+				Stack<StackType> Result(Max);
+				if(TreeRoot!=NULL)
+					S.Push(TreeRoot);
+				while (!S.IsEmpty())
+				{
+					StackType* node = new StackType;
+					S.GetTop(node);
+					if (node != NULL)
+					{
+						S.Pop(node);                              //弹出防止栈中重复出现"中"                  
+						S.Push(node);
+						S.Push(NULL);
+						if (node->right != NULL)
+							S.Push(node->right);
+						if (node->left != NULL)
+							S.Push(node->left);
+					}
+					else
+					{
+						S.Pop();
+						S.GetTop(node);
+						Result.Push(node);                        //将结果存入Result中
+					}
+				}
+			}
+
+			//中序遍历(左中右)
+			template<class ElementType>
+			void BinaryTree<ElementType>::InOrder2(BinaryTreeNode* TreeRoot)
+			{
+				int Max = 20;
+				Stack<StackType> S(Max);
+				Stack<StackType> Result(Max);
+				if (TreeRoot != NULL)
+					S.Push(TreeRoot);
+				while (!S.IsEmpty())
+				{
+					StackType* node = new StackType;
+					S.GetTop(node);
+					if (node != NULL)
+					{
+						S.Pop(node);
+						if (node->right != NULL)
+							S.Push(node->right);
+						S.Push(node);
+						S.Push(NULL);
+						if (node->left != NULL)
+							S.Push(node->left);
+					}
+					else
+					{
+						S.Pop();
+						S.GetTop(node);
+						Result.Push(node);
+					}
+				}
+			}
+
+			//后序遍历(左右中)
+			template<class ElementType>
+			void BinaryTree<ElementType>::InOrder2(BinaryTreeNode* TreeRoot)
+			{
+				int Max = 20;
+				Stack<StackType> S(Max);
+				Stack<StackType> Result(Max);
+				if (TreeRoot != NULL)
+					S.Push(TreeRoot);
+				while (!S.IsEmpty())
+				{
+					StackType* node = new StackType;
+					S.GetTop(node);
+					if (node != NULL)
+					{
+						S.Pop(node);
+						S.Push(node);
+						S.Push(NULL);
+						if (node->right != NULL)
+							S.Push(node->right);
+						if (node->left != NULL)
+							S.Push(node->left);
+					}
+					else
+					{
+						S.Pop();
+						S.GetTop(node);
+						Result.Push(node);
+					}
+				}
+			}
+
+
+			/*层次遍历*/
+			//建立队列
+			typedef BinaryTreeNode TeamType;
+
+			template<class TeamType>
+			class Team
+			{
+			public:
+				Team(int MaxSize);
+				~Team() { delete[] element; }
+				bool IsEmpty() { return front == end; }
+				bool IsFull() { return front == (end + 1) % (MaxSpace + 1); }
+				bool GetFront(TeamType& result);
+				bool GetEnd(TeamType& result);
+				bool Push(TeamType& result);
+				bool Pop(TeamType& result);
+			private:
+				TeamType* element;
+				int front;
+				int end;
+				int MaxSpace;
+			};
+
+			template<class TeamType>
+			Team<TeamType>::Team(int MaxSize)
+			{
+				MaxSpace = MaxSize;
+				element = new TeamType[MaxSpace + 1];
+				front = 0;
+				end = 0;
+			}
+
+			template<class TeamType>
+			bool Team<TeamType>::GetFront(TeamType& result)
+			{
+				if (IsEmpty())
+					return false;
+				result = element[(front + 1) % (MaxSpace + 1)];
+				return true;
+			}
+
+			template<class TeamType>
+			bool Team<TeamType>::GetEnd(TeamType& result)
+			{
+				if (IsEmpty())
+					return false;
+				result = element[end];
+				return true;
+			}
+
+			template<class TeamType>
+			bool Team<TeamType>::Push(TeamType& newvalue)
+			{
+				if (IsFull())
+					return false;
+				end = (end + 1) % (MaxSpace + 1);
+				element[end] = newvalue;
+				return true;
+			}
+
+			template<class TeamType>
+			bool Team<TeamType>::Pop(TeamType& result)
+			{
+				if (IsEmpty())
+					return false;
+				front = (front + 1) % (MaxSpace + 1);
+				result = element[front];
+				return true;
+			}
+
+
+
+
+142.			
