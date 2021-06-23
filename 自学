@@ -10518,4 +10518,203 @@
 
 
 
-142.			
+142.			#include<bits/stdc++.h>
+			using namespace std;
+			#define ElemType long
+
+			/*******************************************************************************
+				冒泡排序
+			*******************************************************************************/
+			long Bubblesort(long R[], long n)
+			{
+				int flag = 1;						
+				long BC = 0;
+				for (long i = 1; i < n - 1; i++)
+				{								
+					flag = 0;						
+					for (long j = n - 1; j >= i; j--)
+					{
+						if (R[j] < R[j - 1])			
+						{
+							long t = R[j];
+							R[j] = R[j - 1];
+							R[j - 1] = t; flag = 1;
+							BC++;
+
+							for (long i = 0; i < n; i++)
+								cout << R[i] << " ";
+							cout << endl;
+						}
+					}
+				}
+				return BC;
+			}
+
+			/*******************************************************************************
+				快速排序
+			*******************************************************************************/
+			long quicksort(long R[], long left, long right, long n)
+			{
+				static long QC = 0;
+				long i = left, j = right;
+				long temp = R[i];         
+				while (i < j)              
+				{
+					while ((R[j] > temp) && (j > i))   
+					{
+
+						j = j - 1;
+					}
+					if (j > i)
+					{
+						R[i] = R[j];
+						i = i + 1;
+
+					}
+					while ((R[i] <= temp) && (j > i))    
+					{
+
+
+						i = i + 1;
+					}
+					if (i < j)
+					{
+						R[j] = R[i];
+						j = j - 1;
+
+					}
+
+
+				}
+				QC++;
+				R[i] = temp;
+				for (long k = 0; k < n; k++)
+					cout << R[k] << " ";
+				cout << endl;
+				if (left < i - 1)
+					quicksort(R, left, i - 1, n);		
+				if (i + 1 < right)
+					quicksort(R, i + 1, right, n);		
+
+				return QC;
+
+			}
+
+			void print(ElemType R[], int n)
+			{
+				for (int i = 0; i <= n - 1; i++)
+				{
+					if (i % 10 == 0)
+					{
+						cout << endl;
+					}
+					cout << R[i] << setw(6);
+				}
+				cout << endl;
+
+			}
+
+
+
+			/*******************************************************************************
+				操作选择函数
+			*******************************************************************************/
+			void operate1(long a[9], long n)
+			{
+				long R[9];
+				long degree;
+				char ch;
+				cout << "\n**              选择排序算法                      **" << endl;
+				cout << "====================================================" << endl;
+				cout << "**              1 --- 冒泡排序                    **" << endl;
+				cout << "**              2 --- 快速排序                    **" << endl;
+				cout << "**              0 --- 退出                    **" << endl;
+				cout << "====================================================" << endl;
+				cout << "请选择排序算法：\t";
+				cin >> ch;
+				switch (ch) {
+				case '1':
+				{
+					for (int i = 0; i < n; i++)
+					{
+						R[i] = a[i];
+					}
+					degree = Bubblesort(R, n);
+					print(R, n);
+					operate1(a, n);
+					break;
+				}
+
+				case '2':
+
+				{
+					for (int i = 0; i < n; i++)
+					{
+						R[i] = a[i];
+					}
+					degree = quicksort(R, 0, n - 1, n);
+					print(R, n);
+					operate1(a, n);
+					break;
+				}
+				case '0':
+					break;
+				}
+				system("pause");
+				system("cls");
+			}
+
+			/*******************************************************************************
+				主函数
+			*******************************************************************************/
+			int main()
+			{
+				long  num[10] = { 2001,2002,2003,2004,2005,2006,2007,2008,2009 };
+				long Chinese[10] = { 88,91,98,87,93,76,53,94,83 };
+				long math[10] = { 97,95,99,96,99,70,53,90,65 };
+				long English[10] = { 85,92,95,85,96,72,65,88,96 };
+				long sum[10] = { 270,278,292,268,288,218,171,272,244 };
+
+				while (1)
+				{
+					cout << "请输入选择比较的项目:\n";
+					cout << "====================================================" << endl;
+					cout << "**              1 --- 语文                    **" << endl;
+					cout << "**              2 --- 数学                    **" << endl;
+					cout << "**              3 --- 英语                    **" << endl;
+					cout << "**              4 --- 总分                    **" << endl;
+					cout << "**              0 --- 退出                    **" << endl;
+					cout << "====================================================" << endl;
+					long t[10];
+					int choice;
+					cin >> choice;
+					switch (choice)
+					{
+					case 1:
+						for (int i = 0; i < 10; i++)
+							t[i] = Chinese[i];
+						break;
+					case 2:
+						for (int i = 0; i < 10; i++)
+							t[i] = math[i];
+						break;
+					case 3:
+						for (int i = 0; i < 10; i++)
+							t[i] = English[i];
+						break;
+					case 4:
+						for (int i = 0; i < 10; i++)
+							t[i] = sum[i];
+						break;
+					case 0:
+						exit(0);
+						break;
+					}
+					operate1(t, 9);
+				}
+
+			}
+
+
+
+143.			
