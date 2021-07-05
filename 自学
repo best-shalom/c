@@ -11384,4 +11384,178 @@
 
 
 
-146.			
+146.			#include <bits/stdc++.h>
+			using namespace std;
+
+			//构建数据
+			typedef struct
+			{
+				int ID;
+				char name[20];
+			}ElementType;
+
+			typedef struct Node
+			{
+				ElementType data;
+				Node* next;
+			}Node, * Stack;
+
+
+			//功能函数
+			//1.构建函数
+			Stack Create(Stack &S)
+			{
+				S = new Node;                   //这里的S无具体意义,只代表栈顶,具体可以在入栈操作中解释
+				S = NULL;
+				return S;
+			}
+
+			//2.判空函数
+			bool IsEmpty(Stack &S)
+			{
+				if (!S)
+					return true;
+				return false;
+			}
+
+			//3.入栈函数
+			bool Push(Stack &S, ElementType newvalue)
+			{
+				Node* p = new Node;
+				p->data = newvalue;
+				p->next = S;
+				S = p;
+				return true;
+			}
+
+			//4.出栈函数
+			bool Pop(Stack &S, ElementType& result)
+			{
+				if (IsEmpty(S))
+					return false;
+				result = S->data;
+				Node* p = S;
+				S = p->next;
+				delete p;
+				return true;
+			}
+
+			//5.输入函数
+			void Input(Stack &S,int n)
+			{
+				ElementType newvalue;
+				for (int i = 0; i < n; i++)
+				{
+					cout << "请输入第" << i + 1 << "名学生数据:" << endl;
+					cout << "学号:";
+					cin >> newvalue.ID;
+					cout << "姓名:";
+					cin >> newvalue.name;
+					Push(S, newvalue);
+				}
+			}
+
+			//6.输出函数(小)
+			void Display1(ElementType x)
+			{
+				cout << x.ID << "                             " << x.name << endl;
+			}
+
+			//7.输出函数(大)
+			void Display2(Stack S)
+			{
+				Node* p = S;
+				cout << "-------------------------链式栈--------------------------" << endl;
+				cout << "学号                                                 姓名" << endl;
+				while (p)
+				{
+					Display1(p->data);
+					p = p->next;
+				}
+				cout << "--------------------------------------------------------" << endl;
+			}
+
+			//8.菜单函数
+			void Menu()
+			{
+				cout << "1-----入栈" << endl;
+				cout << "2-----出栈" << endl;
+				cout << "3-----显示" << endl;
+				cout << "0-----退出" << endl;
+				cout << "请选择功能:" << endl;
+			}
+
+
+			//实现函数
+			int main()
+			{
+				int n, choice;
+				ElementType newvalue, result;
+				Stack S;
+				S = Create(S);
+				cout << "请输入当前学生个数:" << endl;
+				cin >> n;
+				Input(S, n);
+				system("pause");
+				system("cls");
+
+				while (1)
+				{
+					Menu();
+					cin >> choice;
+					switch (choice)
+					{
+					case 1:
+						cout << "请输入学生数据:" << endl;
+						cout << "学号:";
+						cin >> newvalue.ID;
+						cout << "姓名:";
+						cin >> newvalue.name;
+						Push(S, newvalue);
+						cout << "入栈后结果如下:" << endl;
+						Display2(S);
+						break;
+
+					case 2:
+						if (Pop(S, result))
+						{
+							cout << "出栈数据如下:" << endl;
+							Display1(result);
+							cout << "出栈后结果如下:" << endl;
+							Display2(S);
+						}
+						else
+						{
+							cout << "栈空!" << endl;
+						}
+						break;
+
+					case 3:
+						if (IsEmpty(S))
+						{
+							cout << "栈空!" << endl;
+						}
+						else
+						{
+							Display2(S);
+						}
+						break;
+
+					case 0:
+						exit(0);
+
+					default:
+						cout << "选择非法!" << endl;
+						break;
+					}
+					system("pause");
+					system("cls");
+				}
+				return 0;
+			}
+
+
+
+
+
+147.			
