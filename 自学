@@ -11941,4 +11941,60 @@
 
 
 
-149.			
+149.			#include <bits/stdc++.h>
+			using namespace std;
+
+			//构建数据
+			typedef struct
+			{
+				int ID;
+				char name;
+			}ElementType;
+
+			typedef struct Tree
+			{
+				ElementType data;
+				Tree* left;
+				Tree* right;
+			}Tree;
+
+			typedef struct
+			{
+				Tree* Root;
+				int len;
+			}BinaryTree;
+
+			//功能函数
+			//1.构建函数
+			BinaryTree* Create(BinaryTree* B,ElementType newvalue)
+			{
+				B->Root = new Tree;
+				B->len = 0;
+				B->Root->data = newvalue;
+				B->Root->left = NULL;
+				B->Root->right = NULL;
+				return B;
+			}
+
+			//2.递归左右子树(前中后序)
+
+
+			//3.输出函数
+
+
+			//4.输入函数
+			void Display(BinaryTree* B)
+			{
+
+			}
+
+			//5.菜单函数
+
+			//实现函数
+
+
+
+
+
+
+150.			
