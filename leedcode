@@ -258,4 +258,29 @@
 
 
 
-11.                 
+11.                 class Solution {
+                    public:
+                        vector<int> inorderTraversal(TreeNode* root) {
+                            vector<int> ans;
+                            stack<TreeNode*> S;
+                            while (root|| !S.empty())                  //如果最下面的root->right为空,则对栈顶继续进行操作(栈顶root2对应的为root1的中结点)
+                            {
+                                while (root)
+                                {
+                                    S.push(root);                      //不断把左子树push入栈,直到左侧无子树(此时root->left==NULL)
+                                    root = root->left;
+                                }
+                                root = S.top();                        //此处root为最左侧子树
+                                S.pop();                               //将root弹出
+                                ans.push_back(root->val);              //将root存入数据
+                                root = root->right;                    //开始判断root->right(可能有值也可能为NULL)
+                            }
+                            return ans;
+                        }
+                    };
+
+
+
+
+
+12.                 
