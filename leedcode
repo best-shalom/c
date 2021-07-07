@@ -199,4 +199,29 @@
                     
                     
                     
-9.                  
+9.                  class Solution {
+                    public:
+                        int maxSubArray(vector<int>& nums) {
+                            int n=nums.size();
+                            int Max=INT_MIN;                             //这个式子代表一个神奇的极小数(-2147483648)
+                            for(int i=0;i<n;i++)
+                            {
+                                int sum=0;                               //对每一个nums[i]开头的连续子数组求最大和
+                                for(int j=i;j<n;j++)
+                                {
+                                    sum+=nums[j];
+                                    if(sum>Max)
+                                    {
+                                        Max=sum;
+                                    }
+                                }
+                            }
+                            return Max;
+                        }
+                    };
+
+
+
+
+
+10.                 
