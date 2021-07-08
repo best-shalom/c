@@ -11997,4 +11997,242 @@
 
 
 
-150.			
+150.			#include <bits/stdc++.h>
+			using namespace std;
+
+			//构建数据
+			typedef struct
+			{
+				int ID;
+			}ElementType;
+
+			typedef struct BinaryTree
+			{
+				ElementType data;
+				BinaryTree* left;
+				BinaryTree* right;
+			}BinaryTree;
+
+			//功能函数
+			//1.构建函数
+			BinaryTree* Create(BinaryTree* Root)
+			{
+				Root = new BinaryTree;
+				Root->data.ID = 0;
+				Root->left = NULL;
+				Root->right = NULL;
+				return Root;
+			}
+
+			//2.输出函数
+			void Display1(ElementType x)
+			{
+				cout << x.ID << " ";
+			}
+
+			//3.递归左右子树(前中后序)
+			void root_left_right1(BinaryTree * Root)
+			{
+				if (!Root)
+					return;
+				Display1(Root->data);
+				root_left_right1(Root->left);
+				root_left_right1(Root->right);
+			}
+
+			void left_root_right1(BinaryTree* Root)
+			{
+				if (!Root)
+					return;
+				root_left_right1(Root->left);
+				Display1(Root->data);
+				root_left_right1(Root->right);
+			}
+
+			void left_right_root1(BinaryTree* Root)
+			{
+				if (!Root)
+					return;
+				root_left_right1(Root->left);
+				root_left_right1(Root->right);
+				Display1(Root->data);
+			}
+
+			//4.迭代遍历
+			void root_left_right2(BinaryTree* Root)
+			{
+				stack<BinaryTree*> S;                     //直接使用C++自带函数
+				if (Root)
+					S.push(Root);
+				while (!S.empty())
+				{
+					BinaryTree* p = S.top();
+					S.pop();
+					Display1(p->data);
+					if (p->right)
+						S.push(p->right);
+					if (p->left)
+						S.push(p->left);
+				}
+			}
+
+			void left_root_right2(BinaryTree* Root)
+			{
+				stack<BinaryTree*> S;
+				while (Root || !S.empty())
+				{
+					while (Root)
+					{
+						S.push(Root);
+						Root = Root->left;
+					}
+					Root = S.top();                                 //这里Root因当为while循环结束时Root的父树,该Root没有左子树了,因此输出Root(左中右)
+					S.pop();
+					Display1(Root->data);
+					Root = Root->right;                             //对此时的Root->right再次循环,将它作为root结点
+				}
+			}
+
+			void left_right_root2(BinaryTree* Root)
+			{
+				stack<BinaryTree*> S;                    
+				if (Root)
+					S.push(Root);
+				while (!S.empty())
+				{
+					BinaryTree* p = S.top();
+					S.pop();
+					Display1(p->data);
+					if (p->left)
+						S.push(p->left);
+					if (p->right)
+						S.push(p->right);
+				}
+			}
+
+			//5.输入函数
+			void Input(BinaryTree* Root)                       //用层序输入
+			{                     
+				BinaryTree* Root1 = new BinaryTree;
+				BinaryTree* Root2 = new BinaryTree;
+				BinaryTree* Root3 = new BinaryTree;
+				BinaryTree* Root4 = new BinaryTree;
+				BinaryTree* Root5 = new BinaryTree;
+				BinaryTree* Root6 = new BinaryTree;
+				cout << "请输入第1层数据:" << endl;
+				cin >> Root->data.ID;
+
+				cout << "请输入第2层数据:" << endl;
+				Root1 = Root->left;
+				cin >> Root->data.ID;
+				Root2 = Root->right;
+				cin >> Root->data.ID;
+
+				cout << "请输入第3层数据:" << endl;
+				Root3 = Root1->left;
+				cin >> Root3->data.ID;
+				Root4 = Root1->right;
+				cin >> Root4->data.ID;
+				Root5 = Root2->left;
+				cin >> Root5->data.ID;
+				Root6 = Root2->right;
+				cin >> Root6->data.ID;
+			}
+
+			//6.菜单函数
+			void Menu1()
+			{
+				cout << "1---递归遍历" << endl;
+				cout << "2---迭代遍历" << endl;
+				cout << "0---退出" << endl;
+				cout << "请选择功能:" << endl;
+			}
+
+			void Menu2()
+			{
+				cout << "1---前序遍历" << endl;
+				cout << "2---中序遍历" << endl;
+				cout << "3---后序遍历" << endl;
+				cout << "0---退出" << endl;
+				cout << "请选择功能:" << endl;
+			}
+
+			//实现函数
+			int main()
+			{
+				int choice, k1, k2;
+				BinaryTree* Root = new BinaryTree;
+				Root = Create(Root);
+				Input(Root);
+				while (1)
+				{
+					Menu1();
+					cin >> choice;
+					switch (choice)
+					{
+					case 1:
+						while (1)
+						{
+							Menu2();
+							cin >> k1;
+							switch (k1)
+							{
+							case 1:
+								root_left_right1(Root);
+								break;
+
+							case 2:
+								left_root_right1(Root);
+								break;
+
+							case 3:
+								left_right_root1(Root);
+								break;
+
+							case 0:
+								break;
+							}
+							system("pause");
+							system("cls");
+						}
+
+					case 2:
+						while (1)
+						{
+							Menu2();
+							cin >> k2;
+							switch (k2)
+							{
+							case 1:
+								root_left_right2(Root);
+								break;
+
+							case 2:
+								left_root_right2(Root);
+								break;
+
+							case 3:
+								left_right_root2(Root);
+								break;
+
+							case 0:
+								break;
+							}
+							system("pause");
+							system("cls");
+						}
+
+					case 0:
+						exit(0);
+					}
+					system("pause");
+					system("cls");
+				}
+				return 0;
+			}
+
+
+
+
+
+151.			
