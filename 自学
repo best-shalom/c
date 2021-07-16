@@ -12235,4 +12235,318 @@
 
 
 
-151.			
+151.			#include <bits/stdc++.h>
+			using namespace std;
+
+			//构建数据
+			typedef struct
+			{
+				int ID;
+			}ElementType;
+
+			typedef struct BinaryTree
+			{
+				ElementType data;
+				BinaryTree* left;
+				BinaryTree* right;
+			}BinaryTree;
+
+			//功能函数
+			//1.构建函数
+			BinaryTree* Create(BinaryTree* Root)
+			{
+				Root = new BinaryTree;
+				cout << "请先输入根节点数据:" << endl;
+				cin >> Root->data.ID;
+				Root->left = NULL;
+				Root->right = NULL;
+				return Root;
+			}
+
+			//2.输出函数
+			void Display1(ElementType x)
+			{
+				cout << x.ID << " ";
+			}
+
+			//3.递归左右子树(前中后序)
+			void root_left_right1(BinaryTree * Root)
+			{
+				if (!Root)
+					return;
+				Display1(Root->data);
+				root_left_right1(Root->left);
+				root_left_right1(Root->right);
+			}
+
+			void left_root_right1(BinaryTree* Root)
+			{
+				if (!Root)
+					return;
+				left_root_right1(Root->left);
+				Display1(Root->data);
+				left_root_right1(Root->right);
+			}
+
+			void left_right_root1(BinaryTree* Root)
+			{
+				if (!Root)
+					return;
+				left_right_root1(Root->left);
+				left_right_root1(Root->right);
+				Display1(Root->data);
+			}
+
+			//4.迭代遍历
+			void root_left_right2(BinaryTree* Root)
+			{
+				stack<BinaryTree*> S;                     //直接使用C++自带函数
+				if (Root)
+					S.push(Root);
+				while (!S.empty())
+				{
+					BinaryTree* p = S.top();
+					S.pop();
+					Display1(p->data);
+					if (p->right)
+						S.push(p->right);
+					if (p->left)
+						S.push(p->left);
+				}
+			}
+
+			void left_root_right2(BinaryTree* Root)
+			{
+				stack<BinaryTree*> S;
+				while (Root || !S.empty())
+				{
+					while (Root)
+					{
+						S.push(Root);
+						Root = Root->left;
+					}
+					Root = S.top();                                 //这里Root因当为while循环结束时Root的父树,该Root没有左子树了,因此输出Root(左中右)
+					S.pop();
+					Display1(Root->data);
+					Root = Root->right;                             //对此时的Root->right再次循环,将它作为root结点
+				}
+			}
+
+			void left_right_root2(BinaryTree* Root)                 //程序运行结果与实际结果反序(暂时无法实现数据反序输出)
+			{
+				stack<BinaryTree*> S;                    
+				if (Root)
+					S.push(Root);
+				while (!S.empty())
+				{
+					BinaryTree* p = S.top();
+					S.pop();
+					Display1(p->data);
+					if (p->left)
+						S.push(p->left);
+					if (p->right)
+						S.push(p->right);
+				}
+			}
+
+			//5.查找函数
+			BinaryTree* Find(BinaryTree* Root, ElementType data)
+			{
+				BinaryTree* ptr;
+				if (!Root)
+					return NULL;
+				else if (Root->data.ID == data.ID)
+				{
+					return Root;
+				}
+				else if (ptr = Find(Root->left, data))
+				{
+					return ptr;
+				}
+				else if (ptr = Find(Root->right, data))
+				{
+					return ptr;
+				}
+				else
+				{
+					return NULL;
+				}
+			}
+
+
+			//6.输入函数
+			void Input(BinaryTree* Root)                       //用层序输入
+			{                     
+				int choice;
+				BinaryTree* NewPtr, * parent;
+				ElementType data;
+				NewPtr = new BinaryTree;
+				cout << "请输入新节点数据:" << endl;
+				cout << "学号:";
+				cin >> NewPtr->data.ID;
+				NewPtr->left = NULL;
+				NewPtr->right = NULL;
+
+				cout << "请选择插入父节点:" << endl;
+				cout << "学号:";
+				cin >> data.ID;
+				parent = Find(Root, data);
+
+				cout << "请选择插入子树:" << endl;
+				cout << "1---左子树" << endl;
+				cout << "2---右子树" << endl;
+				cin >> choice;
+				switch (choice)
+				{
+				case 1:
+					if (parent->left)
+					{
+						cout << "左子树不为空,插入失败!" << endl;
+					}
+					else
+					{
+						parent->left = NewPtr;
+						cout << "插入成功!" << endl;
+					}
+					break;
+
+				case 2:
+					if (parent->right)
+					{
+						cout << "右子树不为空,插入失败!" << endl;
+					}
+					else
+					{
+						parent->right = NewPtr;
+						cout << "插入成功!" << endl;
+					}
+					break;
+
+				default:
+					cout << "选择非法!" << endl;
+					break;
+				}
+
+			}
+
+			//7.菜单函数
+			void Menu1()
+			{
+				cout << "1---递归遍历" << endl;
+				cout << "2---迭代遍历" << endl;
+				cout << "0---退出" << endl;
+				cout << "请选择功能:" << endl;
+			}
+
+			void Menu2()
+			{
+				cout << "1---前序遍历" << endl;
+				cout << "2---中序遍历" << endl;
+				cout << "3---后序遍历" << endl;
+				cout << "0---退出" << endl;
+				cout << "请选择功能:" << endl;
+			}
+
+			//实现函数
+			int main()
+			{
+				int k1, k2, k3, k4;
+				BinaryTree* Root = new BinaryTree;
+				Root = Create(Root);
+				while (1)
+				{
+					cout << "是否插入数据:" << endl;
+					cout << "1---是" << endl;
+					cout << "0---否" << endl;
+					cin >> k1;
+					switch (k1)
+					{
+					case 1:
+						Input(Root);
+						break;
+					case 0:
+						cout << "插入结束!开始遍历!" << endl;
+						break;
+					}
+					system("pause");
+					system("cls");
+					if (k1 == 0)
+						break;
+				}
+				while (1)
+				{
+					Menu1();
+					cin >> k2;
+					switch (k2)
+					{
+					case 1:
+						while (1)
+						{
+							Menu2();
+							cin >> k3;
+							switch (k3)
+							{
+							case 1:
+								root_left_right1(Root);
+								break;
+
+							case 2:
+								left_root_right1(Root);
+								break;
+
+							case 3:
+								left_right_root1(Root);
+								break;
+
+							case 0:
+								break;
+							}
+							if (k3 == 0)
+								break;
+							system("pause");
+							system("cls");
+						}
+						break;
+
+					case 2:
+						while (1)
+						{
+							Menu2();
+							cin >> k4;
+							switch (k4)
+							{
+							case 1:
+								root_left_right2(Root);
+								break;
+
+							case 2:
+								left_root_right2(Root);
+								break;
+
+							case 3:
+								left_right_root2(Root);
+								break;
+
+							case 0:
+								break;
+							}
+							if (k4 == 0)
+								break;
+							system("pause");
+							system("cls");
+						}
+						break;
+
+					case 0:
+						exit(0);
+					}
+					system("pause");
+					system("cls");
+				}
+				return 0;
+			}
+
+
+
+
+152.			
