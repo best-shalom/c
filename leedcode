@@ -373,4 +373,40 @@
 
 
 
-15.               
+15.               /**
+                   * Definition for singly-linked list.
+                   * struct ListNode {
+                   *     int val;
+                   *     ListNode *next;
+                   *     ListNode() : val(0), next(nullptr) {}
+                   *     ListNode(int x) : val(x), next(nullptr) {}
+                   *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+                   * };
+                   */
+                  class Solution {
+                  public:
+                      ListNode* removeElements(ListNode* head, int val) {
+                          ListNode* result=new ListNode(-1);
+                          ListNode* p=result;
+                          ListNode* s=NULL;
+                          result->next=head;                               //给原链表添加一个空头结点,方便对原头结点进行删除操作
+                          while(p->next)
+                          {
+                              if(p->next->val==val)
+                              {
+                                 s=p->next;
+                                 p->next=p->next->next; 
+                                 delete s;
+                              }
+                              else
+                              {
+                                  p=p->next;
+                              }
+                          }
+                          return result->next;
+                      }
+                  };
+
+
+
+16.               
