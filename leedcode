@@ -328,4 +328,49 @@
 
 
 
-14.                 
+14.                 /**
+                   * Definition for singly-linked list.
+                   * struct ListNode {
+                   *     int val;
+                   *     ListNode *next;
+                   *     ListNode() : val(0), next(nullptr) {}
+                   *     ListNode(int x) : val(x), next(nullptr) {}
+                   *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+                   * };
+                   */
+                  class Solution {
+                  public:
+                      ListNode* reverseList(ListNode* head) {
+                          ListNode* p=head;
+                          ListNode* q=head;
+                          int num=0,t;
+                          if(head==NULL)
+                          {
+                              return NULL;
+                          }
+                          while(q)                                //计算链表结点数
+                          {
+                              q=q->next;
+                              num++;
+                          }
+                          while(p->next!=q&&p!=q)
+                          {
+                              q=head;
+                              for(int i=0;i<num-1;i++)
+                              {
+                                  q=q->next;                      //找到最后一个结点,与p进行交换
+                              }
+                              t=q->val;
+                              q->val=p->val;
+                              p->val=t;
+                              p=p->next;                          //p后移,q前移
+                              num--;
+                          }
+                          return head;
+                      }
+                  };
+
+
+
+
+15.               
