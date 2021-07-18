@@ -479,4 +479,43 @@
 
 
 
-18.               
+18.               /**
+                   * Definition for a binary tree node.
+                   * struct TreeNode {
+                   *     int val;
+                   *     TreeNode *left;
+                   *     TreeNode *right;
+                   *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+                   *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+                   *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+                   * };
+                   */
+                  class Solution {
+                  public:
+                      bool isSymmetric(TreeNode* root) {
+                          return is(root->left,root->right);
+                      }
+                      bool is(TreeNode* p,TreeNode* q)
+                      {
+                          if(p==NULL&&q==NULL)
+                              return true;
+                          else if(p==NULL||q==NULL)
+                              return false;
+                          else if(p->val==q->val)
+                              return is(p->left,q->right)&&is(p->right,q->left);
+                          else 
+                              return false;
+                      }
+                  };
+                  /*
+                  对于此题： 递归的点怎么找？从拿到题的第一时间开始，思路如下：
+
+                  1.怎么判断一棵树是不是对称二叉树？ 答案：如果所给根节点，为空，那么是对称。如果不为空的话，当他的左子树与右子树对称时，他对称
+
+                  2.那么怎么知道左子树与右子树对不对称呢？在这我直接叫为左树和右树 答案：如果左树的左孩子与右树的右孩子对称，左树的右孩子与右树的左孩子对称，那么这个左树和右树就对称。
+                  */
+
+
+
+
+19.                 
