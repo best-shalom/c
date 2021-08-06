@@ -668,4 +668,32 @@
 
 
 
-25.               
+25.               class Solution {
+                  public:
+                      void Tree(TreeNode* root,string p,vector<string>& paths)
+                      {
+                          if(root!=NULL)
+                          {
+                              p+=to_string(root->val);
+                              if(root->left==NULL&&root->right==NULL)        //已经遍历到了叶子结点,将结果放到paths中
+                                  paths.push_back(p);
+                              else
+                              {
+                                  p+="->";                                   //不是叶子结点,递归
+                                  Tree(root->left,p,paths);
+                                  Tree(root->right,p,paths);
+                              }                
+                          }
+                      }
+                      vector<string> binaryTreePaths(TreeNode* root) {
+                          vector<string> paths;
+                          Tree(root,"",paths);
+                          return paths;
+                      }
+                  };
+
+
+
+
+
+26.               
