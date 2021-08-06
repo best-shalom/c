@@ -627,3 +627,29 @@
                             return root;
                         }
                     };
+                    
+                    
+                    
+                    
+23.                 /*
+                   输入 [2,null,3,null,4,null,5,null,6]
+                  预期结果 5
+                   */
+                  class Solution {
+                  public:
+                      int minDepth(TreeNode* root) {
+                          if(root==NULL)
+                              return 0;
+                          if(root->left==NULL&&root->right!=NULL)
+                              return 1+minDepth(root->right);
+                          if(root->left!=NULL&&root->right==NULL)
+                              return 1+minDepth(root->left);
+                          return min(minDepth(root->left),minDepth(root->right))+1;
+                      }
+                  };
+
+
+
+
+
+24.               
