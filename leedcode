@@ -696,4 +696,19 @@
 
 
 
-26.               
+26.               class Solution {
+                  public:
+                      int sumOfLeftLeaves(TreeNode* root) {
+                          int k=0;
+                          if(root==NULL)
+                              return 0;
+                          if(root->left!=NULL&&root->left->left==NULL&&root->left->right==NULL)   //判断为root->left为左叶子结点
+                              k+=root->left->val;
+                          return sumOfLeftLeaves(root->right)+sumOfLeftLeaves(root->left)+k;
+                      }
+                  };
+
+
+
+
+27.               
