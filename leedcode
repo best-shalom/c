@@ -807,4 +807,46 @@
 
 
 
-30.               
+30.               class Solution {
+                  public:
+                  int ans,num,maxans;
+                  vector<int> result;
+                  void update(int x)                            //对于中序遍历得到的数进行统计更新--新的众数
+                  {
+                      if(x==num)
+                          ans++;
+                      else                                     //否则为一个新的数,重新判断它是否为最大众数
+                      {
+                          num=x;
+                          ans=1;
+                      }
+                      if(ans==maxans)                          //多个众数
+                      {
+                          result.push_back(num);
+                      }
+                      else if(ans>maxans)                      //出现了新的最大众数
+                      {
+                          maxans=ans;
+                          result=vector<int> {num};
+                      }
+                  }
+                  void Pass(TreeNode* root)                    //二叉搜索树的中序遍历得到有序数组
+                  {
+                      if(root==NULL)
+                          return;
+                      Pass(root->left);
+                      update(root->val);
+                      Pass(root->right);
+                  }
+
+                  vector<int> findMode(TreeNode* root) {
+                      Pass(root);
+                      return result;
+                  }
+              };
+
+
+
+
+
+31.           
