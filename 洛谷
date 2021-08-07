@@ -5248,4 +5248,25 @@ int main()
 
 
 
-172.			
+172.			#include <bits/stdc++.h>
+			using namespace std;
+			int Num(int k,int sum)
+			{
+				sum=0; 
+				int len=sizeof(k);
+				int a=1;
+				while(a<=k/2)
+				{
+					sum+=Num(a,sum);
+					a++;
+					sum++; 
+				}
+				return sum;
+			} 
+			int main()
+			{
+				int k;
+				cin>>k;
+				cout<<Num(k,0)+1;                      //加上自己 
+				return 0;
+			}
