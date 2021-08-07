@@ -5270,3 +5270,57 @@ int main()
 				cout<<Num(k,0)+1;                      //加上自己 
 				return 0;
 			}
+
+
+
+
+
+173.			#include <bits/stdc++.h>
+			using namespace std;
+			int ans=0,n,sum,k;
+			int a[20];
+			int IS(int m)                         //判断素数
+			{
+				for(int i=2;i<m;i++)
+				{
+					if(m%i==0)
+					return 0;
+				}
+				return 1;
+			} 
+			void choice(int l,int Begin)
+			{
+				if(l==0)
+					ans+=IS(sum);
+				else
+				{
+					Begin++;
+					for(int i=Begin;i<=n;i++)
+					{
+						sum+=a[i];
+						l--;
+						choice(l,i);
+						sum-=a[i];
+						l++;
+					}	
+				}
+			}
+
+			int main()
+			{                          
+				cin>>n>>k;
+				for(int i=1;i<=n;i++)
+					cin>>a[i];
+				choice(k,0);
+				cout<<ans;
+				return 0;
+			}
+			
+			
+			
+			
+			
+
+
+
+174.			
