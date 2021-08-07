@@ -744,4 +744,24 @@
 
 
 
-28.               
+28.               class Solution {
+                  public:
+                      int Num(TreeNode* root,int sum)
+                      {
+                          if(root==NULL)
+                          {
+                              return 0;
+                          }
+                          sum=(sum<<1)+root->val;                                //这里二进制的更新!!(也可以直接sum=sum*2+root->val)
+                          if(root->left==NULL&&root->right==NULL)                //表示为子树
+                          {
+                              return sum;
+                          }
+                          return Num(root->left,sum)+Num(root->right,sum);
+                      }
+
+                      int sumRootToLeaf(TreeNode* root) 
+                      {
+                          return Num(root,0);
+                      }
+                  };
