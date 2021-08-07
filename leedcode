@@ -711,4 +711,37 @@
 
 
 
-27.               
+27.                /*
+                   题目分析:
+                   对每个结点遍历其左子树+右子树+自身=通过它的路径长度
+                   DepRoot=Depth(root->left)+Depth(root->right)+1
+                   再通过result=max(result,DepRoot)不断更新更大的result,最终返回最大的result
+                   */
+
+                  class Solution {
+                      int result;
+                      int Depth(TreeNode* root)                           //Depth是用来求左右子树深度的,全局变量result才是求结果的
+                      {
+                          if(root==NULL)
+                          {
+                              return 0;
+                          }
+                          int L=Depth(root->left);
+                          int R=Depth(root->right);
+                          result=max(L+R+1,result);
+                          return max(L,R)+1;                              //最大子树深度
+                      }
+                  public:
+                      int diameterOfBinaryTree(TreeNode* root) 
+                      {
+                          result=1;                                       //这里直接调用result,而不是int result=1?
+                          Depth(root);
+                          return result-1;
+                      }
+                  };
+
+
+
+
+
+28.               
