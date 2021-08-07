@@ -765,3 +765,46 @@
                           return Num(root,0);
                       }
                   };
+
+
+
+
+
+
+
+29.               /*
+                  题目分析:
+                  对于二叉搜索树,左子树值小于根节点,右子树值大于根节点
+                  那么对于两个不同的目标值,如果均大于或小于某结点,则可以共同进行下去;
+                  否则将会发生分叉歧路,则由题意可知该分叉点为两者的公共祖先
+                  */
+
+                  class Solution {
+                  public:
+                      TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+                          TreeNode* ptr=root;
+                          while(1)
+                          {
+                              if(p->val<ptr->val&&q->val<ptr->val)              //两者均小于结点,向左走
+                              {
+                                  ptr=ptr->left;
+                              }
+                              else if(p->val>ptr->val&&q->val>ptr->val)         //两者均大于结点,向右走
+                              {
+                                  ptr=ptr->right;
+                              } 
+                              else                                              //说明发生分叉,结束循环,输出当前结点
+                              { 
+                                  break;
+                              }
+                          }
+                          return ptr;
+                      }
+                  };
+
+
+
+
+
+
+30.               
