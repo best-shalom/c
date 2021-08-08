@@ -989,4 +989,20 @@
 
 
 
-37.           
+37.           class Solution {
+              public:
+                  int mySqrt(int x) 
+                  {
+                      long long t=0;
+                      while(t*t<=x)
+                          t++;
+                      return t-1;
+                  }
+              };
+
+
+
+
+
+
+38.           
