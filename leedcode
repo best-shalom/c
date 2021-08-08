@@ -1005,4 +1005,29 @@
 
 
 
-38.           
+38.           class Solution {
+              public:
+                  int removeElement(vector<int>& nums, int val)
+                  {
+                      int len=nums.size();
+                      for(int i=0;i<len;i++)
+                      {
+                          if(nums[i]==val)
+                          {
+                              for(int j=i+1;j<len;j++)
+                              {
+                                  nums[j-1]=nums[j];
+                              }
+                              i--;                                             //注意这里i--,因为下表i以后的数值都向前移动了一位，所以i也向前移动一位
+                              len--;
+                          }
+                      }
+                      return len;
+                  }
+              };
+
+
+
+
+
+39.           
