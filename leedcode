@@ -1119,4 +1119,60 @@
 
 
 
-43.            
+43.             class Solution {
+                public:
+                    string Fact(string x,int& n)
+                    {
+                        for(int i=1;i<n;i++)
+                        {
+                            if(x[0]=='#')
+                            {
+                                for(int k=0;k<n-1;k++)
+                                {
+                                    x[k]=x[k+1];
+                                }
+                                x[n-1]=' ';
+                                n--;
+                            }
+                            if(x[i]=='#')
+                            {
+                                for(int j=i-1;j<n-1;j++)
+                                {
+                                    x[j]=x[j+1];
+                                }
+                                for(int j=i-1;j<n-2;j++)
+                                {
+                                    x[j]=x[j+1];
+                                }
+                                x[n-1]=' ';
+                                x[n-2]=' ';
+                                n=n-2;
+                                i=0;                                          //每次删除过后都回到开头重新遍历
+                            }
+                        }
+                        return x;
+                    }
+                    bool backspaceCompare(string s, string t) {
+                        int n1=s.size();
+                        int n2=t.size();
+                        s=Fact(s,n1);
+                        t=Fact(t,n2);
+                        if(n1==0&&n2==0)
+                            return true;
+                        if(n1==n2)
+                        {
+                            for(int i=0;i<n1;i++)
+                            {
+                                if(s[i]!=t[i])
+                                    return false; 
+                            }
+                            return true;
+                        }
+                        return false;
+                    }
+                };
+
+
+
+
+44.             
