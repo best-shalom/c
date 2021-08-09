@@ -1191,4 +1191,52 @@
 
 
 
-45.             
+45.             class Solution {
+                public:
+                    vector<int> sortedSquares(vector<int>& nums) {
+                        int ptr1=-1;
+                        for(int i=0;i<nums.size();i++)                       //由于nums为递增数组,可以分成>0和<0的两段
+                        {
+                            if(nums[i]<0)
+                            {
+                                ptr1=i;                                      //nums[ptr1]指向nums中小于0的数
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        vector<int> result;
+                        int ptr2=ptr1+1;                                    //nums[ptr2]指向nums中大于0的数
+                        while(ptr1>=0||ptr2<nums.size())                    //将左右平方放入数组中
+                        {
+                            if(ptr1<0)                                      //此时ptr1=-1,表示nums中没有负数,ptr2=0
+                            {
+                                result.push_back(nums[ptr2]*nums[ptr2]);
+                                ptr2++;
+                            }
+                            else if(ptr2==nums.size())                      //此时ptr1=nums.size()-1,表示nums中均为负数
+                            {
+                                result.push_back(nums[ptr1]*nums[ptr1]);
+                                ptr1--;
+                            }
+                            else if(nums[ptr1]*nums[ptr1]<nums[ptr2]*nums[ptr2])
+                            {
+                                result.push_back(nums[ptr1]*nums[ptr1]);
+                                ptr1--;
+                            }
+                            else 
+                            {
+                                result.push_back(nums[ptr2]*nums[ptr2]);
+                                ptr2++;
+                            }
+                        }
+                        return result;
+                    }
+                };
+
+
+
+
+
+46.             
