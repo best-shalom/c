@@ -1091,4 +1091,32 @@
               
               
               
-42.                         
+42.           class Solution {
+              public:
+                  void moveZeroes(vector<int>& nums) {
+                      int fast=0;
+                      int t=0;
+                      while(t<nums.size())
+                      {
+                          if(nums[fast]==0)
+                          {
+                              for(int i=fast;i<nums.size()-1;i++)
+                              {
+                                  nums[i]=nums[i+1];
+                              }
+                              nums[nums.size()-1]=0;
+                              t++;
+                          }
+                          else
+                          {
+                              t++;
+                              fast++;
+                          }
+                      }
+                  }
+              };              
+
+
+
+
+43.            
