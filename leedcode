@@ -1239,4 +1239,38 @@
 
 
 
-46.             
+46.             /*
+                题目分析:
+                枚举数组 \text{nums}nums 中的每个下标作为子数组的开始下标，对于每个开始下标 ii，需要找到大于或等于 ii 的最小下标 jj，使得从 \text{nums}[i]nums[i] 到 \text{nums}[j]nums[j] 的元素和大于或等于 ss，并更新子数组的最小长度（此时子数组的长度是 j-i+1j−i+1）
+                */
+
+                class Solution {
+                public:
+                    int minSubArrayLen(int target, vector<int>& nums) {
+                        int result=INT_MAX;                               //result取无穷大
+                        if(nums.size()==0)
+                            return 0;
+                        for(int i=0;i<nums.size();i++)
+                        {
+                            int sum=0;
+                            for(int j=i;j<nums.size();j++)
+                            {
+                                sum+=nums[j];
+                                if(sum>=target)
+                                {
+                                    result=min(result,j-i+1);             //得到对于当前i开头的最小连续子数组,再不断更新result得到最小值
+                                    break;
+                                }
+                            }
+                        }
+                        if(result==INT_MAX)
+                            return 0;
+                        return result;
+                    }
+                };
+
+
+
+
+
+47.             
