@@ -1322,4 +1322,75 @@
 
 
 
-48.             
+48.             class Solution {
+                public:
+                    void Delete(string x,int n)
+                    {
+                        int i;
+                        for(i=n;i<x.size()-1;i++)
+                        {
+                            x[i]=x[i+1];
+                        }
+                        x[i-1]=' '; 
+                    }
+
+                    string minWindow(string s, string t) {
+                        int k=0;
+                        int p=-1,q=-1;
+                        int Minresult=s.size();
+                        int Min=-1;
+                        string result,r,S=s;
+                        if(s.size()<t.size())
+                        {
+                            result[0]='""';
+                            return result;
+                        }
+                        if(s==t)
+                        {
+                            return s;
+                        }
+                        for(int i=0;i<=s.size()-t.size();i++)
+                        {
+                            for(int j=i;j<s.size()&&k<t.size();j++)
+                            {
+                                if(t[k]==s[j])
+                                {
+                                    k++;
+                                    Min=max(Min,j);             //表示以i开头,这一段至少需要的子串
+                                    Delete(s,j);               //在这个循环中把s中已经使用过的j删除,避免无法判断重复元素    
+                                    j=i-1;
+                                    continue;
+                                }                               //得到从i到Min的一串子串为需要的子串(但不一定是最小子串)
+                            }
+                            if(Minresult>Min-i&&(Min-i+1)>=t.size()&&k==t.size())
+                            {
+                                Minresult=Min-i+1;
+                                p=Min;
+                                q=i;                            //用p,q存储最小子串的首尾位置
+                            }
+                            Min=-1;
+                            k=0;
+                            s=S;                                //还原s,开始下一次循环
+                        }
+                        //循环结束,返回以q开头,p结束的最小子串
+                        if(p==-1&&q==-1)
+                        {
+                            result[0]='""';
+                        }
+                        else
+                        {
+                            for(int h=q;h<=p;h++)
+                            {
+                                result.push_back(s[h]);
+                            }
+                        }
+                        return result;
+                    }
+                };
+
+
+
+
+
+
+49.             
