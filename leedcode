@@ -1441,4 +1441,61 @@
 
 
 
-50.             
+50.             class Solution {
+                public:
+                    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+                        if(matrix.size()==0||matrix[0].size()==0)
+                            return {};
+                        int m=matrix.size();                          //注意:如何判断二维数组的行列!
+                        int n=matrix[0].size();
+                        vector<int> result;
+                        int up=0,down=m-1,left=0,right=n-1;
+                        while(up<down&&left<right)
+                        {
+                            for(int i=left;i<right;i++)
+                            {
+                                result.push_back(matrix[up][i]);
+                            }
+                            for(int j=up;j<down;j++)
+                            {
+                                result.push_back(matrix[j][right]);
+                            }
+                            for(int i=right;i>left;i--)
+                            {
+                                result.push_back(matrix[down][i]);
+                            }
+                            for(int j=down;j>up;j--)
+                            {
+                                result.push_back(matrix[j][left]);
+                            }
+                            left++;
+                            right--;
+                            up++;
+                            down--;
+                        }
+                        if(up==down&&left!=right)
+                         {
+                             for(int i=left;i<=right;i++)
+                             {
+                                 result.push_back(matrix[up][i]);
+                             }
+                         }   
+                         if(up!=down&&left==right)
+                         {
+                             for(int j=up;j<=down;j++)
+                             {
+                                 result.push_back(matrix[j][left]);
+                             }
+                         }   
+                         if(up==down&&left==right)
+                         {
+                             result.push_back(matrix[up][left]);
+                         }   
+                        return result;
+                    }
+                };
+
+
+
+
+51.             
