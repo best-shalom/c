@@ -1393,4 +1393,52 @@
 
 
 
-49.             
+49.             class Solution {
+                public:
+                    vector<vector<int>> generateMatrix(int n) {
+                        vector<vector<int>> result(n, vector<int>(n, 0));
+                        int startX=0,startY=0;            //定义每轮开始循环的坐标
+                        int loop=n/2;                     //需要循环的圈数:n=3,循环一圈+中心;n=4,循环两圈
+                        int count=1;                      //用来计算放入数组的数字1~n^2
+                        int i,j;                          //表示每个坐标
+                        int num=1;                        //计算每条边循环的长度
+                        while(loop--)
+                        {
+                            i=startX;
+                            j=startY;
+                            for(j=startY;j<startY+n-num;j++)
+                            {
+                                result[i][j]=count;
+                                count++;
+                            }
+                            for(i=startX;i<startX+n-num;i++)
+                            {
+                                result[i][j]=count;
+                                count++;
+                            }
+                            for(;j>startY;j--)
+                            {
+                                result[i][j]=count;
+                                count++;
+                            }
+                            for(;i>startX;i--)
+                            {
+                                result[i][j]=count;
+                                count++;
+                            }
+                            startX++;                        //一圈结束,开始下一次循环(0,0)→(1,1)
+                            startY++;
+                            num+=2;                          //每条边循环的长度-2
+                        }
+                        if(n%2)                              //n为奇数,将中心点单独输入
+                        {
+                            result[n/2][n/2]=count;
+                        }
+                        return result;
+                    }
+                };
+
+
+
+
+50.             
