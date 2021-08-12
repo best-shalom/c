@@ -1498,4 +1498,38 @@
 
 
 
-51.             
+51.             class Solution {
+                public:
+                    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+                        if(matrix.size()==0||matrix[0].size()==0)
+                            return {};
+                        vector<int> result;
+                        int m=matrix.size();
+                        int n=matrix[0].size();
+                        int up=0,down=m-1,left=0,right=n-1;
+                        while(up<=down&&left<=right)
+                        {
+                            for(int i=left;i<=right;i++)
+                            {
+                                result.push_back(matrix[up][i]);
+                            }
+                            up++;                               //及时把这一行删掉
+                            for(int j=up;j<=down;j++)
+                            {
+                                result.push_back(matrix[j][right]);
+                            }
+                            right--;                            //及时删掉
+                            for(int i=right;i>=left&&up<=down;i--)   //注意这里的判断条件
+                            {
+                                result.push_back(matrix[down][i]);
+                            }
+                            down--;                             //及时删掉
+                            for(int j=down;j>=up&&left<=right;j--)   //注意这里的判断条件
+                            {
+                                result.push_back(matrix[j][left]);
+                            }
+                            left++;                            //及时删掉
+                        }
+                        return result;
+                    }
+                };
